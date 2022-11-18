@@ -1,0 +1,510 @@
+,Ticker,Name,Sector,Asset Class,Market Value,Weight (%),Notional Value,Shares,Price,Location,Exchange,Currency,FX Rate,Market Currency,Accrual Date
+0,AAPL,APPLE INC,Information Technology,Equity,"23,487,501,762.70",7.05,"23,487,501,762.70","134,514,070.00",174.61,United States,NASDAQ,USD,1.00,USD,-
+1,MSFT,MICROSOFT CORP,Information Technology,Equity,"20,054,230,517.70",6.02,"20,054,230,517.70","65,045,670.00",308.31,United States,NASDAQ,USD,1.00,USD,-
+2,AMZN,AMAZON COM INC,Consumer Discretionary,Equity,"12,377,397,719.70",3.72,"12,377,397,719.70","3,796,806.00","3,259.95",United States,NASDAQ,USD,1.00,USD,-
+3,TSLA,TESLA INC,Consumer Discretionary,Equity,"7,827,032,296.80",2.35,"7,827,032,296.80","7,263,393.00","1,077.60",United States,NASDAQ,USD,1.00,USD,-
+4,GOOGL,ALPHABET INC CLASS A,Communication,Equity,"7,257,899,448.80",2.18,"7,257,899,448.80","2,609,488.00","2,781.35",United States,NASDAQ,USD,1.00,USD,-
+5,GOOG,ALPHABET INC CLASS C,Communication,Equity,"6,731,016,524.32",2.02,"6,731,016,524.32","2,409,968.00","2,792.99",United States,NASDAQ,USD,1.00,USD,-
+6,NVDA,NVIDIA CORP,Information Technology,Equity,"5,918,600,257.08",1.78,"5,918,600,257.08","21,690,978.00",272.86,United States,NASDAQ,USD,1.00,USD,-
+7,BRKB,BERKSHIRE HATHAWAY INC CLASS B,Financials,Equity,"5,607,643,202.66",1.68,"5,607,643,202.66","15,889,726.00",352.91,United States,New York Stock Exchange Inc.,USD,1.00,USD,-
+8,FB,META PLATFORMS INC CLASS A,Communication,Equity,"4,454,864,304.48",1.34,"4,454,864,304.48","20,034,468.00",222.36,United States,NASDAQ,USD,1.00,USD,-
+9,UNH,UNITEDHEALTH GROUP INC,Health Care,Equity,"4,167,393,244.80",1.25,"4,167,393,244.80","8,171,840.00",509.97,United States,New York Stock Exchange Inc.,USD,1.00,USD,-
+10,JNJ,JOHNSON & JOHNSON,Health Care,Equity,"4,048,184,866.60",1.22,"4,048,184,866.60","22,841,420.00",177.23,United States,New York Stock Exchange Inc.,USD,1.00,USD,-
+11,JPM,JPMORGAN CHASE & CO,Financials,Equity,"3,495,387,390.72",1.05,"3,495,387,390.72","25,641,046.00",136.32,United States,New York Stock Exchange Inc.,USD,1.00,USD,-
+12,V,VISA INC CLASS A,Information Technology,Equity,"3,191,081,351.96",0.96,"3,191,081,351.96","14,389,148.00",221.77,United States,New York Stock Exchange Inc.,USD,1.00,USD,-
+13,PG,PROCTER & GAMBLE,Consumer Staples,Equity,"3,177,914,688.80",0.95,"3,177,914,688.80","20,797,871.00",152.80,United States,New York Stock Exchange Inc.,USD,1.00,USD,-
+14,XOM,EXXON MOBIL CORP,Energy,Equity,"3,033,701,743.89",0.91,"3,033,701,743.89","36,732,071.00",82.59,United States,New York Stock Exchange Inc.,USD,1.00,USD,-
+15,CVX,CHEVRON CORP,Energy,Equity,"2,723,391,345.78",0.82,"2,723,391,345.78","16,725,366.00",162.83,United States,New York Stock Exchange Inc.,USD,1.00,USD,-
+16,HD,HOME DEPOT INC,Consumer Discretionary,Equity,"2,711,998,645.90",0.81,"2,711,998,645.90","9,060,230.00",299.33,United States,New York Stock Exchange Inc.,USD,1.00,USD,-
+17,MA,MASTERCARD INC CLASS A,Information Technology,Equity,"2,676,147,925.96",0.80,"2,676,147,925.96","7,488,242.00",357.38,United States,New York Stock Exchange Inc.,USD,1.00,USD,-
+18,BAC,BANK OF AMERICA CORP,Financials,Equity,"2,542,275,280.62",0.76,"2,542,275,280.62","61,675,771.00",41.22,United States,New York Stock Exchange Inc.,USD,1.00,USD,-
+19,PFE,PFIZER INC,Health Care,Equity,"2,521,169,232.25",0.76,"2,521,169,232.25","48,699,425.00",51.77,United States,New York Stock Exchange Inc.,USD,1.00,USD,-
+20,ABBV,ABBVIE INC,Health Care,Equity,"2,486,572,543.78",0.75,"2,486,572,543.78","15,338,798.00",162.11,United States,New York Stock Exchange Inc.,USD,1.00,USD,-
+21,AVGO,BROADCOM INC,Information Technology,Equity,"2,255,678,106.48",0.68,"2,255,678,106.48","3,582,261.00",629.68,United States,NASDAQ,USD,1.00,USD,-
+22,COST,COSTCO WHOLESALE CORP,Consumer Staples,Equity,"2,215,524,714.15",0.67,"2,215,524,714.15","3,847,399.00",575.85,United States,NASDAQ,USD,1.00,USD,-
+23,DIS,WALT DISNEY,Communication,Equity,"2,166,645,745.44",0.65,"2,166,645,745.44","15,796,484.00",137.16,United States,New York Stock Exchange Inc.,USD,1.00,USD,-
+24,KO,COCA-COLA,Consumer Staples,Equity,"2,091,212,508.00",0.63,"2,091,212,508.00","33,729,234.00",62.00,United States,New York Stock Exchange Inc.,USD,1.00,USD,-
+25,CSCO,CISCO SYSTEMS INC,Information Technology,Equity,"2,040,456,403.76",0.61,"2,040,456,403.76","36,593,551.00",55.76,United States,NASDAQ,USD,1.00,USD,-
+26,TMO,THERMO FISHER SCIENTIFIC INC,Health Care,Equity,"2,019,389,232.55",0.61,"2,019,389,232.55","3,418,927.00",590.65,United States,New York Stock Exchange Inc.,USD,1.00,USD,-
+27,PEP,PEPSICO INC,Consumer Staples,Equity,"2,009,119,049.20",0.60,"2,009,119,049.20","12,003,340.00",167.38,United States,NASDAQ,USD,1.00,USD,-
+28,LLY,ELI LILLY,Health Care,Equity,"1,972,745,942.37",0.59,"1,972,745,942.37","6,888,801.00",286.37,United States,New York Stock Exchange Inc.,USD,1.00,USD,-
+29,ADBE,ADOBE INC,Information Technology,Equity,"1,864,704,127.88",0.56,"1,864,704,127.88","4,092,674.00",455.62,United States,NASDAQ,USD,1.00,USD,-
+30,VZ,VERIZON COMMUNICATIONS INC,Communication,Equity,"1,855,412,020.26",0.56,"1,855,412,020.26","36,423,479.00",50.94,United States,New York Stock Exchange Inc.,USD,1.00,USD,-
+31,ACN,ACCENTURE PLC CLASS A,Information Technology,Equity,"1,849,188,564.72",0.56,"1,849,188,564.72","5,483,464.00",337.23,United States,New York Stock Exchange Inc.,USD,1.00,USD,-
+32,CMCSA,COMCAST CORP CLASS A,Communication,Equity,"1,837,689,494.72",0.55,"1,837,689,494.72","39,250,096.00",46.82,United States,NASDAQ,USD,1.00,USD,-
+33,WMT,WALMART INC,Consumer Staples,Equity,"1,827,890,394.12",0.55,"1,827,890,394.12","12,274,311.00",148.92,United States,New York Stock Exchange Inc.,USD,1.00,USD,-
+34,ABT,ABBOTT LABORATORIES,Health Care,Equity,"1,815,922,676.48",0.55,"1,815,922,676.48","15,342,368.00",118.36,United States,New York Stock Exchange Inc.,USD,1.00,USD,-
+35,CRM,SALESFORCE.COM INC,Information Technology,Equity,"1,814,539,587.68",0.54,"1,814,539,587.68","8,546,249.00",212.32,United States,New York Stock Exchange Inc.,USD,1.00,USD,-
+36,MRK,MERCK & CO INC,Health Care,Equity,"1,798,212,558.90",0.54,"1,798,212,558.90","21,916,058.00",82.05,United States,New York Stock Exchange Inc.,USD,1.00,USD,-
+37,INTC,INTEL CORPORATION CORP,Information Technology,Equity,"1,750,965,604.08",0.53,"1,750,965,604.08","35,330,218.00",49.56,United States,NASDAQ,USD,1.00,USD,-
+38,WFC,WELLS FARGO,Financials,Equity,"1,633,813,150.50",0.49,"1,633,813,150.50","33,714,675.00",48.46,United States,New York Stock Exchange Inc.,USD,1.00,USD,-
+39,DHR,DANAHER CORP,Health Care,Equity,"1,619,540,635.92",0.49,"1,619,540,635.92","5,521,224.00",293.33,United States,New York Stock Exchange Inc.,USD,1.00,USD,-
+40,MCD,MCDONALDS CORP,Consumer Discretionary,Equity,"1,603,205,260.80",0.48,"1,603,205,260.80","6,483,360.00",247.28,United States,New York Stock Exchange Inc.,USD,1.00,USD,-
+41,AMD,ADVANCED MICRO DEVICES INC,Information Technology,Equity,"1,550,903,270.84",0.47,"1,550,903,270.84","14,184,226.00",109.34,United States,NASDAQ,USD,1.00,USD,-
+42,UNP,UNION PACIFIC CORP,Industrials,Equity,"1,509,749,444.07",0.45,"1,509,749,444.07","5,525,967.00",273.21,United States,New York Stock Exchange Inc.,USD,1.00,USD,-
+43,QCOM,QUALCOMM INC,Information Technology,Equity,"1,494,320,264.46",0.45,"1,494,320,264.46","9,778,303.00",152.82,United States,NASDAQ,USD,1.00,USD,-
+44,NKE,NIKE INC CLASS B,Consumer Discretionary,Equity,"1,490,059,848.32",0.45,"1,490,059,848.32","11,073,572.00",134.56,United States,New York Stock Exchange Inc.,USD,1.00,USD,-
+45,TXN,TEXAS INSTRUMENT INC,Information Technology,Equity,"1,470,239,551.44",0.44,"1,470,239,551.44","8,013,078.00",183.48,United States,NASDAQ,USD,1.00,USD,-
+46,T,AT&T INC,Communication,Equity,"1,464,068,768.76",0.44,"1,464,068,768.76","61,958,052.00",23.63,United States,New York Stock Exchange Inc.,USD,1.00,USD,-
+47,NFLX,NETFLIX INC,Communication,Equity,"1,442,912,439.02",0.43,"1,442,912,439.02","3,851,978.00",374.59,United States,NASDAQ,USD,1.00,USD,-
+48,NEE,NEXTERA ENERGY INC,Utilities,Equity,"1,442,124,556.34",0.43,"1,442,124,556.34","17,024,254.00",84.71,United States,New York Stock Exchange Inc.,USD,1.00,USD,-
+49,LIN,LINDE PLC,Materials,Equity,"1,420,549,610.77",0.43,"1,420,549,610.77","4,447,139.00",319.43,United States,New York Stock Exchange Inc.,USD,1.00,USD,-
+50,BMY,BRISTOL MYERS SQUIBB,Health Care,Equity,"1,381,147,522.71",0.41,"1,381,147,522.71","18,912,057.00",73.03,United States,New York Stock Exchange Inc.,USD,1.00,USD,-
+51,UPS,UNITED PARCEL SERVICE INC CLASS B,Industrials,Equity,"1,356,775,399.58",0.41,"1,356,775,399.58","6,326,473.00",214.46,United States,New York Stock Exchange Inc.,USD,1.00,USD,-
+52,MDT,MEDTRONIC PLC,Health Care,Equity,"1,294,330,273.60",0.39,"1,294,330,273.60","11,665,888.00",110.95,United States,New York Stock Exchange Inc.,USD,1.00,USD,-
+53,RTX,RAYTHEON TECHNOLOGIES CORP,Industrials,Equity,"1,282,765,096.76",0.39,"1,282,765,096.76","12,948,068.00",99.07,United States,New York Stock Exchange Inc.,USD,1.00,USD,-
+54,PM,PHILIP MORRIS INTERNATIONAL INC,Consumer Staples,Equity,"1,263,205,261.78",0.38,"1,263,205,261.78","13,446,937.00",93.94,United States,New York Stock Exchange Inc.,USD,1.00,USD,-
+55,SPGI,S&P GLOBAL INC,Financials,Equity,"1,260,517,595.12",0.38,"1,260,517,595.12","3,073,084.00",410.18,United States,New York Stock Exchange Inc.,USD,1.00,USD,-
+56,LOW,LOWES COMPANIES INC,Consumer Discretionary,Equity,"1,181,939,858.91",0.35,"1,181,939,858.91","5,845,689.00",202.19,United States,New York Stock Exchange Inc.,USD,1.00,USD,-
+57,AMGN,AMGEN INC,Health Care,Equity,"1,181,805,776.60",0.35,"1,181,805,776.60","4,887,130.00",241.82,United States,NASDAQ,USD,1.00,USD,-
+58,INTU,INTUIT INC,Information Technology,Equity,"1,181,355,600.72",0.35,"1,181,355,600.72","2,456,858.00",480.84,United States,NASDAQ,USD,1.00,USD,-
+59,PYPL,PAYPAL HOLDINGS INC,Information Technology,Equity,"1,168,992,628.65",0.35,"1,168,992,628.65","10,108,021.00",115.65,United States,NASDAQ,USD,1.00,USD,-
+60,HON,HONEYWELL INTERNATIONAL INC,Industrials,Equity,"1,159,280,787.96",0.35,"1,159,280,787.96","5,957,862.00",194.58,United States,NASDAQ,USD,1.00,USD,-
+61,CVS,CVS HEALTH CORP,Health Care,Equity,"1,153,494,013.56",0.35,"1,153,494,013.56","11,397,036.00",101.21,United States,New York Stock Exchange Inc.,USD,1.00,USD,-
+62,ORCL,ORACLE CORP,Information Technology,Equity,"1,130,912,564.33",0.34,"1,130,912,564.33","13,669,921.00",82.73,United States,New York Stock Exchange Inc.,USD,1.00,USD,-
+63,COP,CONOCOPHILLIPS,Energy,Equity,"1,128,814,600.00",0.34,"1,128,814,600.00","11,288,146.00",100.00,United States,New York Stock Exchange Inc.,USD,1.00,USD,-
+64,SCHW,CHARLES SCHWAB CORP,Financials,Equity,"1,099,734,159.85",0.33,"1,099,734,159.85","13,043,935.00",84.31,United States,New York Stock Exchange Inc.,USD,1.00,USD,-
+65,MS,MORGAN STANLEY,Financials,Equity,"1,074,986,700.60",0.32,"1,074,986,700.60","12,299,619.00",87.40,United States,New York Stock Exchange Inc.,USD,1.00,USD,-
+66,CAT,CATERPILLAR INC,Industrials,Equity,"1,045,541,405.48",0.31,"1,045,541,405.48","4,692,314.00",222.82,United States,New York Stock Exchange Inc.,USD,1.00,USD,-
+67,PLD,PROLOGIS REIT INC,Real Estate,Equity,"1,038,702,983.12",0.31,"1,038,702,983.12","6,432,394.00",161.48,United States,New York Stock Exchange Inc.,USD,1.00,USD,-
+68,ANTM,ANTHEM INC,Health Care,Equity,"1,034,024,485.86",0.31,"1,034,024,485.86","2,105,013.00",491.22,United States,New York Stock Exchange Inc.,USD,1.00,USD,-
+69,AMAT,APPLIED MATERIAL INC,Information Technology,Equity,"1,015,218,759.60",0.30,"1,015,218,759.60","7,702,722.00",131.80,United States,NASDAQ,USD,1.00,USD,-
+70,IBM,INTERNATIONAL BUSINESS MACHINES CO,Information Technology,Equity,"1,011,320,783.88",0.30,"1,011,320,783.88","7,778,194.00",130.02,United States,New York Stock Exchange Inc.,USD,1.00,USD,-
+71,DE,DEERE,Industrials,Equity,"1,011,269,524.16",0.30,"1,011,269,524.16","2,434,096.00",415.46,United States,New York Stock Exchange Inc.,USD,1.00,USD,-
+72,AXP,AMERICAN EXPRESS,Financials,Equity,"999,776,239.00",0.30,"999,776,239.00","5,346,397.00",187.00,United States,New York Stock Exchange Inc.,USD,1.00,USD,-
+73,AMT,AMERICAN TOWER REIT CORP,Real Estate,Equity,"994,448,089.50",0.30,"994,448,089.50","3,958,475.00",251.22,United States,New York Stock Exchange Inc.,USD,1.00,USD,-
+74,GS,GOLDMAN SACHS GROUP INC,Financials,Equity,"972,245,840.70",0.29,"972,245,840.70","2,945,307.00",330.10,United States,New York Stock Exchange Inc.,USD,1.00,USD,-
+75,NOW,SERVICENOW INC,Information Technology,Equity,"966,069,939.51",0.29,"966,069,939.51","1,734,759.00",556.89,United States,New York Stock Exchange Inc.,USD,1.00,USD,-
+76,BLK,BLACKROCK INC,Financials,Equity,"944,757,890.23",0.28,"944,757,890.23","1,236,319.00",764.17,United States,New York Stock Exchange Inc.,USD,1.00,USD,-
+77,ISRG,INTUITIVE SURGICAL INC,Health Care,Equity,"935,646,944.40",0.28,"935,646,944.40","3,101,455.00",301.68,United States,NASDAQ,USD,1.00,USD,-
+78,LMT,LOCKHEED MARTIN CORP,Industrials,Equity,"927,619,756.00",0.28,"927,619,756.00","2,101,540.00",441.40,United States,New York Stock Exchange Inc.,USD,1.00,USD,-
+79,C,CITIGROUP INC,Financials,Equity,"919,032,102.60",0.28,"919,032,102.60","17,210,339.00",53.40,United States,New York Stock Exchange Inc.,USD,1.00,USD,-
+80,BA,BOEING,Industrials,Equity,"909,895,781.00",0.27,"909,895,781.00","4,751,414.00",191.50,United States,New York Stock Exchange Inc.,USD,1.00,USD,-
+81,SBUX,STARBUCKS CORP,Consumer Discretionary,Equity,"909,475,940.89",0.27,"909,475,940.89","9,997,537.00",90.97,United States,NASDAQ,USD,1.00,USD,-
+82,TGT,TARGET CORP,Consumer Discretionary,Equity,"883,751,565.96",0.27,"883,751,565.96","4,164,318.00",212.22,United States,New York Stock Exchange Inc.,USD,1.00,USD,-
+83,GE,GENERAL ELECTRIC,Industrials,Equity,"872,737,705.50",0.26,"872,737,705.50","9,538,117.00",91.50,United States,New York Stock Exchange Inc.,USD,1.00,USD,-
+84,BKNG,BOOKING HOLDINGS INC,Consumer Discretionary,Equity,"836,581,298.15",0.25,"836,581,298.15","356,227.00","2,348.45",United States,NASDAQ,USD,1.00,USD,-
+85,ADP,AUTOMATIC DATA PROCESSING INC,Information Technology,Equity,"829,261,338.56",0.25,"829,261,338.56","3,644,464.00",227.54,United States,NASDAQ,USD,1.00,USD,-
+86,MO,ALTRIA GROUP INC,Consumer Staples,Equity,"827,867,914.50",0.25,"827,867,914.50","15,844,362.00",52.25,United States,New York Stock Exchange Inc.,USD,1.00,USD,-
+87,CB,CHUBB LTD,Financials,Equity,"798,433,513.80",0.24,"798,433,513.80","3,732,742.00",213.90,United States,New York Stock Exchange Inc.,USD,1.00,USD,-
+88,SYK,STRYKER CORP,Health Care,Equity,"778,502,079.35",0.23,"778,502,079.35","2,911,921.00",267.35,United States,New York Stock Exchange Inc.,USD,1.00,USD,-
+89,ZTS,ZOETIS INC CLASS A,Health Care,Equity,"773,266,901.86",0.23,"773,266,901.86","4,100,254.00",188.59,United States,New York Stock Exchange Inc.,USD,1.00,USD,-
+90,MDLZ,MONDELEZ INTERNATIONAL INC CLASS A,Consumer Staples,Equity,"757,412,951.24",0.23,"757,412,951.24","12,064,558.00",62.78,United States,NASDAQ,USD,1.00,USD,-
+91,MU,MICRON TECHNOLOGY INC,Information Technology,Equity,"755,713,549.02",0.23,"755,713,549.02","9,702,318.00",77.89,United States,NASDAQ,USD,1.00,USD,-
+92,ADI,ANALOG DEVICES INC,Information Technology,Equity,"751,782,908.10",0.23,"751,782,908.10","4,551,295.00",165.18,United States,NASDAQ,USD,1.00,USD,-
+93,MMC,MARSH & MCLENNAN INC,Financials,Equity,"746,001,620.60",0.22,"746,001,620.60","4,377,430.00",170.42,United States,New York Stock Exchange Inc.,USD,1.00,USD,-
+94,DUK,DUKE ENERGY CORP,Utilities,Equity,"745,220,626.56",0.22,"745,220,626.56","6,674,016.00",111.66,United States,New York Stock Exchange Inc.,USD,1.00,USD,-
+95,CME,CME GROUP INC CLASS A,Financials,Equity,"743,882,650.42",0.22,"743,882,650.42","3,127,397.00",237.86,United States,NASDAQ,USD,1.00,USD,-
+96,MMM,3M,Industrials,Equity,"736,595,263.76",0.22,"736,595,263.76","4,947,577.00",148.88,United States,New York Stock Exchange Inc.,USD,1.00,USD,-
+97,CSX,CSX CORP,Industrials,Equity,"719,434,273.60",0.22,"719,434,273.60","19,210,528.00",37.45,United States,NASDAQ,USD,1.00,USD,-
+98,CCI,CROWN CASTLE INTERNATIONAL REIT CO,Real Estate,Equity,"691,906,459.40",0.21,"691,906,459.40","3,748,139.00",184.60,United States,New York Stock Exchange Inc.,USD,1.00,USD,-
+99,PNC,PNC FINANCIAL SERVICES GROUP INC,Financials,Equity,"673,795,481.10",0.20,"673,795,481.10","3,652,998.00",184.45,United States,New York Stock Exchange Inc.,USD,1.00,USD,-
+100,CI,CIGNA CORP,Health Care,Equity,"673,361,846.01",0.20,"673,361,846.01","2,810,241.00",239.61,United States,New York Stock Exchange Inc.,USD,1.00,USD,-
+101,SO,SOUTHERN,Utilities,Equity,"666,748,737.66",0.20,"666,748,737.66","9,195,266.00",72.51,United States,New York Stock Exchange Inc.,USD,1.00,USD,-
+102,BDX,BECTON DICKINSON,Health Care,Equity,"658,064,848.00",0.20,"658,064,848.00","2,473,928.00",266.00,United States,New York Stock Exchange Inc.,USD,1.00,USD,-
+103,TFC,TRUIST FINANCIAL CORP,Financials,Equity,"656,069,633.10",0.20,"656,069,633.10","11,570,893.00",56.70,United States,New York Stock Exchange Inc.,USD,1.00,USD,-
+104,TMUS,T MOBILE US INC,Communication,Equity,"653,838,259.70",0.20,"653,838,259.70","5,094,182.00",128.35,United States,NASDAQ,USD,1.00,USD,-
+105,LRCX,LAM RESEARCH CORP,Information Technology,Equity,"650,879,050.90",0.20,"650,879,050.90","1,210,690.00",537.61,United States,NASDAQ,USD,1.00,USD,-
+106,REGN,REGENERON PHARMACEUTICALS INC,Health Care,Equity,"647,464,673.64",0.19,"647,464,673.64","927,042.00",698.42,United States,NASDAQ,USD,1.00,USD,-
+107,GILD,GILEAD SCIENCES INC,Health Care,Equity,"646,972,234.60",0.19,"646,972,234.60","10,882,628.00",59.45,United States,NASDAQ,USD,1.00,USD,-
+108,ICE,INTERCONTINENTAL EXCHANGE INC,Financials,Equity,"644,065,314.12",0.19,"644,065,314.12","4,874,851.00",132.12,United States,New York Stock Exchange Inc.,USD,1.00,USD,-
+109,EW,EDWARDS LIFESCIENCES CORP,Health Care,Equity,"636,864,140.52",0.19,"636,864,140.52","5,409,991.00",117.72,United States,New York Stock Exchange Inc.,USD,1.00,USD,-
+110,FCX,FREEPORT MCMORAN INC,Materials,Equity,"635,560,957.62",0.19,"635,560,957.62","12,777,663.00",49.74,United States,New York Stock Exchange Inc.,USD,1.00,USD,-
+111,TJX,TJX INC,Consumer Discretionary,Equity,"626,444,997.62",0.19,"626,444,997.62","10,340,789.00",60.58,United States,New York Stock Exchange Inc.,USD,1.00,USD,-
+112,USB,US BANCORP,Financials,Equity,"622,117,667.30",0.19,"622,117,667.30","11,704,942.00",53.15,United States,New York Stock Exchange Inc.,USD,1.00,USD,-
+113,AON,AON PLC CLASS A,Financials,Equity,"606,408,049.43",0.18,"606,408,049.43","1,862,261.00",325.63,United States,New York Stock Exchange Inc.,USD,1.00,USD,-
+114,EOG,EOG RESOURCES INC,Energy,Equity,"605,269,902.70",0.18,"605,269,902.70","5,076,490.00",119.23,United States,New York Stock Exchange Inc.,USD,1.00,USD,-
+115,D,DOMINION ENERGY INC,Utilities,Equity,"597,155,734.74",0.18,"597,155,734.74","7,027,842.00",84.97,United States,New York Stock Exchange Inc.,USD,1.00,USD,-
+116,NSC,NORFOLK SOUTHERN CORP,Industrials,Equity,"592,884,532.24",0.18,"592,884,532.24","2,078,692.00",285.22,United States,New York Stock Exchange Inc.,USD,1.00,USD,-
+117,EQIX,EQUINIX REIT INC,Real Estate,Equity,"578,264,845.84",0.17,"578,264,845.84","779,732.00",741.62,United States,NASDAQ,USD,1.00,USD,-
+118,F,FORD MOTOR CO,Consumer Discretionary,Equity,"577,099,271.72",0.17,"577,099,271.72","34,127,692.00",16.91,United States,New York Stock Exchange Inc.,USD,1.00,USD,-
+119,VRTX,VERTEX PHARMACEUTICALS INC,Health Care,Equity,"577,002,060.30",0.17,"577,002,060.30","2,210,990.00",260.97,United States,NASDAQ,USD,1.00,USD,-
+120,PGR,PROGRESSIVE CORP,Financials,Equity,"576,534,062.40",0.17,"576,534,062.40","5,057,760.00",113.99,United States,New York Stock Exchange Inc.,USD,1.00,USD,-
+121,NOC,NORTHROP GRUMMAN CORP,Industrials,Equity,"568,794,520.90",0.17,"568,794,520.90","1,271,845.00",447.22,United States,New York Stock Exchange Inc.,USD,1.00,USD,-
+122,CHTR,CHARTER COMMUNICATIONS INC CLASS A,Communication,Equity,"563,767,098.48",0.17,"563,767,098.48","1,033,449.00",545.52,United States,NASDAQ,USD,1.00,USD,-
+123,GM,GENERAL MOTORS,Consumer Discretionary,Equity,"553,751,199.36",0.17,"553,751,199.36","12,660,064.00",43.74,United States,New York Stock Exchange Inc.,USD,1.00,USD,-
+124,CL,COLGATE-PALMOLIVE,Consumer Staples,Equity,"553,114,181.22",0.17,"553,114,181.22","7,294,134.00",75.83,United States,New York Stock Exchange Inc.,USD,1.00,USD,-
+125,EL,ESTEE LAUDER INC CLASS A,Consumer Staples,Equity,"550,771,012.48",0.17,"550,771,012.48","2,022,514.00",272.32,United States,New York Stock Exchange Inc.,USD,1.00,USD,-
+126,NEM,NEWMONT,Materials,Equity,"548,652,780.20",0.16,"548,652,780.20","6,905,636.00",79.45,United States,New York Stock Exchange Inc.,USD,1.00,USD,-
+127,BSX,BOSTON SCIENTIFIC CORP,Health Care,Equity,"547,592,480.55",0.16,"547,592,480.55","12,363,795.00",44.29,United States,New York Stock Exchange Inc.,USD,1.00,USD,-
+128,ATVI,ACTIVISION BLIZZARD INC,Communication,Equity,"540,918,982.33",0.16,"540,918,982.33","6,752,203.00",80.11,United States,NASDAQ,USD,1.00,USD,-
+129,WM,WASTE MANAGEMENT INC,Industrials,Equity,"530,799,857.50",0.16,"530,799,857.50","3,348,895.00",158.50,United States,New York Stock Exchange Inc.,USD,1.00,USD,-
+130,FIS,FIDELITY NATIONAL INFORMATION SERV,Information Technology,Equity,"529,349,971.20",0.16,"529,349,971.20","5,271,360.00",100.42,United States,New York Stock Exchange Inc.,USD,1.00,USD,-
+131,MRNA,MODERNA INC,Health Care,Equity,"529,264,371.24",0.16,"529,264,371.24","3,072,474.00",172.26,United States,NASDAQ,USD,1.00,USD,-
+132,ETN,EATON PLC,Industrials,Equity,"523,706,914.64",0.16,"523,706,914.64","3,450,889.00",151.76,United States,New York Stock Exchange Inc.,USD,1.00,USD,-
+133,FISV,FISERV INC,Information Technology,Equity,"522,776,217.60",0.16,"522,776,217.60","5,155,584.00",101.40,United States,NASDAQ,USD,1.00,USD,-
+134,HCA,HCA HEALTHCARE INC,Health Care,Equity,"522,286,566.36",0.16,"522,286,566.36","2,083,978.00",250.62,United States,New York Stock Exchange Inc.,USD,1.00,USD,-
+135,SHW,SHERWIN WILLIAMS,Materials,Equity,"522,106,689.72",0.16,"522,106,689.72","2,091,606.00",249.62,United States,New York Stock Exchange Inc.,USD,1.00,USD,-
+136,ITW,ILLINOIS TOOL INC,Industrials,Equity,"518,722,539.00",0.16,"518,722,539.00","2,477,185.00",209.40,United States,New York Stock Exchange Inc.,USD,1.00,USD,-
+137,PSA,PUBLIC STORAGE REIT,Real Estate,Equity,"516,574,217.72",0.16,"516,574,217.72","1,323,599.00",390.28,United States,New York Stock Exchange Inc.,USD,1.00,USD,-
+138,EMR,EMERSON ELECTRIC,Industrials,Equity,"504,025,828.90",0.15,"504,025,828.90","5,140,498.00",98.05,United States,New York Stock Exchange Inc.,USD,1.00,USD,-
+139,SLB,SCHLUMBERGER NV,Energy,Equity,"503,002,292.04",0.15,"503,002,292.04","12,176,284.00",41.31,United States,New York Stock Exchange Inc.,USD,1.00,USD,-
+140,PXD,PIONEER NATURAL RESOURCE,Energy,Equity,"492,413,082.48",0.15,"492,413,082.48","1,969,416.00",250.03,United States,New York Stock Exchange Inc.,USD,1.00,USD,-
+141,FDX,FEDEX CORP,Industrials,Equity,"489,402,576.45",0.15,"489,402,576.45","2,115,055.00",231.39,United States,New York Stock Exchange Inc.,USD,1.00,USD,-
+142,HUM,HUMANA INC,Health Care,Equity,"483,843,329.33",0.15,"483,843,329.33","1,111,849.00",435.17,United States,New York Stock Exchange Inc.,USD,1.00,USD,-
+143,APD,AIR PRODUCTS AND CHEMICALS INC,Materials,Equity,"482,244,579.43",0.14,"482,244,579.43","1,929,673.00",249.91,United States,New York Stock Exchange Inc.,USD,1.00,USD,-
+144,GD,GENERAL DYNAMICS CORP,Industrials,Equity,"481,924,911.28",0.14,"481,924,911.28","1,998,196.00",241.18,United States,New York Stock Exchange Inc.,USD,1.00,USD,-
+145,KLAC,KLA CORP,Information Technology,Equity,"480,028,754.34",0.14,"480,028,754.34","1,311,339.00",366.06,United States,NASDAQ,USD,1.00,USD,-
+146,ILMN,ILLUMINA INC,Health Care,Equity,"475,218,241.20",0.14,"475,218,241.20","1,360,098.00",349.40,United States,NASDAQ,USD,1.00,USD,-
+147,MCO,MOODYS CORP,Financials,Equity,"473,483,066.67",0.14,"473,483,066.67","1,403,287.00",337.41,United States,New York Stock Exchange Inc.,USD,1.00,USD,-
+148,COF,CAPITAL ONE FINANCIAL CORP,Financials,Equity,"470,832,460.58",0.14,"470,832,460.58","3,586,202.00",131.29,United States,New York Stock Exchange Inc.,USD,1.00,USD,-
+149,SRE,SEMPRA,Utilities,Equity,"465,812,437.68",0.14,"465,812,437.68","2,770,714.00",168.12,United States,New York Stock Exchange Inc.,USD,1.00,USD,-
+150,XTSLA,BLK CSH FND TREASURY SL AGENCY,Cash and/or Derivatives,Money Market,"455,200,000.00",0.14,"455,200,000.00","455,200,000.00",1.00,United States,-,USD,1.00,USD,-
+151,AIG,AMERICAN INTERNATIONAL GROUP INC,Financials,Equity,"451,254,722.63",0.14,"451,254,722.63","7,189,019.00",62.77,United States,New York Stock Exchange Inc.,USD,1.00,USD,-
+152,DG,DOLLAR GENERAL CORP,Consumer Discretionary,Equity,"445,833,717.51",0.13,"445,833,717.51","2,002,577.00",222.63,United States,New York Stock Exchange Inc.,USD,1.00,USD,-
+153,SNPS,SYNOPSYS INC,Information Technology,Equity,"445,223,724.75",0.13,"445,223,724.75","1,335,925.00",333.27,United States,NASDAQ,USD,1.00,USD,-
+154,AEP,AMERICAN ELECTRIC POWER INC,Utilities,Equity,"438,536,341.21",0.13,"438,536,341.21","4,395,473.00",99.77,United States,NASDAQ,USD,1.00,USD,-
+155,ADM,ARCHER DANIELS MIDLAND,Consumer Staples,Equity,"437,114,106.58",0.13,"437,114,106.58","4,842,833.00",90.26,United States,New York Stock Exchange Inc.,USD,1.00,USD,-
+156,OXY,OCCIDENTAL PETROLEUM CORP,Energy,Equity,"436,160,606.96",0.13,"436,160,606.96","7,687,004.00",56.74,United States,New York Stock Exchange Inc.,USD,1.00,USD,-
+157,ROP,ROPER TECHNOLOGIES INC,Industrials,Equity,"432,189,146.07",0.13,"432,189,146.07","915,209.00",472.23,United States,New York Stock Exchange Inc.,USD,1.00,USD,-
+158,DXCM,DEXCOM INC,Health Care,Equity,"430,213,137.20",0.13,"430,213,137.20","840,917.00",511.60,United States,NASDAQ,USD,1.00,USD,-
+159,MPC,MARATHON PETROLEUM CORP,Energy,Equity,"428,344,569.00",0.13,"428,344,569.00","5,009,878.00",85.50,United States,New York Stock Exchange Inc.,USD,1.00,USD,-
+160,MET,METLIFE INC,Financials,Equity,"426,897,306.08",0.13,"426,897,306.08","6,074,236.00",70.28,United States,New York Stock Exchange Inc.,USD,1.00,USD,-
+161,NXPI,NXP SEMICONDUCTORS NV,Information Technology,Equity,"425,981,978.80",0.13,"425,981,978.80","2,301,610.00",185.08,United States,NASDAQ,USD,1.00,USD,-
+162,CNC,CENTENE CORP,Health Care,Equity,"425,226,178.48",0.13,"425,226,178.48","5,050,792.00",84.19,United States,New York Stock Exchange Inc.,USD,1.00,USD,-
+163,LHX,L3HARRIS TECHNOLOGIES INC,Industrials,Equity,"422,206,187.28",0.13,"422,206,187.28","1,699,224.00",248.47,United States,New York Stock Exchange Inc.,USD,1.00,USD,-
+164,MAR,MARRIOTT INTERNATIONAL INC CLASS A,Consumer Discretionary,Equity,"417,077,773.25",0.13,"417,077,773.25","2,373,131.00",175.75,United States,NASDAQ,USD,1.00,USD,-
+165,ADSK,AUTODESK INC,Information Technology,Equity,"409,102,836.90",0.12,"409,102,836.90","1,908,574.00",214.35,United States,NASDAQ,USD,1.00,USD,-
+166,CTSH,COGNIZANT TECHNOLOGY SOLUTIONS COR,Information Technology,Equity,"408,650,580.24",0.12,"408,650,580.24","4,557,272.00",89.67,United States,NASDAQ,USD,1.00,USD,-
+167,DOW,DOW INC,Materials,Equity,"406,306,247.04",0.12,"406,306,247.04","6,376,432.00",63.72,United States,New York Stock Exchange Inc.,USD,1.00,USD,-
+168,EXC,EXELON CORP,Utilities,Equity,"403,885,967.65",0.12,"403,885,967.65","8,479,655.00",47.63,United States,NASDAQ,USD,1.00,USD,-
+169,IDXX,IDEXX LABORATORIES INC,Health Care,Equity,"403,472,614.74",0.12,"403,472,614.74","737,529.00",547.06,United States,NASDAQ,USD,1.00,USD,-
+170,ORLY,OREILLY AUTOMOTIVE INC,Consumer Discretionary,Equity,"402,804,427.20",0.12,"402,804,427.20","588,070.00",684.96,United States,NASDAQ,USD,1.00,USD,"Jan 01, 1970"
+171,FTNT,FORTINET INC,Information Technology,Equity,"400,082,878.02",0.12,"400,082,878.02","1,170,723.00",341.74,United States,NASDAQ,USD,1.00,USD,-
+172,MCK,MCKESSON CORP,Health Care,Equity,"399,047,189.86",0.12,"399,047,189.86","1,303,522.00",306.13,United States,New York Stock Exchange Inc.,USD,1.00,USD,-
+173,JCI,JOHNSON CONTROLS INTERNATIONAL PLC,Industrials,Equity,"398,737,005.73",0.12,"398,737,005.73","6,081,089.00",65.57,United States,New York Stock Exchange Inc.,USD,1.00,USD,-
+174,CDNS,CADENCE DESIGN SYSTEMS INC,Information Technology,Equity,"396,390,701.76",0.12,"396,390,701.76","2,410,256.00",164.46,United States,NASDAQ,USD,1.00,USD,-
+175,APH,AMPHENOL CORP CLASS A,Information Technology,Equity,"392,651,713.30",0.12,"392,651,713.30","5,211,038.00",75.35,United States,New York Stock Exchange Inc.,USD,1.00,USD,-
+176,PRU,PRUDENTIAL FINANCIAL INC,Financials,Equity,"386,783,172.36",0.12,"386,783,172.36","3,273,108.00",118.17,United States,New York Stock Exchange Inc.,USD,1.00,USD,-
+177,CMG,CHIPOTLE MEXICAN GRILL INC,Consumer Discretionary,Equity,"386,227,312.02",0.12,"386,227,312.02","244,134.00","1,582.03",United States,New York Stock Exchange Inc.,USD,1.00,USD,-
+178,TRV,TRAVELERS COMPANIES INC,Financials,Equity,"383,529,438.78",0.12,"383,529,438.78","2,098,886.00",182.73,United States,New York Stock Exchange Inc.,USD,1.00,USD,-
+179,IQV,IQVIA HOLDINGS INC,Health Care,Equity,"381,138,586.92",0.11,"381,138,586.92","1,648,452.00",231.21,United States,New York Stock Exchange Inc.,USD,1.00,USD,-
+180,ECL,ECOLAB INC,Materials,Equity,"381,050,202.96",0.11,"381,050,202.96","2,158,191.00",176.56,United States,New York Stock Exchange Inc.,USD,1.00,USD,-
+181,PAYX,PAYCHEX INC,Information Technology,Equity,"380,175,533.07",0.11,"380,175,533.07","2,785,781.00",136.47,United States,NASDAQ,USD,1.00,USD,-
+182,SPG,SIMON PROPERTY GROUP REIT INC,Real Estate,Equity,"377,472,346.68",0.11,"377,472,346.68","2,869,203.00",131.56,United States,New York Stock Exchange Inc.,USD,1.00,USD,-
+183,TEL,TE CONNECTIVITY LTD,Information Technology,Equity,"369,714,495.42",0.11,"369,714,495.42","2,822,679.00",130.98,United States,New York Stock Exchange Inc.,USD,1.00,USD,-
+184,AZO,AUTOZONE INC,Consumer Discretionary,Equity,"367,102,294.42",0.11,"367,102,294.42","179,549.00","2,044.58",United States,New York Stock Exchange Inc.,USD,1.00,USD,-
+185,HLT,HILTON WORLDWIDE HOLDINGS INC,Consumer Discretionary,Equity,"366,246,644.04",0.11,"366,246,644.04","2,413,646.00",151.74,United States,New York Stock Exchange Inc.,USD,1.00,USD,-
+186,WELL,WELLTOWER INC,Real Estate,Equity,"365,547,738.16",0.11,"365,547,738.16","3,802,244.00",96.14,United States,New York Stock Exchange Inc.,USD,1.00,USD,-
+187,CTVA,CORTEVA INC,Materials,Equity,"363,762,122.52",0.11,"363,762,122.52","6,328,499.00",57.48,United States,New York Stock Exchange Inc.,USD,1.00,USD,-
+188,MCHP,MICROCHIP TECHNOLOGY INC,Information Technology,Equity,"363,536,036.24",0.11,"363,536,036.24","4,838,116.00",75.14,United States,NASDAQ,USD,1.00,USD,-
+189,SYY,SYSCO CORP,Consumer Staples,Equity,"359,782,396.70",0.11,"359,782,396.70","4,406,398.00",81.65,United States,New York Stock Exchange Inc.,USD,1.00,USD,-
+190,KMB,KIMBERLY CLARK CORP,Consumer Staples,Equity,"358,741,433.28",0.11,"358,741,433.28","2,912,808.00",123.16,United States,New York Stock Exchange Inc.,USD,1.00,USD,-
+191,VLO,VALERO ENERGY CORP,Energy,Equity,"357,880,573.12",0.11,"357,880,573.12","3,524,528.00",101.54,United States,New York Stock Exchange Inc.,USD,1.00,USD,-
+192,MSI,MOTOROLA SOLUTIONS INC,Information Technology,Equity,"355,963,035.40",0.11,"355,963,035.40","1,469,707.00",242.20,United States,New York Stock Exchange Inc.,USD,1.00,USD,-
+193,MSCI,MSCI INC,Financials,Equity,"355,626,678.40",0.11,"355,626,678.40","707,180.00",502.88,United States,New York Stock Exchange Inc.,USD,1.00,USD,-
+194,WMB,WILLIAMS INC,Energy,Equity,"352,964,221.48",0.11,"352,964,221.48","10,564,628.00",33.41,United States,New York Stock Exchange Inc.,USD,1.00,USD,-
+195,GIS,GENERAL MILLS INC,Consumer Staples,Equity,"352,734,586.12",0.11,"352,734,586.12","5,208,721.00",67.72,United States,New York Stock Exchange Inc.,USD,1.00,USD,-
+196,NUE,NUCOR CORP,Materials,Equity,"351,841,617.45",0.11,"351,841,617.45","2,366,913.00",148.65,United States,New York Stock Exchange Inc.,USD,1.00,USD,-
+197,PSX,PHILLIPS 66,Energy,Equity,"350,449,674.00",0.11,"350,449,674.00","4,056,600.00",86.39,United States,New York Stock Exchange Inc.,USD,1.00,USD,-
+198,DLR,DIGITAL REALTY TRUST REIT INC,Real Estate,Equity,"348,258,531.20",0.10,"348,258,531.20","2,455,984.00",141.80,United States,New York Stock Exchange Inc.,USD,1.00,USD,-
+199,A,AGILENT TECHNOLOGIES INC,Health Care,Equity,"345,169,175.01",0.10,"345,169,175.01","2,608,397.00",132.33,United States,New York Stock Exchange Inc.,USD,1.00,USD,-
+200,HPQ,HP INC,Information Technology,Equity,"342,010,033.20",0.10,"342,010,033.20","9,421,764.00",36.30,United States,New York Stock Exchange Inc.,USD,1.00,USD,-
+201,CARR,CARRIER GLOBAL CORP,Industrials,Equity,"341,481,416.76",0.10,"341,481,416.76","7,444,548.00",45.87,United States,New York Stock Exchange Inc.,USD,1.00,USD,-
+202,O,REALTY INCOME REIT CORP,Real Estate,Equity,"339,293,146.50",0.10,"339,293,146.50","4,896,005.00",69.30,United States,New York Stock Exchange Inc.,USD,1.00,USD,-
+203,GPN,GLOBAL PAYMENTS INC,Information Technology,Equity,"339,069,541.36",0.10,"339,069,541.36","2,477,854.00",136.84,United States,New York Stock Exchange Inc.,USD,1.00,USD,-
+204,ALL,ALLSTATE CORP,Financials,Equity,"338,204,714.85",0.10,"338,204,714.85","2,441,735.00",138.51,United States,New York Stock Exchange Inc.,USD,1.00,USD,-
+205,XEL,XCEL ENERGY INC,Utilities,Equity,"337,304,393.16",0.10,"337,304,393.16","4,673,748.00",72.17,United States,NASDAQ,USD,1.00,USD,-
+206,AFL,AFLAC INC,Financials,Equity,"336,002,473.60",0.10,"336,002,473.60","5,218,240.00",64.39,United States,New York Stock Exchange Inc.,USD,1.00,USD,-
+207,BAX,BAXTER INTERNATIONAL INC,Health Care,Equity,"335,961,977.78",0.10,"335,961,977.78","4,332,757.00",77.54,United States,New York Stock Exchange Inc.,USD,1.00,USD,-
+208,KR,KROGER,Consumer Staples,Equity,"330,742,295.38",0.10,"330,742,295.38","5,765,074.00",57.37,United States,New York Stock Exchange Inc.,USD,1.00,USD,-
+209,STZ,CONSTELLATION BRANDS INC CLASS A,Consumer Staples,Equity,"327,549,127.36",0.10,"327,549,127.36","1,422,148.00",230.32,United States,New York Stock Exchange Inc.,USD,1.00,USD,-
+210,CTAS,CINTAS CORP,Industrials,Equity,"327,192,547.01",0.10,"327,192,547.01","769,159.00",425.39,United States,NASDAQ,USD,1.00,USD,-
+211,SBAC,SBA COMMUNICATIONS REIT CORP CLASS,Real Estate,Equity,"327,182,667.60",0.10,"327,182,667.60","950,836.00",344.10,United States,NASDAQ,USD,1.00,USD,-
+212,DD,DUPONT DE NEMOURS INC,Materials,Equity,"326,854,206.38",0.10,"326,854,206.38","4,442,161.00",73.58,United States,New York Stock Exchange Inc.,USD,1.00,USD,-
+213,DVN,DEVON ENERGY CORP,Energy,Equity,"322,692,100.29",0.10,"322,692,100.29","5,457,333.00",59.13,United States,New York Stock Exchange Inc.,USD,1.00,USD,-
+214,KMI,KINDER MORGAN INC,Energy,Equity,"320,943,016.12",0.10,"320,943,016.12","16,972,132.00",18.91,United States,New York Stock Exchange Inc.,USD,1.00,USD,-
+215,BK,BANK OF NEW YORK MELLON CORP,Financials,Equity,"319,505,333.98",0.10,"319,505,333.98","6,437,746.00",49.63,United States,New York Stock Exchange Inc.,USD,1.00,USD,-
+216,AJG,ARTHUR J GALLAGHER,Financials,Equity,"317,247,850.80",0.10,"317,247,850.80","1,816,998.00",174.60,United States,New York Stock Exchange Inc.,USD,1.00,USD,-
+217,PH,PARKER-HANNIFIN CORP,Industrials,Equity,"316,417,087.12",0.10,"316,417,087.12","1,115,087.00",283.76,United States,New York Stock Exchange Inc.,USD,1.00,USD,-
+218,DLTR,DOLLAR TREE INC,Consumer Discretionary,Equity,"311,944,494.05",0.09,"311,944,494.05","1,947,827.00",160.15,United States,NASDAQ,USD,1.00,USD,-
+219,EBAY,EBAY INC,Consumer Discretionary,Equity,"310,347,711.24",0.09,"310,347,711.24","5,419,974.00",57.26,United States,NASDAQ,USD,1.00,USD,-
+220,TT,TRANE TECHNOLOGIES PLC,Industrials,Equity,"309,276,747.60",0.09,"309,276,747.60","2,025,388.00",152.70,United States,New York Stock Exchange Inc.,USD,1.00,USD,-
+221,RMD,RESMED INC,Health Care,Equity,"309,003,816.90",0.09,"309,003,816.90","1,274,190.00",242.51,United States,New York Stock Exchange Inc.,USD,1.00,USD,-
+222,PEG,PUBLIC SERVICE ENTERPRISE GROUP IN,Utilities,Equity,"307,883,800.00",0.09,"307,883,800.00","4,398,340.00",70.00,United States,New York Stock Exchange Inc.,USD,1.00,USD,-
+223,EA,ELECTRONIC ARTS INC,Communication,Equity,"306,873,662.37",0.09,"306,873,662.37","2,425,687.00",126.51,United States,NASDAQ,USD,1.00,USD,-
+224,TROW,T ROWE PRICE GROUP INC,Financials,Equity,"301,540,593.12",0.09,"301,540,593.12","1,994,448.00",151.19,United States,NASDAQ,USD,1.00,USD,-
+225,VRSK,VERISK ANALYTICS INC,Industrials,Equity,"300,993,248.66",0.09,"300,993,248.66","1,402,382.00",214.63,United States,NASDAQ,USD,1.00,USD,-
+226,AVB,AVALONBAY COMMUNITIES REIT INC,Real Estate,Equity,"299,098,330.65",0.09,"299,098,330.65","1,204,245.00",248.37,United States,New York Stock Exchange Inc.,USD,1.00,USD,-
+227,TDG,TRANSDIGM GROUP INC,Industrials,Equity,"298,972,159.80",0.09,"298,972,159.80","458,870.00",651.54,United States,New York Stock Exchange Inc.,USD,1.00,USD,-
+228,FAST,FASTENAL,Industrials,Equity,"296,625,483.00",0.09,"296,625,483.00","4,993,695.00",59.40,United States,NASDAQ,USD,1.00,USD,-
+229,YUM,YUM BRANDS INC,Consumer Discretionary,Equity,"296,220,219.48",0.09,"296,220,219.48","2,499,116.00",118.53,United States,New York Stock Exchange Inc.,USD,1.00,USD,-
+230,HAL,HALLIBURTON,Energy,Equity,"295,248,531.90",0.09,"295,248,531.90","7,796,370.00",37.87,United States,New York Stock Exchange Inc.,USD,1.00,USD,-
+231,ED,CONSOLIDATED EDISON INC,Utilities,Equity,"289,915,083.36",0.09,"289,915,083.36","3,062,052.00",94.68,United States,New York Stock Exchange Inc.,USD,1.00,USD,-
+232,IFF,INTERNATIONAL FLAVORS & FRAGRANCES,Materials,Equity,"289,261,679.48",0.09,"289,261,679.48","2,202,556.00",131.33,United States,New York Stock Exchange Inc.,USD,1.00,USD,-
+233,AMP,AMERIPRISE FINANCE INC,Financials,Equity,"287,710,939.32",0.09,"287,710,939.32","957,887.00",300.36,United States,New York Stock Exchange Inc.,USD,1.00,USD,-
+234,BKR,BAKER HUGHES CLASS A,Energy,Equity,"286,945,535.14",0.09,"286,945,535.14","7,880,954.00",36.41,United States,NASDAQ,USD,1.00,USD,-
+235,SIVB,SVB FINANCIAL GROUP,Financials,Equity,"285,095,160.55",0.09,"285,095,160.55","509,599.00",559.45,United States,NASDAQ,USD,1.00,USD,-
+236,OTIS,OTIS WORLDWIDE CORP,Industrials,Equity,"284,975,244.90",0.09,"284,975,244.90","3,703,382.00",76.95,United States,New York Stock Exchange Inc.,USD,1.00,USD,-
+237,ROK,ROCKWELL AUTOMATION INC,Industrials,Equity,"282,321,765.52",0.08,"282,321,765.52","1,008,184.00",280.03,United States,New York Stock Exchange Inc.,USD,1.00,USD,-
+238,APTV,APTIV PLC,Consumer Discretionary,Equity,"280,970,981.87",0.08,"280,970,981.87","2,347,097.00",119.71,United States,New York Stock Exchange Inc.,USD,1.00,USD,-
+239,WBA,WALGREEN BOOTS ALLIANCE INC,Consumer Staples,Equity,"277,926,295.13",0.08,"277,926,295.13","6,207,869.00",44.77,United States,NASDAQ,USD,1.00,USD,-
+240,ALGN,ALIGN TECHNOLOGY INC,Health Care,Equity,"277,912,068.00",0.08,"277,912,068.00","637,413.00",436.00,United States,NASDAQ,USD,1.00,USD,-
+241,ROST,ROSS STORES INC,Consumer Discretionary,Equity,"276,178,993.46",0.08,"276,178,993.46","3,053,051.00",90.46,United States,NASDAQ,USD,1.00,USD,-
+242,DFS,DISCOVER FINANCIAL SERVICES,Financials,Equity,"276,151,125.84",0.08,"276,151,125.84","2,506,136.00",110.19,United States,New York Stock Exchange Inc.,USD,1.00,USD,-
+243,STT,STATE STREET CORP,Financials,Equity,"275,318,366.40",0.08,"275,318,366.40","3,160,220.00",87.12,United States,New York Stock Exchange Inc.,USD,1.00,USD,-
+244,MTD,METTLER TOLEDO INC,Health Care,Equity,"273,899,223.78",0.08,"273,899,223.78","199,462.00","1,373.19",United States,New York Stock Exchange Inc.,USD,1.00,USD,-
+245,WEC,WEC ENERGY GROUP INC,Utilities,Equity,"273,710,060.91",0.08,"273,710,060.91","2,742,311.00",99.81,United States,New York Stock Exchange Inc.,USD,1.00,USD,-
+246,HSY,HERSHEY FOODS,Consumer Staples,Equity,"273,030,053.76",0.08,"273,030,053.76","1,260,352.00",216.63,United States,New York Stock Exchange Inc.,USD,1.00,USD,-
+247,OKE,ONEOK INC,Energy,Equity,"271,344,285.73",0.08,"271,344,285.73","3,841,771.00",70.63,United States,New York Stock Exchange Inc.,USD,1.00,USD,-
+248,ANET,ARISTA NETWORKS INC,Information Technology,Equity,"271,315,644.16",0.08,"271,315,644.16","1,952,192.00",138.98,United States,New York Stock Exchange Inc.,USD,1.00,USD,-
+249,USD,USD CASH,Cash and/or Derivatives,Cash,"269,134,408.75",0.08,"269,134,408.75","269,134,409.00",100.00,United States,-,USD,1.00,USD,-
+250,EQR,EQUITY RESIDENTIAL REIT,Real Estate,Equity,"268,965,556.80",0.08,"268,965,556.80","2,991,165.00",89.92,United States,New York Stock Exchange Inc.,USD,1.00,USD,-
+251,PPG,PPG INDUSTRIES INC,Materials,Equity,"268,044,441.36",0.08,"268,044,441.36","2,045,048.00",131.07,United States,New York Stock Exchange Inc.,USD,1.00,USD,-
+252,BIIB,BIOGEN INC,Health Care,Equity,"267,907,419.00",0.08,"267,907,419.00","1,272,115.00",210.60,United States,NASDAQ,USD,1.00,USD,-
+253,MTCH,MATCH GROUP INC,Communication,Equity,"266,762,490.36",0.08,"266,762,490.36","2,453,214.00",108.74,United States,NASDAQ,USD,1.00,USD,-
+254,TWTR,TWITTER INC,Communication,Equity,"266,753,853.74",0.08,"266,753,853.74","6,894,646.00",38.69,United States,New York Stock Exchange Inc.,USD,1.00,USD,-
+255,AME,AMETEK INC,Industrials,Equity,"265,808,501.62",0.08,"265,808,501.62","1,995,859.00",133.18,United States,New York Stock Exchange Inc.,USD,1.00,USD,-
+256,CBRE,CBRE GROUP INC CLASS A,Real Estate,Equity,"265,078,985.60",0.08,"265,078,985.60","2,896,405.00",91.52,United States,New York Stock Exchange Inc.,USD,1.00,USD,-
+257,ES,EVERSOURCE ENERGY,Utilities,Equity,"263,820,914.14",0.08,"263,820,914.14","2,991,506.00",88.19,United States,New York Stock Exchange Inc.,USD,1.00,USD,-
+258,PCAR,PACCAR INC,Industrials,Equity,"263,296,802.17",0.08,"263,296,802.17","2,989,631.00",88.07,United States,NASDAQ,USD,1.00,USD,-
+259,WST,WEST PHARMACEUTICAL SERVICES INC,Health Care,Equity,"262,491,332.36",0.08,"262,491,332.36","639,116.00",410.71,United States,New York Stock Exchange Inc.,USD,1.00,USD,-
+260,MNST,MONSTER BEVERAGE CORP,Consumer Staples,Equity,"261,206,683.00",0.08,"261,206,683.00","3,269,170.00",79.90,United States,NASDAQ,USD,1.00,USD,-
+261,HES,HESS CORP,Energy,Equity,"259,062,489.60",0.08,"259,062,489.60","2,420,240.00",107.04,United States,New York Stock Exchange Inc.,USD,1.00,USD,-
+262,AWK,AMERICAN WATER WORKS INC,Utilities,Equity,"258,333,401.32",0.08,"258,333,401.32","1,560,644.00",165.53,United States,New York Stock Exchange Inc.,USD,1.00,USD,-
+263,FITB,FIFTH THIRD BANCORP,Financials,Equity,"257,332,845.92",0.08,"257,332,845.92","5,978,923.00",43.04,United States,NASDAQ,USD,1.00,USD,-
+264,EXPE,EXPEDIA GROUP INC,Consumer Discretionary,Equity,"255,794,303.58",0.08,"255,794,303.58","1,307,274.00",195.67,United States,NASDAQ,USD,1.00,USD,-
+265,ARE,ALEXANDRIA REAL ESTATE EQUITIES RE,Real Estate,Equity,"254,887,150.00",0.08,"254,887,150.00","1,266,520.00",201.25,United States,New York Stock Exchange Inc.,USD,1.00,USD,-
+266,BLL,BALL CORP,Materials,Equity,"252,865,170.00",0.08,"252,865,170.00","2,809,613.00",90.00,United States,New York Stock Exchange Inc.,USD,1.00,USD,-
+267,CMI,CUMMINS INC,Industrials,Equity,"252,273,198.51",0.08,"252,273,198.51","1,229,941.00",205.11,United States,New York Stock Exchange Inc.,USD,1.00,USD,-
+268,FRC,FIRST REPUBLIC BANK,Financials,Equity,"251,478,860.10",0.08,"251,478,860.10","1,551,381.00",162.10,United States,New York Stock Exchange Inc.,USD,1.00,USD,-
+269,WTW,WILLIS TOWERS WATSON PLC,Financials,Equity,"250,892,805.30",0.08,"250,892,805.30","1,062,115.00",236.22,United States,NASDAQ,USD,1.00,USD,-
+270,KEYS,KEYSIGHT TECHNOLOGIES INC,Information Technology,Equity,"250,469,333.50",0.08,"250,469,333.50","1,585,550.00",157.97,United States,New York Stock Exchange Inc.,USD,1.00,USD,-
+271,EFX,EQUIFAX INC,Industrials,Equity,"249,120,021.60",0.07,"249,120,021.60","1,050,696.00",237.10,United States,New York Stock Exchange Inc.,USD,1.00,USD,-
+272,KHC,KRAFT HEINZ,Consumer Staples,Equity,"245,290,117.02",0.07,"245,290,117.02","6,227,218.00",39.39,United States,NASDAQ,USD,1.00,USD,-
+273,WY,WEYERHAEUSER REIT,Real Estate,Equity,"245,163,009.90",0.07,"245,163,009.90","6,468,681.00",37.90,United States,New York Stock Exchange Inc.,USD,1.00,USD,-
+274,ODFL,OLD DOMINION FREIGHT LINE INC,Industrials,Equity,"242,551,158.36",0.07,"242,551,158.36","812,077.00",298.68,United States,NASDAQ,USD,1.00,USD,-
+275,RSG,REPUBLIC SERVICES INC,Industrials,Equity,"241,592,152.50",0.07,"241,592,152.50","1,823,337.00",132.50,United States,New York Stock Exchange Inc.,USD,1.00,USD,-
+276,ANSS,ANSYS INC,Information Technology,Equity,"240,928,948.45",0.07,"240,928,948.45","758,473.00",317.65,United States,NASDAQ,USD,1.00,USD,-
+277,GLW,CORNING INC,Information Technology,Equity,"239,926,479.01",0.07,"239,926,479.01","6,500,311.00",36.91,United States,New York Stock Exchange Inc.,USD,1.00,USD,-
+278,CERN,CERNER CORP,Health Care,Equity,"239,538,206.28",0.07,"239,538,206.28","2,560,263.00",93.56,United States,NASDAQ,USD,1.00,USD,-
+279,EXR,EXTRA SPACE STORAGE REIT INC,Real Estate,Equity,"239,441,965.60",0.07,"239,441,965.60","1,164,601.00",205.60,United States,New York Stock Exchange Inc.,USD,1.00,USD,-
+280,LUV,SOUTHWEST AIRLINES,Industrials,Equity,"238,373,611.20",0.07,"238,373,611.20","5,204,664.00",45.80,United States,New York Stock Exchange Inc.,USD,1.00,USD,-
+281,LYB,LYONDELLBASELL INDUSTRIES NV CLASS,Materials,Equity,"235,221,108.36",0.07,"235,221,108.36","2,287,698.00",102.82,United States,New York Stock Exchange Inc.,USD,1.00,USD,-
+282,CPRT,COPART INC,Industrials,Equity,"234,942,825.94",0.07,"234,942,825.94","1,872,502.00",125.47,United States,NASDAQ,USD,1.00,USD,-
+283,ENPH,ENPHASE ENERGY INC,Information Technology,Equity,"232,722,963.00",0.07,"232,722,963.00","1,153,350.00",201.78,United States,NASDAQ,USD,1.00,USD,-
+284,ZBH,ZIMMER BIOMET HOLDINGS INC,Health Care,Equity,"230,559,190.80",0.07,"230,559,190.80","1,802,652.00",127.90,United States,New York Stock Exchange Inc.,USD,1.00,USD,-
+285,EIX,EDISON INTERNATIONAL,Utilities,Equity,"229,041,725.70",0.07,"229,041,725.70","3,267,357.00",70.10,United States,New York Stock Exchange Inc.,USD,1.00,USD,-
+286,TSCO,TRACTOR SUPPLY,Consumer Discretionary,Equity,"228,789,413.64",0.07,"228,789,413.64","980,372.00",233.37,United States,NASDAQ,USD,1.00,USD,-
+287,TSN,TYSON FOODS INC CLASS A,Consumer Staples,Equity,"228,098,849.22",0.07,"228,098,849.22","2,544,894.00",89.63,United States,New York Stock Exchange Inc.,USD,1.00,USD,-
+288,URI,UNITED RENTALS INC,Industrials,Equity,"225,732,402.90",0.07,"225,732,402.90","635,490.00",355.21,United States,New York Stock Exchange Inc.,USD,1.00,USD,-
+289,FE,FIRSTENERGY CORP,Utilities,Equity,"225,307,565.98",0.07,"225,307,565.98","4,912,943.00",45.86,United States,New York Stock Exchange Inc.,USD,1.00,USD,-
+290,DTE,DTE ENERGY,Utilities,Equity,"224,665,642.89",0.07,"224,665,642.89","1,699,309.00",132.21,United States,New York Stock Exchange Inc.,USD,1.00,USD,-
+291,ALB,ALBEMARLE CORP,Materials,Equity,"222,527,764.50",0.07,"222,527,764.50","1,006,230.00",221.15,United States,New York Stock Exchange Inc.,USD,1.00,USD,-
+292,MKC,MCCORMICK & CO NON-VOTING INC,Consumer Staples,Equity,"218,766,091.00",0.07,"218,766,091.00","2,192,045.00",99.80,United States,New York Stock Exchange Inc.,USD,1.00,USD,-
+293,DAL,DELTA AIR LINES INC,Industrials,Equity,"217,086,005.82",0.07,"217,086,005.82","5,486,126.00",39.57,United States,New York Stock Exchange Inc.,USD,1.00,USD,-
+294,MOS,MOSAIC,Materials,Equity,"216,539,095.50",0.07,"216,539,095.50","3,256,227.00",66.50,United States,New York Stock Exchange Inc.,USD,1.00,USD,-
+295,LH,LABORATORY CORPORATION OF AMERICA,Health Care,Equity,"213,601,248.74",0.06,"213,601,248.74","810,139.00",263.66,United States,New York Stock Exchange Inc.,USD,1.00,USD,-
+296,CDW,CDW CORP,Information Technology,Equity,"213,429,902.31",0.06,"213,429,902.31","1,193,079.00",178.89,United States,NASDAQ,USD,1.00,USD,-
+297,STE,STERIS,Health Care,Equity,"212,616,889.86",0.06,"212,616,889.86","879,418.00",241.77,United States,New York Stock Exchange Inc.,USD,1.00,USD,-
+298,IT,GARTNER INC,Information Technology,Equity,"211,724,888.96",0.06,"211,724,888.96","711,776.00",297.46,United States,New York Stock Exchange Inc.,USD,1.00,USD,-
+299,VTR,VENTAS REIT INC,Real Estate,Equity,"211,675,729.92",0.06,"211,675,729.92","3,427,392.00",61.76,United States,New York Stock Exchange Inc.,USD,1.00,USD,-
+300,VMC,VULCAN MATERIALS,Materials,Equity,"211,357,688.30",0.06,"211,357,688.30","1,150,559.00",183.70,United States,New York Stock Exchange Inc.,USD,1.00,USD,-
+301,MAA,MID AMERICA APARTMENT COMMUNITIES,Real Estate,Equity,"210,210,931.85",0.06,"210,210,931.85","1,003,633.00",209.45,United States,New York Stock Exchange Inc.,USD,1.00,USD,-
+302,AEE,AMEREN CORP,Utilities,Equity,"209,905,668.80",0.06,"209,905,668.80","2,238,755.00",93.76,United States,New York Stock Exchange Inc.,USD,1.00,USD,-
+303,MLM,MARTIN MARIETTA MATERIALS INC,Materials,Equity,"208,931,763.15",0.06,"208,931,763.15","542,835.00",384.89,United States,New York Stock Exchange Inc.,USD,1.00,USD,-
+304,DHI,D R HORTON INC,Consumer Discretionary,Equity,"208,681,200.14",0.06,"208,681,200.14","2,800,714.00",74.51,United States,New York Stock Exchange Inc.,USD,1.00,USD,-
+305,NTRS,NORTHERN TRUST CORP,Financials,Equity,"208,634,614.80",0.06,"208,634,614.80","1,791,624.00",116.45,United States,NASDAQ,USD,1.00,USD,-
+306,CHD,CHURCH AND DWIGHT INC,Consumer Staples,Equity,"208,466,842.12",0.06,"208,466,842.12","2,097,674.00",99.38,United States,New York Stock Exchange Inc.,USD,1.00,USD,-
+307,HIG,HARTFORD FINANCIAL SERVICES GROUP,Financials,Equity,"208,337,110.87",0.06,"208,337,110.87","2,901,227.00",71.81,United States,New York Stock Exchange Inc.,USD,1.00,USD,-
+308,FANG,DIAMONDBACK ENERGY INC,Energy,Equity,"205,577,368.12",0.06,"205,577,368.12","1,499,689.00",137.08,United States,NASDAQ,USD,1.00,USD,-
+309,ABC,AMERISOURCEBERGEN CORP,Health Care,Equity,"203,692,423.68",0.06,"203,692,423.68","1,316,608.00",154.71,United States,New York Stock Exchange Inc.,USD,1.00,USD,-
+310,PARA,PARAMOUNT GLOBAL CLASS B,Communication,Equity,"201,926,422.36",0.06,"201,926,422.36","5,340,556.00",37.81,United States,NASDAQ,USD,1.00,USD,-
+311,ETR,ENTERGY CORP,Utilities,Equity,"201,074,438.75",0.06,"201,074,438.75","1,722,265.00",116.75,United States,New York Stock Exchange Inc.,USD,1.00,USD,-
+312,SWK,STANLEY BLACK & DECKER INC,Industrials,Equity,"197,523,549.58",0.06,"197,523,549.58","1,413,002.00",139.79,United States,New York Stock Exchange Inc.,USD,1.00,USD,-
+313,GWW,WW GRAINGER INC,Industrials,Equity,"196,251,389.73",0.06,"196,251,389.73","380,487.00",515.79,United States,New York Stock Exchange Inc.,USD,1.00,USD,-
+314,DOV,DOVER CORP,Industrials,Equity,"195,583,224.30",0.06,"195,583,224.30","1,246,547.00",156.90,United States,New York Stock Exchange Inc.,USD,1.00,USD,-
+315,ESS,ESSEX PROPERTY TRUST REIT INC,Real Estate,Equity,"195,548,589.60",0.06,"195,548,589.60","566,020.00",345.48,United States,New York Stock Exchange Inc.,USD,1.00,USD,-
+316,PKI,PERKINELMER INC,Health Care,Equity,"193,524,639.88",0.06,"193,524,639.88","1,109,278.00",174.46,United States,New York Stock Exchange Inc.,USD,1.00,USD,-
+317,ZBRA,ZEBRA TECHNOLOGIES CORP CLASS A,Information Technology,Equity,"192,592,243.20",0.06,"192,592,243.20","465,536.00",413.70,United States,NASDAQ,USD,1.00,USD,-
+318,MTB,M&T BANK CORP,Financials,Equity,"191,520,592.50",0.06,"191,520,592.50","1,129,915.00",169.50,United States,New York Stock Exchange Inc.,USD,1.00,USD,-
+319,CF,CF INDUSTRIES HOLDINGS INC,Materials,Equity,"191,094,367.30",0.06,"191,094,367.30","1,854,205.00",103.06,United States,New York Stock Exchange Inc.,USD,1.00,USD,-
+320,DRE,DUKE REALTY REIT CORP,Real Estate,Equity,"190,399,119.06",0.06,"190,399,119.06","3,279,351.00",58.06,United States,New York Stock Exchange Inc.,USD,1.00,USD,-
+321,CTRA,COTERRA ENERGY INC,Energy,Equity,"190,379,665.74",0.06,"190,379,665.74","7,058,942.00",26.97,United States,New York Stock Exchange Inc.,USD,1.00,USD,-
+322,TDY,TELEDYNE TECHNOLOGIES INC,Information Technology,Equity,"190,367,801.92",0.06,"190,367,801.92","402,784.00",472.63,United States,New York Stock Exchange Inc.,USD,1.00,USD,-
+323,SWKS,SKYWORKS SOLUTIONS INC,Information Technology,Equity,"189,753,668.16",0.06,"189,753,668.16","1,423,722.00",133.28,United States,NASDAQ,USD,1.00,USD,-
+324,FTV,FORTIVE CORP,Industrials,Equity,"189,517,403.16",0.06,"189,517,403.16","3,110,412.00",60.93,United States,New York Stock Exchange Inc.,USD,1.00,USD,-
+325,PPL,PPL CORP,Utilities,Equity,"189,096,816.72",0.06,"189,096,816.72","6,621,037.00",28.56,United States,New York Stock Exchange Inc.,USD,1.00,USD,-
+326,ULTA,ULTA BEAUTY INC,Consumer Discretionary,Equity,"188,960,965.08",0.06,"188,960,965.08","474,514.00",398.22,United States,NASDAQ,USD,1.00,USD,-
+327,VRSN,VERISIGN INC,Information Technology,Equity,"187,973,138.50",0.06,"187,973,138.50","844,975.00",222.46,United States,NASDAQ,USD,1.00,USD,-
+328,HPE,HEWLETT PACKARD ENTERPRISE,Information Technology,Equity,"186,060,736.74",0.06,"186,060,736.74","11,134,694.00",16.71,United States,New York Stock Exchange Inc.,USD,1.00,USD,-
+329,LEN,LENNAR A CORP,Consumer Discretionary,Equity,"183,636,978.75",0.06,"183,636,978.75","2,262,375.00",81.17,United States,New York Stock Exchange Inc.,USD,1.00,USD,-
+330,MPWR,MONOLITHIC POWER SYSTEMS INC,Information Technology,Equity,"183,028,508.00",0.05,"183,028,508.00","376,850.00",485.68,United States,NASDAQ,USD,1.00,USD,-
+331,RF,REGIONS FINANCIAL CORP,Financials,Equity,"181,458,556.02",0.05,"181,458,556.02","8,151,777.00",22.26,United States,New York Stock Exchange Inc.,USD,1.00,USD,-
+332,NDAQ,NASDAQ INC,Financials,Equity,"180,981,523.80",0.05,"180,981,523.80","1,015,609.00",178.20,United States,NASDAQ,USD,1.00,USD,-
+333,KEY,KEYCORP,Financials,Equity,"180,331,348.38",0.05,"180,331,348.38","8,057,701.00",22.38,United States,New York Stock Exchange Inc.,USD,1.00,USD,-
+334,HBAN,HUNTINGTON BANCSHARES INC,Financials,Equity,"180,041,878.92",0.05,"180,041,878.92","12,314,766.00",14.62,United States,NASDAQ,USD,1.00,USD,-
+335,RJF,RAYMOND JAMES INC,Financials,Equity,"178,173,782.08",0.05,"178,173,782.08","1,621,088.00",109.91,United States,New York Stock Exchange Inc.,USD,1.00,USD,-
+336,FLT,FLEETCOR TECHNOLOGIES INC,Information Technology,Equity,"177,919,995.96",0.05,"177,919,995.96","714,366.00",249.06,United States,New York Stock Exchange Inc.,USD,1.00,USD,-
+337,CINF,CINCINNATI FINANCIAL CORP,Financials,Equity,"177,009,315.12",0.05,"177,009,315.12","1,301,922.00",135.96,United States,NASDAQ,USD,1.00,USD,-
+338,COO,COOPER INC,Health Care,Equity,"176,692,351.16",0.05,"176,692,351.16","423,124.00",417.59,United States,New York Stock Exchange Inc.,USD,1.00,USD,-
+339,IR,INGERSOLL RAND INC,Industrials,Equity,"176,600,409.60",0.05,"176,600,409.60","3,507,456.00",50.35,United States,New York Stock Exchange Inc.,USD,1.00,USD,-
+340,CMS,CMS ENERGY CORP,Utilities,Equity,"175,574,788.22",0.05,"175,574,788.22","2,510,363.00",69.94,United States,New York Stock Exchange Inc.,USD,1.00,USD,-
+341,CTLT,CATALENT INC,Health Care,Equity,"172,839,424.40",0.05,"172,839,424.40","1,558,516.00",110.90,United States,New York Stock Exchange Inc.,USD,1.00,USD,-
+342,MRO,MARATHON OIL CORP,Energy,Equity,"171,168,692.94",0.05,"171,168,692.94","6,816,754.00",25.11,United States,New York Stock Exchange Inc.,USD,1.00,USD,-
+343,CNP,CENTERPOINT ENERGY INC,Utilities,Equity,"170,120,020.80",0.05,"170,120,020.80","5,552,220.00",30.64,United States,New York Stock Exchange Inc.,USD,1.00,USD,-
+344,BBY,BEST BUY INC,Consumer Discretionary,Equity,"169,562,042.10",0.05,"169,562,042.10","1,865,369.00",90.90,United States,New York Stock Exchange Inc.,USD,1.00,USD,-
+345,TER,TERADYNE INC,Information Technology,Equity,"169,269,654.54",0.05,"169,269,654.54","1,431,698.00",118.23,United States,NASDAQ,USD,1.00,USD,-
+346,MOH,MOLINA HEALTHCARE INC,Health Care,Equity,"169,020,045.30",0.05,"169,020,045.30","506,670.00",333.59,United States,New York Stock Exchange Inc.,USD,1.00,USD,-
+347,AKAM,AKAMAI TECHNOLOGIES INC,Information Technology,Equity,"168,800,864.79",0.05,"168,800,864.79","1,413,861.00",119.39,United States,NASDAQ,USD,1.00,USD,-
+348,CFG,CITIZENS FINANCIAL GROUP INC,Financials,Equity,"167,545,391.58",0.05,"167,545,391.58","3,696,126.00",45.33,United States,New York Stock Exchange Inc.,USD,1.00,USD,-
+349,HOLX,HOLOGIC INC,Health Care,Equity,"165,425,878.04",0.05,"165,425,878.04","2,153,422.00",76.82,United States,NASDAQ,USD,1.00,USD,-
+350,GNRC,GENERAC HOLDINGS INC,Industrials,Equity,"165,207,001.16",0.05,"165,207,001.16","555,766.00",297.26,United States,New York Stock Exchange Inc.,USD,1.00,USD,-
+351,WAT,WATERS CORP,Health Care,Equity,"163,722,965.25",0.05,"163,722,965.25","527,475.00",310.39,United States,New York Stock Exchange Inc.,USD,1.00,USD,-
+352,RCL,ROYAL CARIBBEAN GROUP LTD,Consumer Discretionary,Equity,"162,821,403.20",0.05,"162,821,403.20","1,943,440.00",83.78,United States,New York Stock Exchange Inc.,USD,1.00,USD,-
+353,PWR,QUANTA SERVICES INC,Industrials,Equity,"162,379,759.95",0.05,"162,379,759.95","1,233,795.00",131.61,United States,New York Stock Exchange Inc.,USD,1.00,USD,-
+354,CEG,CONSTELLATION ENERGY CORP,Utilities,Equity,"160,075,181.25",0.05,"160,075,181.25","2,845,781.00",56.25,United States,NASDAQ,USD,1.00,USD,-
+355,GRMN,GARMIN LTD,Consumer Discretionary,Equity,"159,643,959.77",0.05,"159,643,959.77","1,345,957.00",118.61,United States,New York Stock Exchange Inc.,USD,1.00,USD,-
+356,NTAP,NETAPP INC,Information Technology,Equity,"159,416,357.00",0.05,"159,416,357.00","1,920,679.00",83.00,United States,NASDAQ,USD,1.00,USD,-
+357,SBNY,SIGNATURE BANK,Financials,Equity,"159,231,238.56",0.05,"159,231,238.56","542,544.00",293.49,United States,NASDAQ,USD,1.00,USD,-
+358,VFC,VF CORP,Consumer Discretionary,Equity,"158,179,175.16",0.05,"158,179,175.16","2,781,906.00",56.86,United States,New York Stock Exchange Inc.,USD,1.00,USD,-
+359,BR,BROADRIDGE FINANCIAL SOLUTIONS INC,Information Technology,Equity,"158,175,045.01",0.05,"158,175,045.01","1,015,831.00",155.71,United States,New York Stock Exchange Inc.,USD,1.00,USD,-
+360,PEAK,HEALTHPEAK PROPERTIES INC,Real Estate,Equity,"158,176,951.19",0.05,"158,176,951.19","4,607,543.00",34.33,United States,New York Stock Exchange Inc.,USD,1.00,USD,-
+361,TYL,TYLER TECHNOLOGIES INC,Information Technology,Equity,"157,862,543.15",0.05,"157,862,543.15","354,835.00",444.89,United States,New York Stock Exchange Inc.,USD,1.00,USD,-
+362,WAB,WESTINGHOUSE AIR BRAKE TECHNOLOGIE,Industrials,Equity,"157,278,052.89",0.05,"157,278,052.89","1,635,417.00",96.17,United States,New York Stock Exchange Inc.,USD,1.00,USD,-
+363,BXP,BOSTON PROPERTIES REIT INC,Real Estate,Equity,"157,258,617.60",0.05,"157,258,617.60","1,220,952.00",128.80,United States,New York Stock Exchange Inc.,USD,1.00,USD,-
+364,SYF,SYNCHRONY FINANCIAL,Financials,Equity,"156,913,280.67",0.05,"156,913,280.67","4,507,707.00",34.81,United States,New York Stock Exchange Inc.,USD,1.00,USD,-
+365,TRMB,TRIMBLE INC,Information Technology,Equity,"156,765,197.66",0.05,"156,765,197.66","2,173,069.00",72.14,United States,NASDAQ,USD,1.00,USD,-
+366,GPC,GENUINE PARTS,Consumer Discretionary,Equity,"156,477,521.76",0.05,"156,477,521.76","1,241,688.00",126.02,United States,New York Stock Exchange Inc.,USD,1.00,USD,-
+367,J,JACOBS ENGINEERING GROUP INC,Industrials,Equity,"155,927,191.65",0.05,"155,927,191.65","1,131,465.00",137.81,United States,New York Stock Exchange Inc.,USD,1.00,USD,-
+368,STX,SEAGATE TECHNOLOGY HOLDINGS PLC,Information Technology,Equity,"155,210,731.80",0.05,"155,210,731.80","1,726,482.00",89.90,United States,NASDAQ,USD,1.00,USD,-
+369,TTWO,TAKE TWO INTERACTIVE SOFTWARE INC,Communication,Equity,"155,045,098.86",0.05,"155,045,098.86","1,008,489.00",153.74,United States,NASDAQ,USD,1.00,USD,-
+370,PFG,PRINCIPAL FINANCIAL GROUP INC,Financials,Equity,"154,573,564.20",0.05,"154,573,564.20","2,105,620.00",73.41,United States,NASDAQ,USD,1.00,USD,-
+371,OMC,OMNICOM GROUP INC,Communication,Equity,"154,364,974.88",0.05,"154,364,974.88","1,818,626.00",84.88,United States,New York Stock Exchange Inc.,USD,1.00,USD,-
+372,IP,INTERNATIONAL PAPER,Materials,Equity,"154,038,870.05",0.05,"154,038,870.05","3,337,787.00",46.15,United States,New York Stock Exchange Inc.,USD,1.00,USD,-
+373,BRO,BROWN & BROWN INC,Financials,Equity,"149,962,851.72",0.05,"149,962,851.72","2,075,036.00",72.27,United States,New York Stock Exchange Inc.,USD,1.00,USD,-
+374,EXPD,EXPEDITORS INTERNATIONAL OF WASHIN,Industrials,Equity,"149,950,487.52",0.05,"149,950,487.52","1,453,572.00",103.16,United States,NASDAQ,USD,1.00,USD,-
+375,UDR,UDR REIT INC,Real Estate,Equity,"149,296,991.61",0.04,"149,296,991.61","2,602,353.00",57.37,United States,New York Stock Exchange Inc.,USD,1.00,USD,-
+376,CLX,CLOROX,Consumer Staples,Equity,"149,002,760.93",0.04,"149,002,760.93","1,071,731.00",139.03,United States,New York Stock Exchange Inc.,USD,1.00,USD,-
+377,SEDG,SOLAREDGE TECHNOLOGIES INC,Information Technology,Equity,"148,437,200.72",0.04,"148,437,200.72","460,456.00",322.37,United States,NASDAQ,USD,1.00,USD,-
+378,FMC,FMC CORP,Materials,Equity,"147,442,736.37",0.04,"147,442,736.37","1,120,641.00",131.57,United States,New York Stock Exchange Inc.,USD,1.00,USD,-
+379,POOL,POOL CORP,Consumer Discretionary,Equity,"146,945,872.05",0.04,"146,945,872.05","347,513.00",422.85,United States,NASDAQ,USD,1.00,USD,-
+380,AMCR,AMCOR PLC,Materials,Equity,"146,909,062.74",0.04,"146,909,062.74","12,966,378.00",11.33,United States,New York Stock Exchange Inc.,USD,1.00,USD,-
+381,DRI,DARDEN RESTAURANTS INC,Consumer Discretionary,Equity,"146,760,713.05",0.04,"146,760,713.05","1,103,879.00",132.95,United States,New York Stock Exchange Inc.,USD,1.00,USD,-
+382,JBHT,JB HUNT TRANSPORT SERVICES INC,Industrials,Equity,"146,651,594.67",0.04,"146,651,594.67","730,373.00",200.79,United States,NASDAQ,USD,1.00,USD,-
+383,AES,AES CORP,Utilities,Equity,"146,558,723.25",0.04,"146,558,723.25","5,696,025.00",25.73,United States,New York Stock Exchange Inc.,USD,1.00,USD,-
+384,EPAM,EPAM SYSTEMS INC,Information Technology,Equity,"146,417,373.96",0.04,"146,417,373.96","493,636.00",296.61,United States,New York Stock Exchange Inc.,USD,1.00,USD,-
+385,CZR,CAESARS ENTERTAINMENT INC,Consumer Discretionary,Equity,"146,319,941.76",0.04,"146,319,941.76","1,891,416.00",77.36,United States,NASDAQ,USD,1.00,USD,-
+386,K,KELLOGG,Consumer Staples,Equity,"146,259,386.11",0.04,"146,259,386.11","2,267,939.00",64.49,United States,New York Stock Exchange Inc.,USD,1.00,USD,-
+387,TECH,BIO TECHNE CORP,Health Care,Equity,"145,300,076.40",0.04,"145,300,076.40","335,535.00",433.04,United States,NASDAQ,USD,1.00,USD,-
+388,PAYC,PAYCOM SOFTWARE INC,Information Technology,Equity,"144,432,146.88",0.04,"144,432,146.88","416,976.00",346.38,United States,New York Stock Exchange Inc.,USD,1.00,USD,-
+389,CCL,CARNIVAL CORP,Consumer Discretionary,Equity,"144,258,033.06",0.04,"144,258,033.06","7,134,423.00",20.22,United States,New York Stock Exchange Inc.,USD,1.00,USD,-
+390,TXT,TEXTRON INC,Industrials,Equity,"143,881,713.32",0.04,"143,881,713.32","1,934,414.00",74.38,United States,New York Stock Exchange Inc.,USD,1.00,USD,-
+391,FDS,FACTSET RESEARCH SYSTEMS INC,Financials,Equity,"143,554,736.55",0.04,"143,554,736.55","330,657.00",434.15,United States,New York Stock Exchange Inc.,USD,1.00,USD,-
+392,TFX,TELEFLEX INC,Health Care,Equity,"142,464,599.83",0.04,"142,464,599.83","401,501.00",354.83,United States,New York Stock Exchange Inc.,USD,1.00,USD,-
+393,IRM,IRON MOUNTAIN INC,Real Estate,Equity,"142,189,484.94",0.04,"142,189,484.94","2,566,134.00",55.41,United States,New York Stock Exchange Inc.,USD,1.00,USD,-
+394,DGX,QUEST DIAGNOSTICS INC,Health Care,Equity,"141,714,561.06",0.04,"141,714,561.06","1,035,471.00",136.86,United States,New York Stock Exchange Inc.,USD,1.00,USD,-
+395,ATO,ATMOS ENERGY CORP,Utilities,Equity,"140,818,248.06",0.04,"140,818,248.06","1,178,494.00",119.49,United States,New York Stock Exchange Inc.,USD,1.00,USD,-
+396,LNT,ALLIANT ENERGY CORP,Utilities,Equity,"138,384,702.72",0.04,"138,384,702.72","2,214,864.00",62.48,United States,NASDAQ,USD,1.00,USD,-
+397,CAG,CONAGRA BRANDS INC,Consumer Staples,Equity,"138,223,568.61",0.04,"138,223,568.61","4,117,473.00",33.57,United States,New York Stock Exchange Inc.,USD,1.00,USD,-
+398,LYV,LIVE NATION ENTERTAINMENT INC,Communication,Equity,"138,221,823.84",0.04,"138,221,823.84","1,174,956.00",117.64,United States,New York Stock Exchange Inc.,USD,1.00,USD,-
+399,MGM,MGM RESORTS INTERNATIONAL,Consumer Discretionary,Equity,"137,255,234.58",0.04,"137,255,234.58","3,272,657.00",41.94,United States,New York Stock Exchange Inc.,USD,1.00,USD,-
+400,WDC,WESTERN DIGITAL CORP,Information Technology,Equity,"137,217,357.45",0.04,"137,217,357.45","2,763,693.00",49.65,United States,NASDAQ,USD,1.00,USD,-
+401,KMX,CARMAX INC,Consumer Discretionary,Equity,"136,668,744.00",0.04,"136,668,744.00","1,416,550.00",96.48,United States,New York Stock Exchange Inc.,USD,1.00,USD,-
+402,CAH,CARDINAL HEALTH INC,Health Care,Equity,"136,473,214.50",0.04,"136,473,214.50","2,406,935.00",56.70,United States,New York Stock Exchange Inc.,USD,1.00,USD,-
+403,CE,CELANESE CORP,Materials,Equity,"135,931,232.71",0.04,"135,931,232.71","951,433.00",142.87,United States,New York Stock Exchange Inc.,USD,1.00,USD,-
+404,ETSY,ETSY INC,Consumer Discretionary,Equity,"134,387,568.12",0.04,"134,387,568.12","1,081,329.00",124.28,United States,NASDAQ,USD,1.00,USD,-
+405,NLOK,NORTONLIFELOCK INC,Information Technology,Equity,"133,765,500.96",0.04,"133,765,500.96","5,043,948.00",26.52,United States,NASDAQ,USD,1.00,USD,-
+406,EVRG,EVERGY INC,Utilities,Equity,"133,430,979.72",0.04,"133,430,979.72","1,952,458.00",68.34,United States,New York Stock Exchange Inc.,USD,1.00,USD,-
+407,XYL,XYLEM INC,Industrials,Equity,"133,192,745.70",0.04,"133,192,745.70","1,562,195.00",85.26,United States,New York Stock Exchange Inc.,USD,1.00,USD,-
+408,KIM,KIMCO REALTY REIT CORP,Real Estate,Equity,"131,983,857.20",0.04,"131,983,857.20","5,343,476.00",24.70,United States,New York Stock Exchange Inc.,USD,1.00,USD,-
+409,LDOS,LEIDOS HOLDINGS INC,Industrials,Equity,"131,913,591.92",0.04,"131,913,591.92","1,221,196.00",108.02,United States,New York Stock Exchange Inc.,USD,1.00,USD,-
+410,DPZ,DOMINOS PIZZA INC,Consumer Discretionary,Equity,"130,611,544.05",0.04,"130,611,544.05","320,905.00",407.01,United States,New York Stock Exchange Inc.,USD,1.00,USD,-
+411,APA,APA CORP,Energy,Equity,"130,102,541.68",0.04,"130,102,541.68","3,147,896.00",41.33,United States,NASDAQ,USD,1.00,USD,-
+412,UAL,UNITED AIRLINES HOLDINGS INC,Industrials,Equity,"129,964,604.08",0.04,"129,964,604.08","2,803,378.00",46.36,United States,NASDAQ,USD,1.00,USD,-
+413,ABMD,ABIOMED INC,Health Care,Equity,"128,512,176.52",0.04,"128,512,176.52","387,973.00",331.24,United States,NASDAQ,USD,1.00,USD,-
+414,INCY,INCYTE CORP,Health Care,Equity,"127,746,037.54",0.04,"127,746,037.54","1,608,487.00",79.42,United States,NASDAQ,USD,1.00,USD,-
+415,PKG,PACKAGING CORP OF AMERICA,Materials,Equity,"127,555,919.90",0.04,"127,555,919.90","817,090.00",156.11,United States,New York Stock Exchange Inc.,USD,1.00,USD,-
+416,NVR,NVR INC,Consumer Discretionary,Equity,"126,807,926.22",0.04,"126,807,926.22","28,386.00","4,467.27",United States,New York Stock Exchange Inc.,USD,1.00,USD,-
+417,AVY,AVERY DENNISON CORP,Materials,Equity,"126,184,442.31",0.04,"126,184,442.31","725,323.00",173.97,United States,New York Stock Exchange Inc.,USD,1.00,USD,-
+418,SJM,JM SMUCKER,Consumer Staples,Equity,"125,943,486.90",0.04,"125,943,486.90","930,090.00",135.41,United States,New York Stock Exchange Inc.,USD,1.00,USD,-
+419,IEX,IDEX CORP,Industrials,Equity,"125,158,084.59",0.04,"125,158,084.59","652,783.00",191.73,United States,New York Stock Exchange Inc.,USD,1.00,USD,-
+420,HRL,HORMEL FOODS CORP,Consumer Staples,Equity,"124,647,273.78",0.04,"124,647,273.78","2,418,457.00",51.54,United States,New York Stock Exchange Inc.,USD,1.00,USD,-
+421,EMN,EASTMAN CHEMICAL,Materials,Equity,"124,675,042.44",0.04,"124,675,042.44","1,112,574.00",112.06,United States,New York Stock Exchange Inc.,USD,1.00,USD,-
+422,JKHY,JACK HENRY AND ASSOCIATES INC,Information Technology,Equity,"122,936,145.15",0.04,"122,936,145.15","623,883.00",197.05,United States,NASDAQ,USD,1.00,USD,-
+423,CRL,CHARLES RIVER LABORATORIES INTERNA,Health Care,Equity,"121,944,669.16",0.04,"121,944,669.16","429,428.00",283.97,United States,New York Stock Exchange Inc.,USD,1.00,USD,-
+424,CHRW,CH ROBINSON WORLDWIDE INC,Industrials,Equity,"121,680,633.26",0.04,"121,680,633.26","1,129,706.00",107.71,United States,NASDAQ,USD,1.00,USD,-
+425,HST,HOST HOTELS & RESORTS REIT INC,Real Estate,Equity,"120,725,643.09",0.04,"120,725,643.09","6,213,363.00",19.43,United States,NASDAQ,USD,1.00,USD,-
+426,WRB,WR BERKLEY CORP,Financials,Equity,"120,111,179.78",0.04,"120,111,179.78","1,803,742.00",66.59,United States,New York Stock Exchange Inc.,USD,1.00,USD,-
+427,IPG,INTERPUBLIC GROUP OF COMPANIES INC,Communication,Equity,"119,373,018.35",0.04,"119,373,018.35","3,367,363.00",35.45,United States,New York Stock Exchange Inc.,USD,1.00,USD,-
+428,QRVO,QORVO INC,Information Technology,Equity,"119,093,681.90",0.04,"119,093,681.90","959,659.00",124.10,United States,NASDAQ,USD,1.00,USD,-
+429,HWM,HOWMET AEROSPACE INC,Industrials,Equity,"116,715,329.70",0.04,"116,715,329.70","3,247,505.00",35.94,United States,New York Stock Exchange Inc.,USD,1.00,USD,-
+430,LVS,LAS VEGAS SANDS CORP,Consumer Discretionary,Equity,"115,832,561.13",0.03,"115,832,561.13","2,979,999.00",38.87,United States,New York Stock Exchange Inc.,USD,1.00,USD,-
+431,VTRS,VIATRIS INC,Health Care,Equity,"112,737,352.32",0.03,"112,737,352.32","10,361,889.00",10.88,United States,NASDAQ,USD,1.00,USD,-
+432,MKTX,MARKETAXESS HOLDINGS INC,Financials,Equity,"111,031,074.00",0.03,"111,031,074.00","326,370.00",340.20,United States,NASDAQ,USD,1.00,USD,-
+433,L,LOEWS CORP,Financials,Equity,"110,376,986.86",0.03,"110,376,986.86","1,702,823.00",64.82,United States,New York Stock Exchange Inc.,USD,1.00,USD,-
+434,AAP,ADVANCE AUTO PARTS INC,Consumer Discretionary,Equity,"109,684,039.92",0.03,"109,684,039.92","529,977.00",206.96,United States,New York Stock Exchange Inc.,USD,1.00,USD,-
+435,BFB,BROWN FORMAN CORP CLASS B,Consumer Staples,Equity,"109,216,998.36",0.03,"109,216,998.36","1,629,618.00",67.02,United States,New York Stock Exchange Inc.,USD,1.00,USD,-
+436,CTXS,CITRIX SYSTEMS INC,Information Technology,Equity,"108,887,143.10",0.03,"108,887,143.10","1,079,159.00",100.90,United States,NASDAQ,USD,1.00,USD,-
+437,NI,NISOURCE INC,Utilities,Equity,"108,667,914.00",0.03,"108,667,914.00","3,417,230.00",31.80,United States,New York Stock Exchange Inc.,USD,1.00,USD,-
+438,RHI,ROBERT HALF,Industrials,Equity,"107,453,427.84",0.03,"107,453,427.84","941,088.00",114.18,United States,New York Stock Exchange Inc.,USD,1.00,USD,-
+439,FFIV,F5 INC,Information Technology,Equity,"107,385,882.45",0.03,"107,385,882.45","513,931.00",208.95,United States,NASDAQ,USD,1.00,USD,-
+440,LKQ,LKQ CORP,Consumer Discretionary,Equity,"106,858,357.90",0.03,"106,858,357.90","2,353,190.00",45.41,United States,NASDAQ,USD,1.00,USD,-
+441,WRK,WESTROCK,Materials,Equity,"106,658,960.76",0.03,"106,658,960.76","2,267,892.00",47.03,United States,New York Stock Exchange Inc.,USD,1.00,USD,-
+442,NDSN,NORDSON CORP,Industrials,Equity,"106,366,542.80",0.03,"106,366,542.80","468,410.00",227.08,United States,NASDAQ,USD,1.00,USD,-
+443,FOXA,FOX CORP CLASS A,Communication,Equity,"106,324,417.05",0.03,"106,324,417.05","2,695,169.00",39.45,United States,NASDAQ,USD,1.00,USD,-
+444,BIO,BIO RAD LABORATORIES INC CLASS A,Health Care,Equity,"106,033,679.80",0.03,"106,033,679.80","188,260.00",563.23,United States,New York Stock Exchange Inc.,USD,1.00,USD,-
+445,HSIC,HENRY SCHEIN INC,Health Care,Equity,"104,813,976.27",0.03,"104,813,976.27","1,202,133.00",87.19,United States,NASDAQ,USD,1.00,USD,-
+446,BBWI,BATH AND BODY WORKS INC,Consumer Discretionary,Equity,"104,341,042.60",0.03,"104,341,042.60","2,182,867.00",47.80,United States,New York Stock Exchange Inc.,USD,1.00,USD,-
+447,CBOE,CBOE GLOBAL MARKETS INC,Financials,Equity,"104,259,160.74",0.03,"104,259,160.74","911,197.00",114.42,United States,Cboe BZX formerly known as BATS,USD,1.00,USD,-
+448,MAS,MASCO CORP,Industrials,Equity,"103,801,983.00",0.03,"103,801,983.00","2,035,333.00",51.00,United States,New York Stock Exchange Inc.,USD,1.00,USD,-
+449,RE,EVEREST RE GROUP LTD,Financials,Equity,"102,851,048.46",0.03,"102,851,048.46","341,267.00",301.38,United States,New York Stock Exchange Inc.,USD,1.00,USD,-
+450,JNPR,JUNIPER NETWORKS INC,Information Technology,Equity,"102,575,237.72",0.03,"102,575,237.72","2,760,367.00",37.16,United States,New York Stock Exchange Inc.,USD,1.00,USD,-
+451,CMA,COMERICA INC,Financials,Equity,"102,424,544.77",0.03,"102,424,544.77","1,132,639.00",90.43,United States,New York Stock Exchange Inc.,USD,1.00,USD,-
+452,AAL,AMERICAN AIRLINES GROUP INC,Industrials,Equity,"101,829,561.50",0.03,"101,829,561.50","5,579,702.00",18.25,United States,NASDAQ,USD,1.00,USD,-
+453,PTC,PTC INC,Information Technology,Equity,"97,604,984.28",0.03,"97,604,984.28","906,099.00",107.72,United States,NASDAQ,USD,1.00,USD,-
+454,SNA,SNAP ON INC,Industrials,Equity,"96,350,804.88",0.03,"96,350,804.88","468,906.00",205.48,United States,New York Stock Exchange Inc.,USD,1.00,USD,-
+455,REG,REGENCY CENTERS REIT CORP,Real Estate,Equity,"94,698,856.20",0.03,"94,698,856.20","1,327,430.00",71.34,United States,NASDAQ,USD,1.00,USD,-
+456,UHS,UNIVERSAL HEALTH SERVICES INC CLAS,Health Care,Equity,"94,665,250.55",0.03,"94,665,250.55","653,089.00",144.95,United States,New York Stock Exchange Inc.,USD,1.00,USD,-
+457,XRAY,DENTSPLY SIRONA INC,Health Care,Equity,"93,254,574.56",0.03,"93,254,574.56","1,894,648.00",49.22,United States,NASDAQ,USD,1.00,USD,-
+458,LNC,LINCOLN NATIONAL CORP,Financials,Equity,"92,960,874.40",0.03,"92,960,874.40","1,422,290.00",65.36,United States,New York Stock Exchange Inc.,USD,1.00,USD,-
+459,HAS,HASBRO INC,Consumer Discretionary,Equity,"90,176,061.44",0.03,"90,176,061.44","1,100,782.00",81.92,United States,NASDAQ,USD,1.00,USD,-
+460,LUMN,LUMEN TECHNOLOGIES INC,Communication,Equity,"89,890,737.16",0.03,"89,890,737.16","7,976,108.00",11.27,United States,New York Stock Exchange Inc.,USD,1.00,USD,-
+461,SEE,SEALED AIR CORP,Materials,Equity,"88,922,411.28",0.03,"88,922,411.28","1,327,993.00",66.96,United States,New York Stock Exchange Inc.,USD,1.00,USD,-
+462,PHM,PULTEGROUP INC,Consumer Discretionary,Equity,"88,485,216.10",0.03,"88,485,216.10","2,111,819.00",41.90,United States,New York Stock Exchange Inc.,USD,1.00,USD,-
+463,ALLE,ALLEGION PLC,Industrials,Equity,"88,072,541.92",0.03,"88,072,541.92","802,264.00",109.78,United States,New York Stock Exchange Inc.,USD,1.00,USD,-
+464,FBHS,FORTUNE BRANDS HOME AND SECURITY I,Industrials,Equity,"87,932,069.76",0.03,"87,932,069.76","1,183,792.00",74.28,United States,New York Stock Exchange Inc.,USD,1.00,USD,-
+465,AIZ,ASSURANT INC,Financials,Equity,"87,806,252.49",0.03,"87,806,252.49","482,903.00",181.83,United States,New York Stock Exchange Inc.,USD,1.00,USD,-
+466,TAP,MOLSON COORS BREWING CLASS B,Consumer Staples,Equity,"87,513,841.00",0.03,"87,513,841.00","1,639,450.00",53.38,United States,New York Stock Exchange Inc.,USD,1.00,USD,-
+467,WHR,WHIRLPOOL CORP,Consumer Discretionary,Equity,"86,880,695.20",0.03,"86,880,695.20","502,840.00",172.78,United States,New York Stock Exchange Inc.,USD,1.00,USD,-
+468,NLSN,NIELSEN HOLDINGS PLC,Industrials,Equity,"85,367,190.84",0.03,"85,367,190.84","3,133,891.00",27.24,United States,New York Stock Exchange Inc.,USD,1.00,USD,-
+469,GL,GLOBE LIFE INC,Financials,Equity,"83,998,786.80",0.03,"83,998,786.80","834,978.00",100.60,United States,New York Stock Exchange Inc.,USD,1.00,USD,-
+470,ZION,ZIONS BANCORPORATION,Financials,Equity,"83,649,708.56",0.03,"83,649,708.56","1,275,926.00",65.56,United States,NASDAQ,USD,1.00,USD,-
+471,TPR,TAPESTRY INC,Consumer Discretionary,Equity,"82,888,299.85",0.02,"82,888,299.85","2,231,179.00",37.15,United States,New York Stock Exchange Inc.,USD,1.00,USD,-
+472,NRG,NRG ENERGY INC,Utilities,Equity,"79,759,991.64",0.02,"79,759,991.64","2,079,249.00",38.36,United States,New York Stock Exchange Inc.,USD,1.00,USD,-
+473,NCLH,NORWEGIAN CRUISE LINE HOLDINGS LTD,Consumer Discretionary,Equity,"79,372,960.12",0.02,"79,372,960.12","3,627,649.00",21.88,United States,New York Stock Exchange Inc.,USD,1.00,USD,-
+474,PNR,PENTAIR,Industrials,Equity,"79,040,185.77",0.02,"79,040,185.77","1,458,037.00",54.21,United States,New York Stock Exchange Inc.,USD,1.00,USD,-
+475,CDAY,CERIDIAN HCM HOLDING INC,Information Technology,Equity,"78,811,560.40",0.02,"78,811,560.40","1,152,890.00",68.36,United States,New York Stock Exchange Inc.,USD,1.00,USD,-
+476,BWA,BORGWARNER INC,Consumer Discretionary,Equity,"78,747,215.00",0.02,"78,747,215.00","2,024,350.00",38.90,United States,New York Stock Exchange Inc.,USD,1.00,USD,-
+477,OGN,ORGANON,Health Care,Equity,"76,842,926.16",0.02,"76,842,926.16","2,199,912.00",34.93,United States,New York Stock Exchange Inc.,USD,1.00,USD,-
+478,CPB,CAMPBELL SOUP,Consumer Staples,Equity,"76,319,929.77",0.02,"76,319,929.77","1,712,361.00",44.57,United States,New York Stock Exchange Inc.,USD,1.00,USD,-
+479,LW,LAMB WESTON HOLDINGS INC,Consumer Staples,Equity,"74,215,429.62",0.02,"74,215,429.62","1,238,782.00",59.91,United States,New York Stock Exchange Inc.,USD,1.00,USD,-
+480,PBCT,PEOPLES UNITED FINANCIAL INC,Financials,Equity,"74,004,299.34",0.02,"74,004,299.34","3,702,066.00",19.99,United States,NASDAQ,USD,1.00,USD,-
+481,PNW,PINNACLE WEST CORP,Utilities,Equity,"73,951,640.40",0.02,"73,951,640.40","946,884.00",78.10,United States,New York Stock Exchange Inc.,USD,1.00,USD,-
+482,NWSA,NEWS CORP CLASS A,Communication,Equity,"73,575,389.20",0.02,"73,575,389.20","3,321,688.00",22.15,United States,NASDAQ,USD,1.00,USD,-
+483,FRT,FEDERAL REALTY INVESTMENT TRUST RE,Real Estate,Equity,"72,529,477.41",0.02,"72,529,477.41","594,163.00",122.07,United States,New York Stock Exchange Inc.,USD,1.00,USD,-
+484,AOS,A O SMITH CORP,Industrials,Equity,"71,924,231.39",0.02,"71,924,231.39","1,125,751.00",63.89,United States,New York Stock Exchange Inc.,USD,1.00,USD,-
+485,WYNN,WYNN RESORTS LTD,Consumer Discretionary,Equity,"70,654,424.40",0.02,"70,654,424.40","886,060.00",79.74,United States,NASDAQ,USD,1.00,USD,-
+486,NWL,NEWELL BRANDS INC,Consumer Discretionary,Equity,"69,477,740.87",0.02,"69,477,740.87","3,245,107.00",21.41,United States,NASDAQ,USD,1.00,USD,-
+487,DISCK,DISCOVERY INC SERIES C,Communication,Equity,"68,606,248.59",0.02,"68,606,248.59","2,747,547.00",24.97,United States,NASDAQ,USD,1.00,USD,-
+488,DISH,DISH NETWORK CORP CLASS A,Communication,Equity,"68,401,093.80",0.02,"68,401,093.80","2,161,172.00",31.65,United States,NASDAQ,USD,1.00,USD,-
+489,DXC,DXC TECHNOLOGY,Information Technology,Equity,"68,354,302.90",0.02,"68,354,302.90","2,094,830.00",32.63,United States,New York Stock Exchange Inc.,USD,1.00,USD,-
+490,BEN,FRANKLIN RESOURCES INC,Financials,Equity,"68,332,301.44",0.02,"68,332,301.44","2,447,432.00",27.92,United States,New York Stock Exchange Inc.,USD,1.00,USD,-
+491,IVZ,INVESCO LTD,Financials,Equity,"68,146,220.20",0.02,"68,146,220.20","2,955,170.00",23.06,United States,New York Stock Exchange Inc.,USD,1.00,USD,-
+492,HII,HUNTINGTON INGALLS INDUSTRIES INC,Industrials,Equity,"67,959,578.88",0.02,"67,959,578.88","340,752.00",199.44,United States,New York Stock Exchange Inc.,USD,1.00,USD,-
+493,ROL,ROLLINS INC,Industrials,Equity,"67,189,412.95",0.02,"67,189,412.95","1,916,959.00",35.05,United States,New York Stock Exchange Inc.,USD,1.00,USD,-
+494,PENN,PENN NATIONAL GAMING INC,Consumer Discretionary,Equity,"63,925,285.62",0.02,"63,925,285.62","1,506,961.00",42.42,United States,NASDAQ,USD,1.00,USD,-
+495,ALK,ALASKA AIR GROUP INC,Industrials,Equity,"62,086,478.72",0.02,"62,086,478.72","1,070,272.00",58.01,United States,New York Stock Exchange Inc.,USD,1.00,USD,-
+496,VNO,VORNADO REALTY TRUST REIT,Real Estate,Equity,"60,974,343.76",0.02,"60,974,343.76","1,345,418.00",45.32,United States,New York Stock Exchange Inc.,USD,1.00,USD,-
+497,MHK,MOHAWK INDUSTRIES INC,Consumer Discretionary,Equity,"60,584,139.00",0.02,"60,584,139.00","487,795.00",124.20,United States,New York Stock Exchange Inc.,USD,1.00,USD,-
+498,DVA,DAVITA INC,Health Care,Equity,"60,372,123.17",0.02,"60,372,123.17","533,747.00",113.11,United States,New York Stock Exchange Inc.,USD,1.00,USD,-
+499,PVH,PVH CORP,Consumer Discretionary,Equity,"48,497,424.23",0.01,"48,497,424.23","633,043.00",76.61,United States,New York Stock Exchange Inc.,USD,1.00,USD,-
+500,RL,RALPH LAUREN CORP CLASS A,Consumer Discretionary,Equity,"45,690,682.56",0.01,"45,690,682.56","402,774.00",113.44,United States,New York Stock Exchange Inc.,USD,1.00,USD,-
+501,FOX,FOX CORP CLASS B,Communication,Equity,"43,110,399.32",0.01,"43,110,399.32","1,188,269.00",36.28,United States,NASDAQ,USD,1.00,USD,-
+502,UBFUT,CASH COLLATERAL USD UBFUT,Cash and/or Derivatives,Cash Collateral and Margins,"39,329,800.00",0.01,"39,329,800.00","39,329,800.00",100.00,United States,-,USD,1.00,USD,"Oct 01, 2015"
+503,DISCA,DISCOVERY INC SERIES A,Communication,Equity,"35,826,711.48",0.01,"35,826,711.48","1,437,669.00",24.92,United States,NASDAQ,USD,1.00,USD,-
+504,IPGP,IPG PHOTONICS CORP,Information Technology,Equity,"32,729,444.16",0.01,"32,729,444.16","298,191.00",109.76,United States,NASDAQ,USD,1.00,USD,-
+505,UA,UNDER ARMOUR INC CLASS C,Consumer Discretionary,Equity,"29,038,461.00",0.01,"29,038,461.00","1,866,225.00",15.56,United States,New York Stock Exchange Inc.,USD,1.00,USD,-
+506,UAA,UNDER ARMOUR INC CLASS A,Consumer Discretionary,Equity,"28,944,314.12",0.01,"28,944,314.12","1,700,606.00",17.02,United States,New York Stock Exchange Inc.,USD,1.00,USD,-
+507,NWS,NEWS CORP CLASS B,Communication,Equity,"24,617,557.84",0.01,"24,617,557.84","1,093,142.00",22.52,United States,NASDAQ,USD,1.00,USD,-
+508,ESM2,S&P500 EMINI JUN 22,Cash and/or Derivatives,Futures,0.00,0.00,"757,767,937.50","3,345.00","4,530.75",-,Index And Options Market,USD,1.00,USD,-
