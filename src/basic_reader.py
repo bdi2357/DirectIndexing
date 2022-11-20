@@ -6,6 +6,8 @@ Years_trading_days = 252
 Monthly_trading_days = 22
 Qtr_trading_days = 60
 
+Constraints_nms = ["Sector_constraints.csv", "forbidden.txt","Value_constraints.csv","forbidden_sectors.txt","Limit.txt"]
+
 def max_dd(L):
     L = list(L)
     mx = L[0]
@@ -54,6 +56,21 @@ def input_reader(input_file):
         dts = [parse(x).strftime("%Y-%m-%d") for x in dts if len(x)==8]
         target_index = target_index.set_index("Date")
         print(target_index.loc[dts].tail())
+    constraints_files = os.listdir(inputs['Constraints'])
+    missing = [x for x in Constraints_nms if not x in constraints_files]
+    print("missing constraints are: ",missing)
+    for f in constraints_files:
+        if f[-4:] == ".csv":
+            print(f,"\n",pd.read_csv(os.path.join(inputs['Constraints'],f)).head())
+        elif f[-4:] == ".txt":
+            with open(os.path.join(inputs['Constraints'],f)) as rd:
+                #print(f,"\n",rd.read())
+                tickers = (rd.read().split("\n"))
+                tickers = [x for x in tickers if re.findall('[A-Z]+',x) and re.findall('[A-Z]+',x)[0] == x]
+                print(tickers)
+
+
+
 
 
 
