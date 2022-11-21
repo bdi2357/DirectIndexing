@@ -1,12 +1,16 @@
 import pandas as pd
-from dates_matching import  dates_2_holdings_dict,matching_dates_d
+import numpy as np
+from dates_matching import  dates_2_holdings_dict
+#from dates_matching import matching_dates_d2
 import os,re,sys
+from dateutil.parser import parse as date_parser
 #dates_matching
 
 def create_universe_zero_df(PriceVolume_dr,index_df):
     files_paths = os.listdir(PriceVolume_dr)
-    date_col = [c for c in index_df.columns if c.lower()=="date"][0]
-    dts = index_df[date_col]
+    #date_col = [c for c in index_df.columns if c.lower()=="date"][0]
+    dts = index_df.index.values
+    #index_df = index_df.set_index(date_col)
     Universe_Tickers = [x.split(".")[0] for x in files_paths
                         if re.findall('[A-Z]+',x.split(".")[0]) and
                         x.split(".")[0] == re.findall('[A-Z]+',x.split(".")[0])[0]]
@@ -24,7 +28,7 @@ def match_dates(df_tar, match_d, d2h):
         k = keys_list[ii]
         dt = date_parser(match_d[k]).strftime("%Y-%m-%d")
         weights = d2h[dt].set_index('Ticker')['Weight (%)']
-        eligible_tickers = list(big_df_trm.columns)
+        eligible_tickers = list(df_tar.columns)
         eligible = [c for c in weights.index.values if c in eligible_tickers]
         weights = weights.loc[eligible]
         sm1 = weights.sum()
@@ -91,10 +95,18 @@ def filter_out_forbiden_tickers(df_tar,tickers):
 
     return df_tar.apply(func)
 
-def dummy_wrapper(PriceVolume_dr,index_df,match_d,constraints,start_dt):
-    tar_df = create_universe_zero_df(PriceVolume_dr,index_df)
+def dummy_wrapper(PriceVolume_dr,index_df,index_holdings_path,match_d,constraints,start_dt):
+    df_tar = create_universe_zero_df(PriceVolume_dr,index_df)
+
     d2h = dates_2_holdings_dict(index_holdings_path)
+    #print(d2h.keys())
     match_dates(df_tar, match_d, d2h)
+    universe = list(df_tar.columns)
+    close_col = [c for c in index_df.columns if c.lower().find("close") > -1]
+    if len([c for c in close_col if c.lower().find("adj") > -1]) > 0:
+        close_col = [c for c in close_col if c.lower().find("adj") > -1][0]
+    else:
+        close_col = close_col[0]
     tickers_pv = create_ret_dict(PriceVolume_dr, universe, close_col)
     df_tar = filter_out_forbiden_tickers(df_tar, constraints["forbiden_tickers"])
     aprox = compute_return(df_tar,tickers_pv, start_dt)
@@ -116,5 +128,7 @@ def dummy_strat_index(index_returns,rebalncing_dates,index_holdings_path,constra
     weights_d = {d: d2h[matching_d[d]] for d in rebalncing_dates_dict.keys()}
 """
 
+if __name__ == "__main__":
+    print("In")
 
 
