@@ -8,7 +8,7 @@ from basic_stats import generate_basic_stats
 if __name__ == "__main__":
     path_d = "../DirectIndexingBondIt/data/holdings/IVV/"
     PriceVolume_dr = "../DirectIndexingBondIt/data/PriceVolume/"
-    index_df = pd.read_csv("/Users/itaybendan/FinzorAnalytics/SPY.csv")
+    index_df = pd.read_csv("../DirectIndexingBondIt/data/index_data/SPY.csv")
     index_df = index_df.set_index("Date")
     close_col = [c for c in index_df.columns if c.lower().find("close") > -1]
     if len([c for c in close_col if c.lower().find("adj") > -1]) > 0:
