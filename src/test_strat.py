@@ -6,9 +6,9 @@ import time
 import glob
 from basic_stats import generate_basic_stats
 if __name__ == "__main__":
-    path_d = "../../DirectIndexingBondIt/data/holdings/IVV/"
-    PriceVolume_dr = "../../DirectIndexingBondIt/data/PriceVolume/"
-    index_df = pd.read_csv("../../DirectIndexingBondIt/data/index_data/SPY.csv")
+    path_d = os.path.join("..","data","holdings","IVV")
+    PriceVolume_dr = os.path.join("..","data","PriceVolume")
+    index_df = pd.read_csv(os.path.join("..","data","index_data","SPY.csv"))
     index_df = index_df.set_index("Date")
     close_col = [c for c in index_df.columns if c.lower().find("close") > -1]
     if len([c for c in close_col if c.lower().find("adj") > -1]) > 0:
@@ -24,8 +24,8 @@ if __name__ == "__main__":
     constraints["forbiden_tickers"] = ["MSFT","BAC","JPM","WFC","AXP"]
     start_dt = '2021-09-30'
     start = time.time()
-    index_holdings_path = "../../DirectIndexingBondIt/data/holdings/IVV/"
+    index_holdings_path = os.path.join("..","data","holdings","IVV")
     aprox = dummy_wrapper(PriceVolume_dr, index_df, index_holdings_path, match_d, constraints, start_dt)
     print("total times is %0.2f"%(time.time()-start))
-    generate_basic_stats(aprox, "../../outN", "temp")
+    generate_basic_stats(aprox, "../../outN2", "temp")
 
