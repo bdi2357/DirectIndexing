@@ -27,5 +27,5 @@ if __name__ == "__main__":
     index_holdings_path = "../../DirectIndexingBondIt/data/holdings/IVV/"
     aprox = dummy_wrapper(PriceVolume_dr, index_df, index_holdings_path, match_d, constraints, start_dt)
     print("total times is %0.2f"%(time.time()-start))
-    generate_basic_stats(aprox, "out2", "temp")
+    generate_basic_stats(aprox, "../../outN", "temp")
 
