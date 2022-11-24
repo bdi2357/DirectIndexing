@@ -18,7 +18,7 @@ def create_universe_zero_df(PriceVolume_dr,index_df):
     return big_df.fillna(0.0)
 
 
-def match_dates(df_tar, match_d, d2h):
+def match_dates(df_tar, match_d, d2h,forbidden):
     keys_list = list(match_d.keys())
     df_tar = df_tar[keys_list[0]:]
     wts_base = d2h[date_parser(keys_list[0]).strftime("%Y-%m-%d")]
@@ -34,6 +34,7 @@ def match_dates(df_tar, match_d, d2h):
         sm1 = weights.sum()
         weights *= 1. / sm1
         d1 = weights.to_dict()
+        d1 = filter_weights_dict(d1,forbidden)
 
         ks1 = match_d[keys_list[ii + 1]]
         dts1 = date_parser(ks1).strftime("%Y-%m-%d")
@@ -95,12 +96,48 @@ def filter_out_forbiden_tickers(df_tar,tickers):
 
     return df_tar.apply(func)
 
+def filter_weights_dict(weights,forbidden):
+    #print(weights.keys())
+    #print("WFC" in weights.keys())
+    forbidden_weight = sum([weights[k] for k in forbidden if k in weights.keys()])
+    total_sum = sum([weights[k] for k in weights.keys()])
+    for k in forbidden:
+        weights[k] = 0
+    fctr = (total_sum/(total_sum - forbidden_weight))
+    return {k:weights[k] * fctr  for k in weights.keys()}
+
+
+def filter_weights_dict_sector_weights(weights, sector_bounds, sector_mapping):
+    diffs = 0
+    for k in sector_bounds.keys():
+        sm = sum([weights[ticker] for ticker in sector_mapping[k] if ticker in weights.keys()])
+        if sm > sector_bounds[k]:
+            dif = sm - sector_bounds[k]
+            for ticker in sector_mapping[k]:
+                if ticker in weights.keys():
+                    weights[ticker] *= sector_bounds[k] / sm
+            diffs += dif
+    sum_others = 0
+    for k in sector_mapping.keys():
+        if not k in sector_bounds:
+            sum_others += sum([weights[ticker] for ticker in sector_mapping[k] if ticker in weights.keys()])
+    fact = (sum_others + diffs) / sum_others
+    for k in sector_mapping.keys():
+        if not k in sector_bounds:
+            for ticker in sector_mapping[k]:
+                if ticker in weights.keys():
+                    weights[ticker] *= fact
+
+    return weights  # {k:weights[k] for k in weights.keys()}
+
+
+
 def dummy_wrapper(PriceVolume_dr,index_df,index_holdings_path,match_d,constraints,start_dt):
     df_tar = create_universe_zero_df(PriceVolume_dr,index_df)
 
     d2h = dates_2_holdings_dict(index_holdings_path)
     #print(d2h.keys())
-    match_dates(df_tar, match_d, d2h)
+    match_dates(df_tar, match_d, d2h, constraints["forbiden_tickers"])
     universe = list(df_tar.columns)
     close_col = [c for c in index_df.columns if c.lower().find("close") > -1]
     if len([c for c in close_col if c.lower().find("adj") > -1]) > 0:
@@ -108,7 +145,8 @@ def dummy_wrapper(PriceVolume_dr,index_df,index_holdings_path,match_d,constraint
     else:
         close_col = close_col[0]
     tickers_pv = create_ret_dict(PriceVolume_dr, universe, close_col)
-    df_tar = filter_out_forbiden_tickers(df_tar, constraints["forbiden_tickers"])
+    #filter
+    #df_tar = filter_out_forbiden_tickers(df_tar, constraints["forbiden_tickers"])
     aprox = compute_return(df_tar,tickers_pv, start_dt)
     aprox["benchmark_index_return"] = index_df["return"][start_dt:]
     aprox["Comulative_ret"] = (1. + aprox["return"]).cumprod()
