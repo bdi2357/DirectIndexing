@@ -40,7 +40,9 @@ forbiden_const = ['BXLT',
  'CPRI',
  'OSHWQ',
  'NEBLQ']
-sector_df = pd.read_csv(os.path.join("data","GICS","GICS_sector_SP500.csv"))
+#'ARNC','WCG',
+#'FOX','FOXA','CBS']
+GICS = pd.read_csv(os.path.join("..","data","GICS","GICS_sector_SP500.csv"))
 Ticker2Sector = GICS.set_index("Ticker")["Sector GICS"].to_dict()
 SectorMapping = {}
 for k in Ticker2Sector.keys():
@@ -51,7 +53,8 @@ SectorMapping["Health Care"] += add_h
 if __name__ == "__main__":
     path_d = os.path.join("..","data","holdings","IVV")
     PriceVolume_dr = os.path.join("..","data","PriceVolume")
-    index_df = pd.read_csv(os.path.join("..","data","index_data","SPY.csv"))
+    #index_df = pd.read_csv(os.path.join("..","data","index_data","SPY.csv"))
+    index_df = pd.read_csv(os.path.join("..", "data", "index_data", "IVV.csv"))
     index_df = index_df.set_index("Date")
     close_col = [c for c in index_df.columns if c.lower().find("close") > -1]
     if len([c for c in close_col if c.lower().find("adj") > -1]) > 0:
@@ -62,15 +65,28 @@ if __name__ == "__main__":
     holdings_files = glob.glob(os.path.join(path_d, "*holdings_*.csv"))
     dts = [re.findall("20[0-9]+", x)[0] for x in holdings_files]
     dts.sort()
-    match_d = {dts[ii]: dts[ii - 1] for ii in range(1, len(dts))}
+    #match_d = {dts[ii]: dts[ii -1] for ii in range(1, len(dts))}
+    match_d = {dts[ii]: dts[ii ] for ii in range(1, len(dts))}
     constraints = {}
+    """
     constraints["forbiden_tickers"] = ["MSFT","XOM","BAC","JPM","WFC","AXP","AAPL","NVDA",
                                        "V","AXP","MA","WMT","T","JNJ","BSX","BAC","AMZN",
                                        "GOOG","INTC","AMD"] +forbiden_const
-    start_dt = '2021-09-30'
+    """
+    constraints["forbiden_tickers"] =  forbiden_const
+    constraints["sectors"] = {'Information Technology':0.6,'Consumer Discretionary':115}
+    constraints["num_of_tickers"] = 600
+    sector_mapping = SectorMapping
+    start_dt = '2016-03-30'
+    end_dt = '2022-11-01'
+    match_d = {k: match_d[k] for k in match_d.keys() if k >= start_dt}
+    #print(match_d.keys())
+
     start = time.time()
     index_holdings_path = os.path.join("..","data","holdings","IVV")
-    aprox = dummy_wrapper(PriceVolume_dr, index_df, index_holdings_path, match_d, constraints, start_dt)
+    aprox = dummy_wrapper(PriceVolume_dr, index_df, index_holdings_path, match_d, constraints, start_dt,end_dt,sector_mapping)
     print("total times is %0.2f"%(time.time()-start))
-    generate_basic_stats(aprox, "../../outN5", "temp")
+    out_dir = "../../outN34"
+    generate_basic_stats(aprox, out_dir, "temp")
+    aprox.to_csv(os.path.join(out_dir,"aprox.csv"))
 

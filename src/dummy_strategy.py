@@ -18,7 +18,7 @@ def create_universe_zero_df(PriceVolume_dr,index_df):
     return big_df.fillna(0.0)
 
 
-def match_dates(df_tar, match_d, d2h,forbidden):
+def match_dates(df_tar, match_d, d2h,forbidden,sector_bounds,num_of_tickers,sector_mapping):
     keys_list = list(match_d.keys())
     df_tar = df_tar[keys_list[0]:]
     wts_base = d2h[date_parser(keys_list[0]).strftime("%Y-%m-%d")]
@@ -35,11 +35,16 @@ def match_dates(df_tar, match_d, d2h,forbidden):
         weights *= 1. / sm1
         d1 = weights.to_dict()
         d1 = filter_weights_dict(d1,forbidden)
-
+        print(k,dt)
+        d1 = limit_tickers(d1,num_of_tickers)
+        print("AAPL before", weights["AAPL"])
+        d1 = filter_weights_dict_sector_weights(d1, sector_bounds, sector_mapping)
+        print("AAPL after", weights["AAPL"])
         ks1 = match_d[keys_list[ii + 1]]
         dts1 = date_parser(ks1).strftime("%Y-%m-%d")
         for k in d1.keys():
-            df_tar[dt:dts1][k] = d1[k]
+            #print(k)
+            df_tar[k].loc[dt:dts1] = d1[k]
 
     k = match_d[keys_list[-1]]
     dt = date_parser(k).strftime("%Y-%m-%d")
@@ -51,7 +56,7 @@ def match_dates(df_tar, match_d, d2h,forbidden):
     weights *= 1. / sm1
     d1 = weights.to_dict()
     for k in d1.keys():
-        df_tar.loc[dt:][k] = d1[k]
+        df_tar[k].loc[dt:] = d1[k]
     return df_tar
 
 def create_ret_dict(PriceVolume_dr,universe,close_col):
@@ -65,26 +70,91 @@ def create_ret_dict(PriceVolume_dr,universe,close_col):
             tickers_pv[k] = tickers_pv[k].set_index("Date")
         except Exception as e:
             print(e, " ", k)
+            print("in create_ret_dict")
             bad_tickers.append(k)
     return tickers_pv
 
 
-def compute_return(df_tar,tickers_pv,start_dt):
+def compute_return(df_tar,tickers_pv,start_dt,dates):
+    print(dates)
+    print(start_dt)
     df_tar = df_tar[start_dt:]
     ret_aprox = {}
-    for dt in df_tar.index.values[:]:
-        sm = 0
-        miss = 0
-        wrong = []
-        for k in tickers_pv.keys():
+    df_tar = df_tar[dates[0]:]
+    vals = list(df_tar.index.values)
+    cr = 0
+    dts_vals = {}
+    tmp = vals[0]
+    print("Here1")
+    for ii in range(len(dates)-1):
+        #tmp = vals[cr]
+        dts_vals[dates[ii]] = []
+        while tmp < dates[ii+1] and cr < len(vals):
+            tmp = vals[cr]
+            cr+=1
+            dts_vals[dates[ii]].append(tmp)
 
-            if df_tar.loc[dt, k] > 0:
-                try:
-                    sm += tickers_pv[k].loc[dt, "return"] * df_tar.loc[dt, k]
-                except:
-                    wrong.append(k)
-                    miss += df_tar.loc[dt, k]
-        ret_aprox[dt] = sm / (1. - miss)
+    dts_vals[dates[-1]] = []
+    print("Here2")
+    while cr < len(vals):
+        tmp = vals[cr]
+        dts_vals[dates[-1]].append(tmp)
+        cr+=1
+
+    print("Here3")
+    for ii in range(len(dates)):
+        for dt in dts_vals[dates[ii]]:
+            print(dt)
+            sm = 0
+            miss = 0
+            wrong = []
+            if dt == "2020-04-01":
+                print(k, df_tar.loc[dt, k], tickers_pv[k].loc[dt, "return"])
+            if dts_vals[dates[ii]].index(dt) == 0:
+                for k in tickers_pv.keys():
+
+
+                    if df_tar.loc[dt, k] > 0:
+                        try:
+                            #df_tar.loc[dt, k]
+                            if np.isnan(tickers_pv[k].loc[dt, "return"]) or np.isnan(df_tar.loc[dt, k]):
+                                print(k,dt,"ISNAN")
+                                wrong.append(k)
+                                miss += df_tar.loc[dt, k]
+                            else:
+                                sm += tickers_pv[k].loc[dt, "return"] * df_tar.loc[dt, k]
+                        except Exception as e:
+                            print(e,k)
+                            print(k in df_tar.columns)
+                            print("*"*40)
+                            wrong.append(k)
+                            miss += df_tar.loc[dt, k]
+                ret_aprox[dt] = sm / (1. - miss)
+                prev = dt
+            else:
+                for k in tickers_pv.keys():
+
+                    if df_tar.loc[dt, k] > 0:
+                        try:
+                            #df_tar.loc[dt, k] =  df_tar.loc[prev, k]*(1. + tickers_pv[k].loc[prev, "return"] )
+                            if np.isnan(tickers_pv[k].loc[dt, "return"]) or np.isnan(df_tar.loc[dt, k]):
+                                print(k, dt, "ISNAN")
+                                wrong.append(k)
+                                miss += df_tar.loc[dt, k]
+                            else:
+                                sm += tickers_pv[k].loc[dt, "return"] * df_tar.loc[dt, k]
+                        except Exception as e:
+                            print(e, k)
+                            print(k in df_tar.columns)
+                            print(dt in tickers_pv[k].index.values)
+                            print(dt in df_tar.index.values)
+                            print("=" * 40)
+                            wrong.append(k)
+                            miss += df_tar.loc[dt, k]
+                ret_aprox[dt] = sm / (1. - miss)
+                prev = dt
+
+
     aprox1 = pd.DataFrame(ret_aprox.items(), columns=["Date", "return"])
     aprox1 = aprox1.set_index("Date")
     return aprox1
@@ -102,12 +172,14 @@ def filter_weights_dict(weights,forbidden):
     forbidden_weight = sum([weights[k] for k in forbidden if k in weights.keys()])
     total_sum = sum([weights[k] for k in weights.keys()])
     for k in forbidden:
-        weights[k] = 0
+        if k in weights.keys():
+            weights.pop(k)
     fctr = (total_sum/(total_sum - forbidden_weight))
     return {k:weights[k] * fctr  for k in weights.keys()}
 
 
 def filter_weights_dict_sector_weights(weights, sector_bounds, sector_mapping):
+    print("IN filter_weights_dict_sector_weights")
     diffs = 0
     for k in sector_bounds.keys():
         sm = sum([weights[ticker] for ticker in sector_mapping[k] if ticker in weights.keys()])
@@ -130,14 +202,21 @@ def filter_weights_dict_sector_weights(weights, sector_bounds, sector_mapping):
 
     return weights  # {k:weights[k] for k in weights.keys()}
 
+def limit_tickers(weights,maximal_num):
+    maximal_num = min(maximal_num,len(list(weights.keys())))
+    w_list = list(weights.items())
+    w_list.sort(key = lambda x:x[1],reverse = True)
+    d_out  = dict(w_list[:maximal_num])
+    sm = sum(d_out.values())
+    d_out = {k:d_out[k]/sm for k in d_out.keys()}
+    return d_out
 
-
-def dummy_wrapper(PriceVolume_dr,index_df,index_holdings_path,match_d,constraints,start_dt):
+def dummy_wrapper(PriceVolume_dr,index_df,index_holdings_path,match_d,constraints,start_dt,end_dt,sector_mapping):
     df_tar = create_universe_zero_df(PriceVolume_dr,index_df)
 
     d2h = dates_2_holdings_dict(index_holdings_path)
     #print(d2h.keys())
-    match_dates(df_tar, match_d, d2h, constraints["forbiden_tickers"])
+    match_dates(df_tar, match_d, d2h, constraints["forbiden_tickers"],constraints["sectors"],constraints["num_of_tickers"],sector_mapping)
     universe = list(df_tar.columns)
     close_col = [c for c in index_df.columns if c.lower().find("close") > -1]
     if len([c for c in close_col if c.lower().find("adj") > -1]) > 0:
@@ -147,11 +226,13 @@ def dummy_wrapper(PriceVolume_dr,index_df,index_holdings_path,match_d,constraint
     tickers_pv = create_ret_dict(PriceVolume_dr, universe, close_col)
     #filter
     #df_tar = filter_out_forbiden_tickers(df_tar, constraints["forbiden_tickers"])
-    aprox = compute_return(df_tar,tickers_pv, start_dt)
-    aprox["benchmark_index_return"] = index_df["return"][start_dt:]
-    aprox["Comulative_ret"] = (1. + aprox["return"]).cumprod()
-    aprox["benchmark_index_comulative_ret"] = (1 + index_df["return"][start_dt:]).cumprod()
+    aprox = compute_return(df_tar,tickers_pv, start_dt,list(match_d.keys()))
+    print("start_dt %s"%(start_dt))
+    aprox["benchmark_index_return"] = index_df["return"][start_dt:end_dt]
+    aprox["Comulative_ret"] = (1. + aprox["return"][start_dt:end_dt]).cumprod()
+    aprox["benchmark_index_comulative_ret"] = (1 + aprox["benchmark_index_return"]).cumprod()
     return aprox
+
 
 
 
