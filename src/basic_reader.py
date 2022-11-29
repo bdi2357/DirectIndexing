@@ -34,6 +34,7 @@ def stat_cols(df):
     df["qtr_DrawDown"] = (1. + df["return"]).cumprod().rolling(Qtr_trading_days).apply(max_dd).tail()
     df["qtr_return"] = df[close_col].pct_change(Qtr_trading_days).tail()
 
+#PriceVolume_dr, index_df, index_holdings_path, match_d, constraints, start_dt,end_dt,sector_mapping
 def input_reader(input_file):
     D_input = {}
     with open(input_file,"r") as input:
@@ -45,13 +46,13 @@ def input_reader(input_file):
     path_taget_index = os.path.join(*(inputs['Target_index_returns'].split("|")))
     target_index = pd.read_csv(path_taget_index)
     stat_cols(target_index)
-    D_input["target_index"] = target_index
+    D_input["index_df"] = target_index
     print(target_index.tail())
     PV_data_path = os.path.join(*(inputs["Price_volume_data"].split("|")))
     print(os.listdir(PV_data_path)[:10])
-    D_input["PV_data_path"] = PV_data_path
+    D_input["PriceVolume_dr"] = PV_data_path
     Target_index_holdings_path = os.path.join(*(inputs["Target_index_holdings"].split("|")))
-    D_input["Target_index_holdings_path"] = Target_index_holdings_path
+    D_input["index_holdings_path"] = Target_index_holdings_path
     print(os.listdir(Target_index_holdings_path)[:10])
     print(inputs['Universe'])
     print(inputs['Constraints'])
@@ -83,7 +84,10 @@ def input_reader(input_file):
                 print(tickers)
                 constraints["forbiden_tickers"] = tickers
     D_input["constraints"] = constraints
-    print(D_input)
+    D_input["start_dt"] = inputs["start_dt"]
+    D_input["end_dt"] = inputs["end_dt"]
+    D_input["Lag"] = int(inputs["Lag"])
+    print(D_input.keys())
     return D_input
 
 

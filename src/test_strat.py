@@ -66,7 +66,8 @@ if __name__ == "__main__":
     dts = [re.findall("20[0-9]+", x)[0] for x in holdings_files]
     dts.sort()
     #match_d = {dts[ii]: dts[ii -1] for ii in range(1, len(dts))}
-    match_d = {dts[ii]: dts[ii ] for ii in range(1, len(dts))}
+    lag = 0
+    match_d = {dts[ii]: dts[ii -lag ] for ii in range(lag, len(dts))}
     constraints = {}
     """
     constraints["forbiden_tickers"] = ["MSFT","XOM","BAC","JPM","WFC","AXP","AAPL","NVDA",
