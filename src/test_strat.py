@@ -77,6 +77,7 @@ if __name__ == "__main__":
     constraints["forbiden_tickers"] =  forbiden_const
     constraints["sectors"] = {'Information Technology':0.6,'Consumer Discretionary':115}
     constraints["num_of_tickers"] = 600
+    constraints["upper_bound"] = 0.03
     sector_mapping = SectorMapping
     start_dt = '2016-03-30'
     end_dt = '2022-11-01'
@@ -88,7 +89,7 @@ if __name__ == "__main__":
     index_holdings_path = os.path.join("..","data","holdings","IVV")
     aprox = dummy_wrapper(PriceVolume_dr, index_df, index_holdings_path, match_d, constraints, start_dt,end_dt,sector_mapping)
     print("total times is %0.2f"%(time.time()-start))
-    out_dir = "../../outN34"
+    out_dir = "../../outN37"
     generate_basic_stats(aprox, out_dir, "temp")
     aprox.to_csv(os.path.join(out_dir,"aprox.csv"))
 

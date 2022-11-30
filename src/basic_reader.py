@@ -85,6 +85,7 @@ def input_reader(input_file):
                 tickers = [x for x in tickers if re.findall('[A-Z]+',x) and re.findall('[A-Z]+',x)[0] == x]
                 print(tickers)
                 constraints["forbiden_tickers"] = tickers
+    D_input["upper_bound"] = float(inputs["upper_bound"])
     D_input["constraints"] = constraints
     D_input["start_dt"] = inputs["start_dt"]
     D_input["end_dt"] = inputs["end_dt"]

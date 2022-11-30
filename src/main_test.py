@@ -25,16 +25,19 @@ if __name__ == "__main__":
     dts = [re.findall("20[0-9]+", x)[0] for x in holdings_files if re.findall("20[0-9]+", x)]
     dts.sort(key = lambda x: date_parse(x))
     lag = D_input["Lag"]
+    upper_bound = D_input["upper_bound"]
     match_d = {dts[ii]: dts[ii - lag] for ii in range(lag, len(dts))}
     match_d = {k: match_d[k] for k in match_d.keys() if date_parse(k) >= date_parse(D_input["start_dt"])}
     D_input["match_d"] = match_d
     print(match_d.keys())
     D_input["sector_mapping"] =  SectorMapping
     D_input["constraints"]["num_of_tickers"] = 600
+    D_input["constraints"]["upper_bound"] = upper_bound
     D_input.pop("Lag")
+    D_input.pop("upper_bound")
     print(type(list(match_d.keys())[0]))
     aprox = dummy_wrapper(**D_input)
     print("total times is %0.2f" % (time.time() - start))
-    out_dir = "../../outN35"
+    out_dir = "../../outN38"
     generate_basic_stats(aprox, out_dir, "temp")
     aprox.to_csv(os.path.join(out_dir, "aprox.csv"))

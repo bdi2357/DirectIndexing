@@ -18,7 +18,7 @@ def create_universe_zero_df(PriceVolume_dr,index_df):
     return big_df.fillna(0.0)
 
 
-def match_dates(df_tar, match_d, d2h,forbidden,sector_bounds,num_of_tickers,sector_mapping):
+def match_dates(df_tar, match_d, d2h,forbidden,sector_bounds,num_of_tickers,upper_bound,sector_mapping):
     keys_list = list(match_d.keys())
     print(df_tar.index.values[:7])
     df_tar = df_tar[keys_list[0]:]
@@ -41,6 +41,7 @@ def match_dates(df_tar, match_d, d2h,forbidden,sector_bounds,num_of_tickers,sect
         print("AAPL before", weights["AAPL"])
         d1 = filter_weights_dict_sector_weights(d1, sector_bounds, sector_mapping)
         print("AAPL after", weights["AAPL"])
+        d1 = max_cap_ticker(d1,upper_bound)
         ks1 = match_d[keys_list[ii + 1]]
         dts1 = date_parser(ks1).strftime("%Y-%m-%d")
         for k in d1.keys():
@@ -212,12 +213,31 @@ def limit_tickers(weights,maximal_num):
     d_out = {k:d_out[k]/sm for k in d_out.keys()}
     return d_out
 
+def max_cap_ticker(weights,upper_bound):
+    abv = []
+    blw = []
+    sm = 0
+    sm_blw = 0
+    for k in weights.keys():
+        if weights[k] > upper_bound:
+            sm += weights[k]- upper_bound
+            weights[k] -= weights[k]- upper_bound
+            abv.append(k)
+        else:
+            blw.append(k)
+            sm_blw +=weights[k]
+    fact = 1. + (sm/sm_blw)
+    for k in blw:
+        weights[k] *= fact
+    return weights
+
+
 def dummy_wrapper(PriceVolume_dr,index_df,index_holdings_path,match_d,constraints,start_dt,end_dt,sector_mapping):
     df_tar = create_universe_zero_df(PriceVolume_dr,index_df)
 
     d2h = dates_2_holdings_dict(index_holdings_path)
     #print(d2h.keys())
-    match_dates(df_tar, match_d, d2h, constraints["forbiden_tickers"],constraints["sectors"],constraints["num_of_tickers"],sector_mapping)
+    match_dates(df_tar, match_d, d2h, constraints["forbiden_tickers"],constraints["sectors"],constraints["num_of_tickers"],constraints["upper_bound"],sector_mapping)
     universe = list(df_tar.columns)
     close_col = [c for c in index_df.columns if c.lower().find("close") > -1]
     if len([c for c in close_col if c.lower().find("adj") > -1]) > 0:
