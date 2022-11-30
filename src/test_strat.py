@@ -82,7 +82,8 @@ if __name__ == "__main__":
     end_dt = '2022-11-01'
     match_d = {k: match_d[k] for k in match_d.keys() if k >= start_dt}
     #print(match_d.keys())
-
+    print(match_d.keys())
+    #exit(0)
     start = time.time()
     index_holdings_path = os.path.join("..","data","holdings","IVV")
     aprox = dummy_wrapper(PriceVolume_dr, index_df, index_holdings_path, match_d, constraints, start_dt,end_dt,sector_mapping)

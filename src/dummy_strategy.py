@@ -20,6 +20,7 @@ def create_universe_zero_df(PriceVolume_dr,index_df):
 
 def match_dates(df_tar, match_d, d2h,forbidden,sector_bounds,num_of_tickers,sector_mapping):
     keys_list = list(match_d.keys())
+    print(df_tar.index.values[:7])
     df_tar = df_tar[keys_list[0]:]
     wts_base = d2h[date_parser(keys_list[0]).strftime("%Y-%m-%d")]
     weight_col = [c for c in wts_base.columns if c.lower().find("weight") > -1][0]
