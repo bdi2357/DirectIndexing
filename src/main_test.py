@@ -1,3 +1,4 @@
+import logging
 from basic_reader import input_reader
 import os,sys,re
 import numpy as np
@@ -7,6 +8,19 @@ import time
 import glob
 from basic_stats import generate_basic_stats
 from dateutil.parser import parse as date_parse
+import argparse
+
+
+
+logging.basicConfig(filename = 'file.log',
+                    level = logging.WARNING,
+                    format = '%(asctime)s:%(levelname)s:%(name)s:%(message)s')
+logger = logging.getLogger("color")
+logger.setLevel(logging.DEBUG)
+shandler = logging.StreamHandler()
+formatter = logging.Formatter('%(asctime)s:%(levelname)s:%(name)s:%(message)s')
+shandler.setFormatter(formatter)
+logger.addHandler(shandler)
 
 GICS = pd.read_csv(os.path.join("..","data","GICS","GICS_sector_SP500.csv"))
 Ticker2Sector = GICS.set_index("Ticker")["Sector GICS"].to_dict()
@@ -18,10 +32,18 @@ SectorMapping["Health Care"] += add_h
 
 if __name__ == "__main__":
     start = time.time()
-    input_file = os.path.join("..","example","input_files","InputExample.txt")
+    my_parser = argparse.ArgumentParser()
+    my_parser.add_argument('--InputFile', action='store', type=str, required=True)
+
+    args = my_parser.parse_args()
+
+    print(args.InputFile)
+    #exit(0)
+    #input_file = os.path.join("..","example","input_files","InputExample.txt")
+    input_file = args.InputFile
     D_input = input_reader(input_file)
     holdings_files = os.listdir(D_input['index_holdings_path'])
-    print(holdings_files)
+    logger.info(holdings_files)
     dts = [re.findall("20[0-9]+", x)[0] for x in holdings_files if re.findall("20[0-9]+", x)]
     dts.sort(key = lambda x: date_parse(x))
     lag = D_input["Lag"]
@@ -35,9 +57,9 @@ if __name__ == "__main__":
     D_input["constraints"]["upper_bound"] = upper_bound
     D_input.pop("Lag")
     D_input.pop("upper_bound")
-    print(type(list(match_d.keys())[0]))
+    logger.info(type(list(match_d.keys())[0]))
     aprox = dummy_wrapper(**D_input)
-    print("total times is %0.2f" % (time.time() - start))
-    out_dir = "../../outN38"
+    logger.info("total times is %0.2f" % (time.time() - start))
+    out_dir = "../../outN40"
     generate_basic_stats(aprox, out_dir, "temp")
     aprox.to_csv(os.path.join(out_dir, "aprox.csv"))
