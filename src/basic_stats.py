@@ -14,7 +14,21 @@ def generate_basic_stats(df,output_dir,name):
     stats["anuallized_volatility"] = (df["benchmark_index_return"]-df["return"]).std() *(df.shape[0]**0.5)
     stats["max_dd"] = max(max_dd(1. + df["benchmark_index_comulative_ret"] - df["Comulative_ret"] ),max_dd(1. -df["benchmark_index_comulative_ret"] + df["Comulative_ret"] ))
     out_df = pd.DataFrame(stats.items(),columns= ["Stat","Value"])
-    out_df.to_csv(os.path.join(output_dir,'stats.csv'))
+    out_df.to_csv(os.path.join(output_dir, 'stats.csv'))
+    #date_col = [c for c in df.columns if c.lower().find("date") > -1][0]
+    df["year"] = df.apply(lambda r: r.name[:4], axis=1)
+    years = sorted(list(set(df["year"])))
+    D_years = {k: v for k, v in df.groupby("year")}
+    by_year = {}
+    for y in years:
+        ret_y = ((D_years[y]["return"] + 1.).cumprod() - 1.)
+        benchmark_ret_y = ((D_years[y]["benchmark_index_return"]+1.).cumprod() -1. )
+        by_year[y] = abs(ret_y-benchmark_ret_y).max()
+    pd.DataFrame(by_year.items(), columns=["Year", "MaxAbsDiff"]).to_csv(os.path.join(output_dir, 'by_year.csv'))
+    if not os.path.isdir(os.path.join(output_dir,"raw")):
+        os.mkdir(os.path.join(output_dir,"raw"))
+    df.to_csv(os.path.join(output_dir,"raw","basic_data.csv"))
+
 
 if __name__ == "__main__":
     print("In")
