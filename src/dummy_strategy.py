@@ -20,12 +20,21 @@ def create_universe_zero_df(PriceVolume_dr,index_df):
 
 def match_dates(df_tar, match_d, d2h,forbidden,sector_bounds,num_of_tickers,upper_bound,sector_mapping):
     keys_list = list(match_d.keys())
-    print(df_tar.index.values[:7])
-    df_tar = df_tar[keys_list[0]:]
+    print(df_tar.index.values[:10])
+    print((df_tar.index.values[3]),date_parser(keys_list[0]).strftime("%Y-%m-%d"))
+    print((df_tar.index.values[3]) > date_parser(keys_list[0]).strftime("%Y-%m-%d"))
+    #df_tar.index = pd.to_datetime(df_tar.index)
+    df_tar = df_tar.loc[date_parser(keys_list[0]).strftime("%Y-%m-%d"):]
+    print("*"*50)
+    print(keys_list[0],date_parser(keys_list[0]).strftime("%Y-%m-%d"))
+    print(match_d.keys())
+    print(df_tar.index.values[:10])
+    
     wts_base = d2h[date_parser(keys_list[0]).strftime("%Y-%m-%d")]
     weight_col = [c for c in wts_base.columns if c.lower().find("weight") > -1][0]
     ticker_col = [c for c in wts_base.columns if c.lower().find("ticker") > -1][0]
     for ii in range(len(keys_list) - 1):
+        print("match dates ",ii,keys_list[ii])
         k = keys_list[ii]
         dt = date_parser(match_d[k]).strftime("%Y-%m-%d")
         weights = d2h[dt].set_index('Ticker')['Weight (%)']
@@ -38,15 +47,15 @@ def match_dates(df_tar, match_d, d2h,forbidden,sector_bounds,num_of_tickers,uppe
         d1 = filter_weights_dict(d1,forbidden)
         print(k,dt)
         d1 = limit_tickers(d1,num_of_tickers)
-        print("AAPL before", weights["AAPL"])
+        #print("AAPL before", weights["AAPL"])
         d1 = filter_weights_dict_sector_weights(d1, sector_bounds, sector_mapping)
-        print("AAPL after", weights["AAPL"])
+        #print("AAPL after", weights["AAPL"])
         d1 = max_cap_ticker(d1,upper_bound)
         ks1 = match_d[keys_list[ii + 1]]
         dts1 = date_parser(ks1).strftime("%Y-%m-%d")
-        for k in d1.keys():
+        for jj in d1.keys():
             #print(k)
-            df_tar[k].loc[dt:dts1] = d1[k]
+            df_tar[jj].loc[dt:dts1] = d1[jj]
 
     k = match_d[keys_list[-1]]
     dt = date_parser(k).strftime("%Y-%m-%d")
@@ -234,7 +243,6 @@ def max_cap_ticker(weights,upper_bound):
 
 def dummy_wrapper(PriceVolume_dr,index_df,index_holdings_path,match_d,constraints,start_dt,end_dt,sector_mapping):
     df_tar = create_universe_zero_df(PriceVolume_dr,index_df)
-
     d2h = dates_2_holdings_dict(index_holdings_path)
     #print(d2h.keys())
     match_dates(df_tar, match_d, d2h, constraints["forbiden_tickers"],constraints["sectors"],constraints["num_of_tickers"],constraints["upper_bound"],sector_mapping)
@@ -252,7 +260,7 @@ def dummy_wrapper(PriceVolume_dr,index_df,index_holdings_path,match_d,constraint
     aprox["benchmark_index_return"] = index_df["return"][start_dt:end_dt]
     aprox["Comulative_ret"] = (1. + aprox["return"][start_dt:end_dt]).cumprod()
     aprox["benchmark_index_comulative_ret"] = (1 + aprox["benchmark_index_return"]).cumprod()
-    return aprox
+    return aprox,df_tar
 
 
 

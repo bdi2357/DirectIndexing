@@ -54,16 +54,21 @@ if __name__ == "__main__":
     match_d = {k: match_d[k] for k in match_d.keys() if date_parse(k) >= date_parse(D_input["start_dt"])}
     D_input["match_d"] = match_d
     print(match_d.keys())
+
     D_input["sector_mapping"] =  SectorMapping
     D_input["constraints"]["num_of_tickers"] = 600
     D_input["constraints"]["upper_bound"] = upper_bound
     D_input.pop("Lag")
     D_input.pop("upper_bound")
     logger.info(type(list(match_d.keys())[0]))
-    aprox = dummy_wrapper(**D_input)
+    #print(D_input["index_df"].index.values[:10])
+    aprox,df_tar = dummy_wrapper(**D_input)
     logger.info("total times is %0.2f" % (time.time() - start))
     out_dir = args.OutDir
     if not os.path.isdir(out_dir):
         os.mkdir(out_dir)
+    if not os.path.isdir(os.path.join(out_dir,"raw")):
+        os.mkdir(os.path.join(out_dir,"raw"))
+    df_tar[D_input["start_dt"]:D_input["end_dt"]].to_csv(os.path.join(out_dir,"raw","dummy_weights_file.csv"))
     generate_basic_stats(aprox, out_dir, "temp")
     aprox.to_csv(os.path.join(out_dir, "aprox.csv"))
