@@ -34,10 +34,12 @@ if __name__ == "__main__":
     start = time.time()
     my_parser = argparse.ArgumentParser()
     my_parser.add_argument('--InputFile', action='store', type=str, required=True)
+    my_parser.add_argument('--OutDir', action='store', type=str, required=True)
 
     args = my_parser.parse_args()
 
     print(args.InputFile)
+    print(args.OutDir)
     #exit(0)
     #input_file = os.path.join("..","example","input_files","InputExample.txt")
     input_file = args.InputFile
@@ -60,6 +62,8 @@ if __name__ == "__main__":
     logger.info(type(list(match_d.keys())[0]))
     aprox = dummy_wrapper(**D_input)
     logger.info("total times is %0.2f" % (time.time() - start))
-    out_dir = "../../outN40"
+    out_dir = args.OutDir
+    if not os.path.isdir(out_dir):
+        os.mkdir(out_dir)
     generate_basic_stats(aprox, out_dir, "temp")
     aprox.to_csv(os.path.join(out_dir, "aprox.csv"))
