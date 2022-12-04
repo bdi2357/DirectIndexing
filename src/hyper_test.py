@@ -20,10 +20,10 @@ SectorMapping["Health Care"] += add_h
 
 
 if __name__ == "__main__":
-    my_parser = argparse.ArgumentParser()
-    my_parser.add_argument('--TrackerModule', action='store', type=str, required=True)
-    args = my_parser.parse_args()
-    strat_name = args.TrackerModule.split(".")[0]
+    #my_parser = argparse.ArgumentParser()
+    #my_parser.add_argument('--TrackerModule', action='store', type=str, required=True)
+    #args = my_parser.parse_args()
+    strat_name = "dummy_strategy"#args.TrackerModule.split(".")[0]
     print(strat_name)
     module = importlib.import_module(strat_name, package=None)
 
