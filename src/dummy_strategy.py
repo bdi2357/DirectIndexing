@@ -241,7 +241,7 @@ def max_cap_ticker(weights,upper_bound):
     return weights
 
 
-def dummy_wrapper(PriceVolume_dr,index_df,index_holdings_path,match_d,constraints,start_dt,end_dt,sector_mapping):
+def wrapper_strategy(PriceVolume_dr,index_df,index_holdings_path,match_d,constraints,start_dt,end_dt,sector_mapping):
     df_tar = create_universe_zero_df(PriceVolume_dr,index_df)
     d2h = dates_2_holdings_dict(index_holdings_path)
     #print(d2h.keys())

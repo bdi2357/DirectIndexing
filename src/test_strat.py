@@ -1,7 +1,7 @@
 import os,sys,re
 import numpy as np
 import pandas as pd
-from dummy_strategy import dummy_wrapper
+from dummy_strategy import wrapper_strategy
 import time
 import glob
 from basic_stats import generate_basic_stats

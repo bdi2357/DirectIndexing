@@ -3,13 +3,13 @@ from basic_reader import input_reader
 import os,sys,re
 import numpy as np
 import pandas as pd
-from dummy_strategy import dummy_wrapper
+#from dummy_strategy import dummy_wrapper
 import time
 import glob
 from basic_stats import generate_basic_stats
 from dateutil.parser import parse as date_parse
 import argparse
-
+import importlib
 
 
 logging.basicConfig(filename = 'file.log',
@@ -34,12 +34,17 @@ if __name__ == "__main__":
     start = time.time()
     my_parser = argparse.ArgumentParser()
     my_parser.add_argument('--InputFile', action='store', type=str, required=True)
+    my_parser.add_argument('--TrackerModule', action='store', type=str, required=True)
     my_parser.add_argument('--OutDir', action='store', type=str, required=True)
 
     args = my_parser.parse_args()
 
     print(args.InputFile)
+    print(args.TrackerModule)
     print(args.OutDir)
+    strat_name = args.TrackerModule.split(".")[0]
+    print(strat_name)
+    module = importlib.import_module(strat_name, package=None)
     #exit(0)
     #input_file = os.path.join("..","example","input_files","InputExample.txt")
     input_file = args.InputFile
@@ -62,7 +67,7 @@ if __name__ == "__main__":
     D_input.pop("upper_bound")
     logger.info(type(list(match_d.keys())[0]))
     #print(D_input["index_df"].index.values[:10])
-    aprox,df_tar = dummy_wrapper(**D_input)
+    aprox,df_tar = module.wrapper_strategy(**D_input)
     logger.info("total times is %0.2f" % (time.time() - start))
     out_dir = args.OutDir
     if not os.path.isdir(out_dir):

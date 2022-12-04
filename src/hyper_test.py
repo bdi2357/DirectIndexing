@@ -2,12 +2,13 @@ import logging
 import os,sys,re
 import numpy as np
 import pandas as pd
-from dummy_strategy import dummy_wrapper
+#from dummy_strategy import dummy_wrapper
 import time
 import glob
 from basic_stats import generate_basic_stats
 from dateutil.parser import parse as date_parse
 import argparse
+import importlib
 
 GICS = pd.read_csv(os.path.join("..","data","GICS","GICS_sector_SP500.csv"))
 Ticker2Sector = GICS.set_index("Ticker")["Sector GICS"].to_dict()
@@ -17,7 +18,15 @@ for k in Ticker2Sector.keys():
 add_h = SectorMapping.pop("Health")
 SectorMapping["Health Care"] += add_h
 
+
 if __name__ == "__main__":
+    my_parser = argparse.ArgumentParser()
+    my_parser.add_argument('--TrackerModule', action='store', type=str, required=True)
+    args = my_parser.parse_args()
+    strat_name = args.TrackerModule.split(".")[0]
+    print(strat_name)
+    module = importlib.import_module(strat_name, package=None)
+
     path_d = os.path.join("..","data","holdings","IVV")
     PriceVolume_dr = os.path.join("..","data","PriceVolume")
     #index_df = pd.read_csv(os.path.join("..","data","index_data","SPY.csv"))
@@ -48,10 +57,10 @@ if __name__ == "__main__":
                                        "GOOG","INTC","AMD"] +forbiden_const
     """
     start = time.time()
-    for ii in range(len(forbiden_const_options)):
-        for jj in range(len(num_of_tickers_options)):
-            for kk in range(len(upper_bound_options)):
-                for ll in range(len(sector_constraints_options)):
+    for ii in range(len(forbiden_const_options)-2):
+        for jj in range(len(num_of_tickers_options)-2):
+            for kk in range(len(upper_bound_options)-2):
+                for ll in range(len(sector_constraints_options)-2):
                     constraints["forbiden_tickers"] =  forbiden_const_options[ii]
                     constraints["sectors"] = sector_constraints_options[ll]
                     constraints["num_of_tickers"] = num_of_tickers_options[jj]
@@ -65,13 +74,12 @@ if __name__ == "__main__":
                     #exit(0)
 
                     index_holdings_path = os.path.join("..","data","holdings","IVV")
-                    aprox,df_tar = dummy_wrapper(PriceVolume_dr, index_df, index_holdings_path, match_d, constraints, start_dt,end_dt,sector_mapping)
+                    aprox,df_tar = module.wrapper_strategy(PriceVolume_dr, index_df, index_holdings_path, match_d, constraints, start_dt,end_dt,sector_mapping)
                     print("total times is %0.2f"%(time.time()-start))
 
                     output_dirs = os.path.join("..","..","hyper_params")
                     if not os.path.isdir(output_dirs):
                         os.mkdir(output_dirs)
-                    strat_name = "dummy"
                     strat_output_dir = os.path.join(output_dirs,strat_name)
                     if not os.path.isdir(strat_output_dir):
                         os.mkdir(strat_output_dir)
