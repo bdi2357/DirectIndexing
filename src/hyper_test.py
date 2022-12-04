@@ -35,38 +35,48 @@ if __name__ == "__main__":
     #match_d = {dts[ii]: dts[ii -1] for ii in range(1, len(dts))}
     lag = 0
     match_d = {dts[ii]: dts[ii -lag ] for ii in range(lag, len(dts))}
+    forbiden_const_options = [["MSFT"],["AAPL"], ["MSFT","XOM","BAC","JPM","WFC","AXP"]]
+    num_of_tickers_options = [600,200,100,50]
+    upper_bound_options = [0.1,0.05,0.03]
+    sector_constraints_options = [{'Information Technology':0.6,'Consumer Discretionary':115},
+                                  {'Information Technology':0.2,'Consumer Discretionary':115},
+                                  {'Information Technology':0.15,'Consumer Discretionary':0.05}]
     constraints = {}
     """
     constraints["forbiden_tickers"] = ["MSFT","XOM","BAC","JPM","WFC","AXP","AAPL","NVDA",
                                        "V","AXP","MA","WMT","T","JNJ","BSX","BAC","AMZN",
                                        "GOOG","INTC","AMD"] +forbiden_const
     """
-    forbiden_const = ["T"]
-    constraints["forbiden_tickers"] =  forbiden_const
-    constraints["sectors"] = {'Information Technology':0.6,'Consumer Discretionary':115}
-    constraints["num_of_tickers"] = 600
-    constraints["upper_bound"] = 0.03
-    sector_mapping = SectorMapping
-    start_dt = '2021-03-30'
-    end_dt = '2022-11-01'
-    match_d = {k: match_d[k] for k in match_d.keys() if k >= start_dt}
-    #print(match_d.keys())
-    print(match_d.keys())
-    #exit(0)
     start = time.time()
-    index_holdings_path = os.path.join("..","data","holdings","IVV")
-    aprox,df_tar = dummy_wrapper(PriceVolume_dr, index_df, index_holdings_path, match_d, constraints, start_dt,end_dt,sector_mapping)
-    print("total times is %0.2f"%(time.time()-start))
+    for ii in range(len(forbiden_const_options)):
+        for jj in range(len(num_of_tickers_options)):
+            for kk in range(len(upper_bound_options)):
+                for ll in range(len(sector_constraints_options)):
+                    constraints["forbiden_tickers"] =  forbiden_const_options[ii]
+                    constraints["sectors"] = sector_constraints_options[ll]
+                    constraints["num_of_tickers"] = num_of_tickers_options[jj]
+                    constraints["upper_bound"] = upper_bound_options[kk]
+                    sector_mapping = SectorMapping
+                    start_dt = '2021-03-30'
+                    end_dt = '2022-11-01'
+                    match_d = {k: match_d[k] for k in match_d.keys() if k >= start_dt}
+                    #print(match_d.keys())
+                    print(match_d.keys())
+                    #exit(0)
 
-    output_dirs = os.path.join("..","..","hyper_params")
-    if not os.path.isdir(output_dirs):
-        os.mkdir(output_dirs)
-    strat_name = "dummy"
-    strat_output_dir = os.path.join(output_dirs,strat_name)
-    if not os.path.isdir(strat_output_dir):
-        os.mkdir(strat_output_dir)
-    out_dir = os.path.join(strat_output_dir, "tmp1")
-    if not os.path.isdir(out_dir):
-        os.mkdir(out_dir)
-    generate_basic_stats(aprox, out_dir, "temp")
-    aprox.to_csv(os.path.join(out_dir,"aprox.csv"))
+                    index_holdings_path = os.path.join("..","data","holdings","IVV")
+                    aprox,df_tar = dummy_wrapper(PriceVolume_dr, index_df, index_holdings_path, match_d, constraints, start_dt,end_dt,sector_mapping)
+                    print("total times is %0.2f"%(time.time()-start))
+
+                    output_dirs = os.path.join("..","..","hyper_params")
+                    if not os.path.isdir(output_dirs):
+                        os.mkdir(output_dirs)
+                    strat_name = "dummy"
+                    strat_output_dir = os.path.join(output_dirs,strat_name)
+                    if not os.path.isdir(strat_output_dir):
+                        os.mkdir(strat_output_dir)
+                    out_dir = os.path.join(strat_output_dir, "tmp_%d_%d_%d_%d"%(ii,jj,kk,ll))
+                    if not os.path.isdir(out_dir):
+                        os.mkdir(out_dir)
+                    generate_basic_stats(aprox, out_dir, "temp")
+                    aprox.to_csv(os.path.join(out_dir,"aprox.csv"))
