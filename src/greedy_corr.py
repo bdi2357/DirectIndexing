@@ -85,6 +85,43 @@ def create_ret_dict(PriceVolume_dr,universe,close_col):
             bad_tickers.append(k)
     return tickers_pv
 
+def compute_return_with_w(target,w,ticker,start_dt,end_dt):
+    return target - w*read_pv(ticker).loc[start_dt:end_dt]
+def find_max_corr(tickers,target):
+    t, corr  = max([ (t,corr(t,target,start_dt)) for t in tickers], key = lambda x: x[1] )
+    w = np.std()
+
+def iterate_corr(tickers,target, max_num_of_tickers,start_dt,_end_dt):
+    cnt = 0
+    rt = compute_ret(target)
+    portfolio = []
+    while cnt < max_num_of_tickers:
+        t,w = find_max_corr(tickers,target,start_dt,end_dt)
+        portfolio.append((t,w))
+        target = compute_return_with_w(target,w,t,start_dt,end_dt)
+        cnt +=1
+    return portfolio
+
+def Get_base(D_tickers,tar_ret,mx_p,max_cap = 0.1,end_dt = None):
+    D = D_tickers.copy()
+    cnt = 0
+    bnd = min(mx_p,len(list(D.keys())))
+    portfolio = []
+    while cnt < bnd:
+        t,crr = max_corr(D,tar_ret)
+        w1 = min(crr*(np.std(tar_ret)/np.std(D[t]["return"])),max_cap)
+        w1 = max(w1,0.0)
+        #w1 = min(crr*np.std(spy["return"]),max_cap)
+        print(t,w1)
+        #print(t,w1,crr*(np.std(D[t]["return"])))
+        tar_ret = tar_ret - w1* D[t]["return"]
+        portfolio.append((t,w1))
+        D.pop(t)
+        cnt +=1
+    return portfolio
+
+
+
 
 def compute_return(df_tar,tickers_pv,start_dt,dates):
     print(dates)
