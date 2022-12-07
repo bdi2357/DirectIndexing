@@ -17,6 +17,32 @@ def create_universe_zero_df(PriceVolume_dr,index_df):
     big_df = pd.DataFrame(columns=Universe_Tickers, index=dts)
     return big_df.fillna(0.0)
 
+def adapt_weights():
+    d_weights_sector = {x: d_weights_sector[x] for x in d_weights_sector.keys() if x.lower().find("cash") == -1}
+    # D_sector_w
+    no_w = []
+    D_fact = {}
+    for k in d_weights_sector.keys():
+        if k in D_sector_w.keys():
+            D_fact[k] = d_weights_sector[k] / D_sector_w[k]
+        else:
+            no_w.append(k)
+    print(no_w)
+    D_no_w = {}
+    for sect in no_w:
+        D_no_w[sect] = [k for k in D_tickers.keys() if Ticker2Sector[k] == sect]
+
+    D_fact
+
+def create_aprx():
+    aprx1 = D_tickers[res1[0][0]]["return"] * 0.0
+    for r in res1:
+        if Ticker2Sector[r[0]] in D_fact.keys():
+            aprx1 += D_tickers[r[0]]["return"] * (r[1] * D_fact[Ticker2Sector[r[0]]])
+        else:
+            c1 = d_weights_sector[Ticker2Sector[r[0]]] / len(D_no_w[Ticker2Sector[r[0]]])
+            aprx1 += D_tickers[r[0]]["return"] * c1
+
 
 def match_dates(df_tar, match_d, d2h,forbidden,sector_bounds,num_of_tickers,upper_bound,sector_mapping):
     keys_list = list(match_d.keys())
@@ -101,6 +127,10 @@ def iterate_corr(tickers,target, max_num_of_tickers,start_dt,_end_dt):
         target = compute_return_with_w(target,w,t,start_dt,end_dt)
         cnt +=1
     return portfolio
+
+#Two graphs one of  50 one fo 100
+# Backtest with improvement with respect to the dummy (Lag1)
+# Max abs diff with respect each year
 
 def Get_base(D_tickers,tar_ret,mx_p,max_cap = 0.1,end_dt = None):
     D = D_tickers.copy()

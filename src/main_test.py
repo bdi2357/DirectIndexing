@@ -61,7 +61,7 @@ if __name__ == "__main__":
     print(match_d.keys())
 
     D_input["sector_mapping"] =  SectorMapping
-    D_input["constraints"]["num_of_tickers"] = 600
+    D_input["constraints"]["num_of_tickers"] = 100
     D_input["constraints"]["upper_bound"] = upper_bound
     D_input.pop("Lag")
     D_input.pop("upper_bound")
