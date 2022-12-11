@@ -463,7 +463,11 @@ if __name__ == "__main__":
     Lag : 0
     upper_bound : 0.1
     """
-    
+    input_file = os.path.join("..","example","input_files","InputExample.txt")
+    D_input = input_reader(input_file)
+    print(D_input.keys())
+    """
+    lag = 0
     PriceVolume_dr = os.path.join("..","data","PriceVolume")
     index_df, 
     index_holdings_path = os.path.join("..","data","holdings","IVV")
@@ -474,3 +478,5 @@ if __name__ == "__main__":
     PriceVolume_dr, index_df, index_holdings_path, match_d, constraints, start_dt, end_dt, sector_mapping):
 
     wrapper_strategy()
+    """
+
