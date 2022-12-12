@@ -158,33 +158,49 @@ def soft_lstsq(D_tickers, tar_ret, lb, ub, start_dt, end_dt):
     lsq_sol = compute_soft_lsq(rets_mat,tar_ret,lb,ub)
     sol_d = {rets_mat.columns[ii]: lsq_sol[ii] for ii in range(len(rets_mat.columns))}
     return sol_d
-def lsq_with_constraints(D_tickers, tar_ret, lb,ub, start_dt, end_dt,Sector2Tickers,sectors_c={}):
+def lsq_with_constraints(D_tickersN, tar_ret, lb,ub, start_dt, end_dt,Sector2Tickers,sectors_c={}):
+    D_tickers = D_tickersN.copy()
+    test_key = list(D_tickers.keys())[0]
     print(list(D_tickers.keys())[0])
-    print(D_tickers[list(D_tickers.keys())[0]].head())
+    print(D_tickers[list(D_tickers.keys())[0]].shape[0])
+    print(tar_ret.shape[0])
     print([k for k in  D_tickers.keys() if "return" not in D_tickers[k].columns])
     relevant_tickers = [k for k in  D_tickers.keys() if "return"  in D_tickers[k].columns]
-    D_t_rets = {k: D_tickers[k]["return"].loc[start_dt:end_dt] for k in relevant_tickers}
+    #D_t_rets = {k: D_tickers[k]["return"].loc[start_dt:end_dt] for k in relevant_tickers}
+    D_t_rets = {k: D_tickers[k]["return"] for k in relevant_tickers}
+    print(D_t_rets[test_key].shape)
     tar_ret = tar_ret.loc[start_dt:end_dt]
     print("tar_ret shape", tar_ret.shape)
     rets_mat = pd.DataFrame(D_t_rets)
+    rets_mat = rets_mat.loc[tar_ret.index.values]
     print("rets_mat shape ",rets_mat.shape)
+    #rets_mat = rets_mat.dropna()
+    #print("rets_mat shape after droping rows with nan", rets_mat.shape)
+    rets_mat = rets_mat.dropna(axis=1)
+    print("rets_mat shape after droping columns with nan", rets_mat.shape)
+    rets_mat = rets_mat.dropna()
+    print("rets_mat shape after droping rows with nan", rets_mat.shape)
+
+
     R = rets_mat.to_numpy()
     s = tar_ret.to_numpy()
-    W = np.identity(len(D_t_rets.keys()))
+    W = np.identity(rets_mat.shape[1])
+    print("R.shape",R.shape)
+    print("W.shape", W.shape)
     WR = np.dot(R,W)
     P = np.dot(R.transpose(), WR)
     q = -np.dot(s.transpose(), WR)
-    G = np.identity(len(D_t_rets.keys()))
-    h = np.array([ub for ii in range(len(D_t_rets.keys()))])
-    Glb = np.identity(len(D_t_rets.keys())) * -1
-    hlb = np.array([-lb for ii in range(len(D_t_rets.keys()))])
+    G = np.identity(rets_mat.shape[1])
+    h = np.array([ub for ii in range(rets_mat.shape[1])])
+    Glb = np.identity(rets_mat.shape[1]) * -1
+    hlb = np.array([-lb for ii in range(rets_mat.shape[1])])
     Arr = []
     sector_bnd  = []
     if sectors_c:
         for k in sectors_c.keys():
             Sector2Tickers[k]
             A = []
-            for t in D_t_rets.keys():
+            for t in rets_mat.columns:
                 if t in Sector2Tickers[k]:
                     A.append(1)
                 else:
@@ -192,10 +208,10 @@ def lsq_with_constraints(D_tickers, tar_ret, lb,ub, start_dt, end_dt,Sector2Tick
             Arr.append(A)
             sector_bnd.append(sectors_c[k])
         G = np.concatenate((G,Glb,np.array(Arr)))
-        h = np.array([ub for ii in range(len(D_t_rets.keys()))]+[-lb for ii in range(len(D_t_rets.keys()))] + sector_bnd)
+        h = np.array([ub for ii in range(rets_mat.shape[1])]+[-lb for ii in range(rets_mat.shape[1])] + sector_bnd)
 
 
-    A = np.array([1.0 for ii in range(len(D_t_rets.keys()))])
+    A = np.array([1.0 for ii in range(rets_mat.shape[1])])
     b = np.array([1.0])
 
     lsq_sol =  solve_qp(P, q, G, h, A, b, solver="cvxopt")
@@ -255,7 +271,8 @@ def Get_base(D_tickers,tar_ret,metric,mx_p,start_dt,end_dt = None,max_cap = 0.1,
 def rebalancing_results(res1_d,Ticker2Sector):
     D_sector_w = {}
     for k in res1_d.keys():
-        D_sector_w[Ticker2Sector[k]] = D_sector_w.get(Ticker2Sector[k],0) + res1_d[k]
+        if k in Ticker2Sector.keys():
+            D_sector_w[Ticker2Sector[k]] = D_sector_w.get(Ticker2Sector[k],0) + res1_d[k]
     return D_sector_w
 
 
@@ -275,13 +292,13 @@ def updating_rebalancing_weights(d_weights_sector, D_sector_w):
     for sect in no_w:
         D_no_w[sect] = [k for k in D_tickers.keys() if Ticker2Sector[k] == sect]
     return D_fact, D_no_w
-def after_rebalncing_weights(res1,Ticker2Sector,D_fact):
+def after_rebalncing_weights(res1,Ticker2Sector,D_fact,D_tickers):
     D_w_after = {}
     res_d = dict(res1)
     aprx1 = D_tickers[list(res_d.keys())[0]]["return"]*0.0
     total_w = 0
     for r in res_d.keys():
-        if Ticker2Sector[r] in D_fact.keys():
+        if r in Ticker2Sector.keys() and Ticker2Sector[r] in D_fact.keys():
             aprx1 += D_tickers[r]["return"]*(res_d[r]*D_fact[Ticker2Sector[r]])
             total_w += (res_d[r]*D_fact[Ticker2Sector[r]])
             D_w_after[r] = res_d[r]*D_fact[Ticker2Sector[r]]
@@ -298,14 +315,14 @@ def add_from_missing_sectors(D_no_w,bnd,d_weights_sector,aprx1,D_w_after):
                 D_w_after[D_no_w[k][ii]] = c1
     return aprx1,D_w_after
 
-def wrap_rebalancing(res1,Ticker2Sector,d_weights_sector,bnd):
+def wrap_rebalancing(res1,Ticker2Sector,d_weights_sector,D_tickers,bnd):
     D_sector_w = rebalancing_results(dict(res1),Ticker2Sector)
     print(D_sector_w)
     print(d_weights_sector)
     D_fact,D_no_w = updating_rebalancing_weights(d_weights_sector,D_sector_w)
     print("*"*100)
     #print(D_fact)
-    aprx1,D_w_after = after_rebalncing_weights(res1,Ticker2Sector,D_fact)
+    aprx1,D_w_after = after_rebalncing_weights(res1,Ticker2Sector,D_fact,D_tickers)
     #print("sm %0.3f"%sum(D_w_after.values()))
     print(rebalancing_results(D_w_after,Ticker2Sector))
     print("-"*55)
@@ -339,7 +356,7 @@ ub = lb + 1
 res = lsq_linear(A, b, bounds=(lb, ub), lsmr_tol='auto', verbose=1)
 print(res)
 """
-def match_dates(D_tickers_orig,target_ret,df_tar, match_d, d2h,forbidden,sector_bounds,num_of_tickers,ub,lb=0):
+def match_dates(D_tickers_orig,df_tar,target_ret, match_d, d2h,forbidden,sector_bounds,num_of_tickers,ub,lb=0):
     keys_list = list(match_d.keys())
     print(df_tar.index.values[:10])
     print((df_tar.index.values[3]), date_parser(keys_list[0]).strftime("%Y-%m-%d"))
@@ -361,12 +378,37 @@ def match_dates(D_tickers_orig,target_ret,df_tar, match_d, d2h,forbidden,sector_
         dt = date_parser(match_d[k]).strftime("%Y-%m-%d")
         # ERROR
         print(d2h[dt])
-
+        year_before = str(int(dt.split("-")[0])-1)
+        start_dt = dt#year_before + "-"+dt.split("-")[1]+"-"+dt.split("-")[2]
+        end_dt  = date_parser(match_d[keys_list[ii+1]]).strftime("%Y-%m-%d")
         D_tickers2 = {x: D_tickers[x].loc[start_dt:end_dt] for x in D_tickers.keys() if not x in forbidden}
-        res_ds = lsq_with_constraints(D_tickers2, target_ret.loc[start_dt:end_dt], lb, ub, start_dt, end_dt,
+        test_key = list(D_tickers2.keys())[0]
+        print(start_dt,end_dt)
+        print(test_key)
+        print("target_ret")
+        print(target_ret.loc[start_dt:end_dt].head())
+        print("D_tickers2 ",test_key)
+        print(D_tickers2[test_key].head())
+        print(target_ret.loc[start_dt:end_dt].shape)
+        print(D_tickers2[test_key].shape)
+
+        vals_c = target_ret.loc[start_dt:end_dt].index.values
+        D3 = {}
+        bad = []
+        for x in D_tickers2.keys() :
+            try :
+                D3[x] = D_tickers2[x].loc[vals_c]
+            except Exception as e:
+                aaaa = 1+1
+        #D_tickers2 = {x:D_tickers2[x].loc[vals_c] for x in D_tickers2.keys() }
+        #print("len remain",len(D_tickers2.keys()))
+        D3 = {x:D3[x] for x in D3.keys() if D3[x].shape[0] == target_ret.loc[start_dt:end_dt].shape[0]}
+        print("len remain", len(D3.keys()))
+
+        res_ds = lsq_with_constraints(D3, target_ret.loc[start_dt:end_dt]["return"], lb, ub, start_dt, end_dt,
                                       Sector2Tickers, sector_bounds)
         # aprx_ns = create_aprx1(res_ds, D_tickers)
-        aprx_ns, D_w_after = wrap_rebalancing(res_ds, Ticker2Sector, d_weights_sector, bnd=4)
+        aprx_ns, D_w_after = wrap_rebalancing(res_ds, Ticker2Sector, d_weights_sector, D_tickers,bnd=4)
 
         d1 = D_w_after
         ks1 = match_d[keys_list[ii + 1]]
@@ -389,8 +431,10 @@ def match_dates(D_tickers_orig,target_ret,df_tar, match_d, d2h,forbidden,sector_
     return df_tar
 
 def wrapper_strategy(PriceVolume_dr,index_df,index_holdings_path,match_d,constraints,start_dt,end_dt,sector_mapping):
-    df_tar = create_universe_zero_df(PriceVolume_dr,index_df)
+    df_tar = create_universe_zero_df(PriceVolume_dr,index_df).loc[start_dt:end_dt]
     d2h = dates_2_holdings_dict(index_holdings_path)
+    print(index_df.head(),index_df.tail())
+    print(start_dt,end_dt)
     #print(d2h.keys())
     universe = [x.split(".")[0] for x  in os.listdir(PriceVolume_dr) if re.findall('[A-Z]+',x.split(".")[0]) and
                 re.findall('[A-Z]+',x.split(".")[0])[0] == x.split(".")[0]]
@@ -406,7 +450,7 @@ def wrapper_strategy(PriceVolume_dr,index_df,index_holdings_path,match_d,constra
     sector_bounds = constraints["sectors"]
     num_of_tickers = constraints["num_of_tickers"]
     ub = constraints["upper_bound"]
-    match_dates(tickers_pv, index_df, df_tar, match_d, d2h, forbidden, sector_bounds, num_of_tickers, ub, lb=0)
+    match_dates(tickers_pv, df_tar,index_df, match_d, d2h, forbidden, sector_bounds, num_of_tickers, ub, lb=0)
 
     #match_dates(tickers_pv,df_tar, match_d, d2h, constraints["forbiden_tickers"],constraints["sectors"],constraints["num_of_tickers"],constraints["upper_bound"],sector_mapping)
     universe = list(df_tar.columns)
@@ -494,19 +538,23 @@ if __name__ == "__main__":
     print(len(D_tickers2.keys()))
     #res_ds = soft_lstsq(D_tickers2, spy["return"].loc[start_dt:end_dt2], lb,ub ,start_dt, end_dt)
     sectors_c = {"Information Technology": 1.,"Financials": 1.05}
-    res_ds = lsq_with_constraints(D_tickers2, spy["return"].loc[start_dt:end_dt2], lb,ub ,start_dt, end_dt,Sector2Tickers,sectors_c)
-    #aprx_ns = create_aprx1(res_ds, D_tickers)
-    aprx_ns, D_w_after = wrap_rebalancing(res_ds, Ticker2Sector, d_weights_sector, bnd=4)
-    print(np.corrcoef(aprx_ns.loc[start_later:end_dt], spy["return"].loc[start_later:end_dt]))
-    d_tmp2 = pd.DataFrame(((1. + aprx_ns).loc[end_dt2:end_dt].cumprod() - 1.))
-    d_tmp2["spy_cum_ret"] = ((1. + spy["return"]).loc[end_dt2:end_dt].cumprod() - 1.)
-    d_tmp2.plot()
-    plt.show()
-    print(D_w_after)
+    if False:
+        res_ds = lsq_with_constraints(D_tickers2, spy["return"].loc[start_dt:end_dt2], lb,ub ,start_dt, end_dt,Sector2Tickers,sectors_c)
+        #aprx_ns = create_aprx1(res_ds, D_tickers)
+        aprx_ns, D_w_after = wrap_rebalancing(res_ds, Ticker2Sector, d_weights_sector,D_tickers, bnd=4)
+        print(aprx_ns.head,"@"*80,aprx_ns.tail())
+        #print(np.corrcoef(aprx_ns.loc[start_later:end_dt], spy["return"].loc[start_later:end_dt]))
+        d_tmp2 = pd.DataFrame(((1. + aprx_ns).loc[end_dt2:end_dt].cumprod() - 1.))
+        d_tmp2["spy_cum_ret"] = ((1. + spy["return"]).loc[end_dt2:end_dt].cumprod() - 1.)
+        print(d_tmp2.head())
+        d_tmp2.plot()
+        plt.show()
+        print(D_w_after)
 
-    print(max(abs(d_tmp2["spy_cum_ret"] - d_tmp2["return"])))
-    print(len([x for x in res_ds.keys() if res_ds[x]> 0.0001]))
-    print(sum(list(res_ds.values())),sum(D_w_after.values()))
+        print(max(abs(d_tmp2["spy_cum_ret"] - d_tmp2["return"])))
+        print(len([x for x in res_ds.keys() if res_ds[x]> 0.0001]))
+        print(sum(list(res_ds.values())),sum(D_w_after.values()))
+        dsffsdfd
     """
     Target_index_returns : ..|data|index_data|SPY.csv
     Target_index_holdings : ..|data|holdings|IVV
