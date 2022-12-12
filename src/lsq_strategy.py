@@ -11,7 +11,8 @@ from matplotlib import pyplot as plt
 from qpsolvers import solve_qp
 from basic_reader import input_reader
 from dateutil.parser import parse as date_parse
-
+from dummy_strategy import compute_return
+from basic_stats import generate_basic_stats
 def create_universe_zero_df(PriceVolume_dr,index_df):
     files_paths = os.listdir(PriceVolume_dr)
     #date_col = [c for c in index_df.columns if c.lower()=="date"][0]
@@ -582,11 +583,15 @@ if __name__ == "__main__":
     print(match_d.keys())
 
     D_input["sector_mapping"] = SectorMapping
-    D_input["constraints"]["num_of_tickers"] = 100
+    D_input["constraints"]["num_of_tickers"] = 200
     D_input["constraints"]["upper_bound"] = ub
     D_input.pop("Lag")
     D_input.pop("upper_bound")
-    wrapper_strategy(**D_input)
+    aprox,df_tar = wrapper_strategy(**D_input)
+    out_dir = os.path.join("..","..","lsq_test_res")
+    if not os.path.isdir(out_dir):
+        os.mkdir(out_dir)
+    generate_basic_stats(aprox, out_dir, "temp")
     """
     lag = 0
     PriceVolume_dr = os.path.join("..","data","PriceVolume")
