@@ -353,7 +353,7 @@ def match_dates(D_tickers_orig,target_ret,df_tar, match_d, d2h,forbidden,sector_
         df_tar[k].loc[dt:] = d1[k]
     return df_tar
 
-def wrapper_strategy(PriceVolume_dr,index_df,index_holdings_path,match_d,constraints,start_dt,end_dt,PriceVolume_dr,index_df,index_holdings_path,match_d,constraints,start_dt,end_dt,sector_mapping):
+def wrapper_strategy(PriceVolume_dr,index_df,index_holdings_path,match_d,constraints,start_dt,end_dt,sector_mapping):
     df_tar = create_universe_zero_df(PriceVolume_dr,index_df)
     d2h = dates_2_holdings_dict(index_holdings_path)
     #print(d2h.keys())
@@ -450,27 +450,3 @@ if __name__ == "__main__":
     print(max(abs(d_tmp2["spy_cum_ret"] - d_tmp2["return"])))
     print(len([x for x in res_ds.keys() if res_ds[x]> 0.0001]))
     print(sum(list(res_ds.values())),sum(D_w_after.values()))
-    """
-    Target_index_returns : ..|data|index_data|SPY.csv
-    Target_index_holdings : ..|data|holdings|IVV
-    Price_volume_data : ..|data|PriceVolume
-    Universe : ..|data|SP500_constiutents_from_2010.csv
-    Constraints : ..|Constraints|C2
-    UpdatingDates : ..|dates|SP500|rebalancing_dates.txt
-    RiskFunction : risk_L2.py
-    start_dt : 2020-03-30
-    end_dt : 2022-11-01
-    Lag : 0
-    upper_bound : 0.1
-    """
-    
-    PriceVolume_dr = os.path.join("..","data","PriceVolume")
-    index_df, 
-    index_holdings_path = os.path.join("..","data","holdings","IVV")
-    match_d, 
-    constraints, 
-    start_dt, 
-    end_dt, 
-    PriceVolume_dr, index_df, index_holdings_path, match_d, constraints, start_dt, end_dt, sector_mapping):
-
-    wrapper_strategy()

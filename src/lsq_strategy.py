@@ -9,6 +9,34 @@ import pandas as pd
 import numpy as np
 from matplotlib import pyplot as plt
 from qpsolvers import solve_qp
+from basic_reader import input_reader
+from dateutil.parser import parse as date_parse
+
+def create_universe_zero_df(PriceVolume_dr,index_df):
+    files_paths = os.listdir(PriceVolume_dr)
+    #date_col = [c for c in index_df.columns if c.lower()=="date"][0]
+    dts = index_df.index.values
+    #index_df = index_df.set_index(date_col)
+    Universe_Tickers = [x.split(".")[0] for x in files_paths
+                        if re.findall('[A-Z]+',x.split(".")[0]) and
+                        x.split(".")[0] == re.findall('[A-Z]+',x.split(".")[0])[0]]
+    big_df = pd.DataFrame(columns=Universe_Tickers, index=dts)
+    return big_df.fillna(0.0)
+def create_ret_dict(PriceVolume_dr,universe,close_col):
+    #close_col = "Adjusted_close"
+    tickers_pv = {t: pd.read_csv(os.path.join(PriceVolume_dr, t + ".csv")) for t in universe}
+    bad_tickers = []
+    for k in tickers_pv.keys():
+        try:
+            tickers_pv[k][close_col] = tickers_pv[k][close_col].fillna(0.00)
+            tickers_pv[k]["return"] = getattr(tickers_pv[k][close_col], "pct_change")()
+            tickers_pv[k] = tickers_pv[k].set_index("Date")
+        except Exception as e:
+            print(e, " ", k)
+            print("in create_ret_dict")
+            bad_tickers.append(k)
+    return tickers_pv
+
 def dates_2_holdings_dict(index_holdings_path):
     print(index_holdings_path)
     L1 = glob.glob(os.path.join(index_holdings_path,"*holdings_*.csv"))
@@ -131,8 +159,15 @@ def soft_lstsq(D_tickers, tar_ret, lb, ub, start_dt, end_dt):
     sol_d = {rets_mat.columns[ii]: lsq_sol[ii] for ii in range(len(rets_mat.columns))}
     return sol_d
 def lsq_with_constraints(D_tickers, tar_ret, lb,ub, start_dt, end_dt,Sector2Tickers,sectors_c={}):
-    D_t_rets = {k: D_tickers[k]["return"].loc[start_dt:end_dt] for k in D_tickers.keys()}
+    print(list(D_tickers.keys())[0])
+    print(D_tickers[list(D_tickers.keys())[0]].head())
+    print([k for k in  D_tickers.keys() if "return" not in D_tickers[k].columns])
+    relevant_tickers = [k for k in  D_tickers.keys() if "return"  in D_tickers[k].columns]
+    D_t_rets = {k: D_tickers[k]["return"].loc[start_dt:end_dt] for k in relevant_tickers}
+    tar_ret = tar_ret.loc[start_dt:end_dt]
+    print("tar_ret shape", tar_ret.shape)
     rets_mat = pd.DataFrame(D_t_rets)
+    print("rets_mat shape ",rets_mat.shape)
     R = rets_mat.to_numpy()
     s = tar_ret.to_numpy()
     W = np.identity(len(D_t_rets.keys()))
@@ -326,9 +361,9 @@ def match_dates(D_tickers_orig,target_ret,df_tar, match_d, d2h,forbidden,sector_
         dt = date_parser(match_d[k]).strftime("%Y-%m-%d")
         # ERROR
         print(d2h[dt])
-        dsfdsdf
+
         D_tickers2 = {x: D_tickers[x].loc[start_dt:end_dt] for x in D_tickers.keys() if not x in forbidden}
-        res_ds = lsq_with_constraints(D_tickers2, target["return"].loc[start_dt:end_dt], lb, ub, start_dt, end_dt,
+        res_ds = lsq_with_constraints(D_tickers2, target_ret.loc[start_dt:end_dt], lb, ub, start_dt, end_dt,
                                       Sector2Tickers, sector_bounds)
         # aprx_ns = create_aprx1(res_ds, D_tickers)
         aprx_ns, D_w_after = wrap_rebalancing(res_ds, Ticker2Sector, d_weights_sector, bnd=4)
@@ -353,14 +388,27 @@ def match_dates(D_tickers_orig,target_ret,df_tar, match_d, d2h,forbidden,sector_
         df_tar[k].loc[dt:] = d1[k]
     return df_tar
 
-def wrapper_strategy(PriceVolume_dr,index_df,index_holdings_path,match_d,constraints,start_dt,end_dt,PriceVolume_dr,index_df,index_holdings_path,match_d,constraints,start_dt,end_dt,sector_mapping):
+def wrapper_strategy(PriceVolume_dr,index_df,index_holdings_path,match_d,constraints,start_dt,end_dt,sector_mapping):
     df_tar = create_universe_zero_df(PriceVolume_dr,index_df)
     d2h = dates_2_holdings_dict(index_holdings_path)
     #print(d2h.keys())
     universe = [x.split(".")[0] for x  in os.listdir(PriceVolume_dr) if re.findall('[A-Z]+',x.split(".")[0]) and
                 re.findall('[A-Z]+',x.split(".")[0])[0] == x.split(".")[0]]
+    close_col = [c for c in index_df.columns if c.lower().find("close") > -1]
+    if len([c for c in close_col if c.lower().find("adj") > -1]) > 0:
+        close_col = [c for c in close_col if c.lower().find("adj") > -1][0]
+    else:
+        close_col = close_col[0]
     tickers_pv = create_ret_dict(PriceVolume_dr, universe, close_col)
-    match_dates(tickers_pv,df_tar, match_d, d2h, constraints["forbiden_tickers"],constraints["sectors"],constraints["num_of_tickers"],constraints["upper_bound"],sector_mapping)
+    #constraints["forbiden_tickers"],constraints["sectors"],constraints["num_of_tickers"],constraints["upper_bound"],sector_mapping)
+
+    forbidden = constraints["forbiden_tickers"]
+    sector_bounds = constraints["sectors"]
+    num_of_tickers = constraints["num_of_tickers"]
+    ub = constraints["upper_bound"]
+    match_dates(tickers_pv, index_df, df_tar, match_d, d2h, forbidden, sector_bounds, num_of_tickers, ub, lb=0)
+
+    #match_dates(tickers_pv,df_tar, match_d, d2h, constraints["forbiden_tickers"],constraints["sectors"],constraints["num_of_tickers"],constraints["upper_bound"],sector_mapping)
     universe = list(df_tar.columns)
     close_col = [c for c in index_df.columns if c.lower().find("close") > -1]
     if len([c for c in close_col if c.lower().find("adj") > -1]) > 0:
@@ -376,6 +424,15 @@ def wrapper_strategy(PriceVolume_dr,index_df,index_holdings_path,match_d,constra
     aprox["Comulative_ret"] = (1. + aprox["return"][start_dt:end_dt]).cumprod()
     aprox["benchmark_index_comulative_ret"] = (1 + aprox["benchmark_index_return"]).cumprod()
     return aprox,df_tar
+
+GICS = pd.read_csv(os.path.join("..","data","GICS","GICS_sector_SP500.csv"))
+Ticker2Sector = GICS.set_index("Ticker")["Sector GICS"].to_dict()
+SectorMapping = {}
+for k in Ticker2Sector.keys():
+    SectorMapping[Ticker2Sector[k]] = SectorMapping.get(Ticker2Sector[k],[])+[k]
+add_h = SectorMapping.pop("Health")
+SectorMapping["Health Care"] += add_h
+
 if __name__ == "__main__":
     """
     start = time.time()
@@ -466,6 +523,22 @@ if __name__ == "__main__":
     input_file = os.path.join("..","example","input_files","InputExample.txt")
     D_input = input_reader(input_file)
     print(D_input.keys())
+    holdings_files = os.listdir(D_input['index_holdings_path'])
+    #logger.info(holdings_files)
+    dts = [re.findall("20[0-9]+", x)[0] for x in holdings_files if re.findall("20[0-9]+", x)]
+    dts.sort(key=lambda x: date_parse(x))
+    lag = D_input["Lag"]
+    match_d = {dts[ii]: dts[ii - lag] for ii in range(lag, len(dts))}
+    match_d = {k: match_d[k] for k in match_d.keys() if date_parse(k) >= date_parse(D_input["start_dt"])}
+    D_input["match_d"] = match_d
+    print(match_d.keys())
+
+    D_input["sector_mapping"] = SectorMapping
+    D_input["constraints"]["num_of_tickers"] = 100
+    D_input["constraints"]["upper_bound"] = ub
+    D_input.pop("Lag")
+    D_input.pop("upper_bound")
+    wrapper_strategy(**D_input)
     """
     lag = 0
     PriceVolume_dr = os.path.join("..","data","PriceVolume")
