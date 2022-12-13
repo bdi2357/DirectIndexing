@@ -48,7 +48,8 @@ def input_reader(input_file):
     stat_cols(target_index)
     date_col = [c for c in target_index.columns if c.lower().find("date")>-1][0]
     target_index = target_index.set_index(date_col)
-    target_index = target_index.loc[parse(inputs["start_dt"]).strftime("%Y-%m-%d"):]
+    #target_index = target_index.loc[parse(inputs["start_dt"]).strftime("%Y-%m-%d"):]
+    #target_index = target_index.loc[parse(inputs["start_dt"]).strftime("%Y-%m-%d"):]
     print(parse(inputs["start_dt"]).strftime("%Y-%m-%d"))
     
     D_input["index_df"] = target_index

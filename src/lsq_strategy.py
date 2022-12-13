@@ -227,8 +227,14 @@ def lsq_with_constraints(D_tickersN, tar_ret, lb,ub, start_dt, end_dt,Sector2Tic
     A = np.array([1.0 for ii in range(rets_mat.shape[1])])
     b = np.array([1.0])
 
-    lsq_sol =  solve_qp(P, q, G, h, A, b, solver="cvxopt")
+    #lsq_sol =  solve_qp(P, q, G, h, A, b, solver="cvxopt")
+    #ecos,osqp,quadprog
+    lsq_sol =  solve_qp(P, q, G, h, A, b, solver="quadprog")
     sol_d = {rets_mat.columns[ii]: lsq_sol[ii] for ii in range(len(rets_mat.columns))}
+    itms = list(sol_d.items())
+    itms.sort(key = lambda x:x[1], reverse = True)
+    print(itms[:60])
+    print("#@#@")
     return sol_d
 
 
@@ -390,25 +396,34 @@ def match_dates(D_tickers_orig,df_tar,target_ret, match_d, d2h,forbidden,sector_
     wts_base = d2h[date_parser(keys_list[0]).strftime("%Y-%m-%d")]
     weight_col = [c for c in wts_base.columns if c.lower().find("weight") > -1][0]
     ticker_col = [c for c in wts_base.columns if c.lower().find("ticker") > -1][0]
+    print("keys_list",keys_list)
     for ii in range(len(keys_list)):
         print("match dates ", ii, keys_list[ii])
-        D_tickers = D_tickers_orig.copy()
+        #univ_cof = pd.read_csv(os.path.join(".
+        print(match_d.keys())
+        print("=$")
+        print(os.listdir(os.path.join("..","data","holdings","IVV")))
         k = keys_list[ii]
+        etf_holdings_tickers = list(pd.read_csv(os.path.join("..","data","holdings","IVV",'IVV_holdings_%s_f.csv'%k))["Ticker"])
+        D_tickers = D_tickers_orig.copy()
+        D_tickers = {x:D_tickers[x] for x in D_tickers.keys() if x in etf_holdings_tickers}
         dt = date_parser(match_d[k]).strftime("%Y-%m-%d")
         print(d2h[dt])
         year_before = str(int(dt.split("-")[0])-3)
         start_dt = dt#year_before + "-"+dt.split("-")[1]+"-"+dt.split("-")[2]
         dt_year = int(dt.split("-")[0])
-        strat_dt = str(dt_year) +"-" + dt[5:]
+        start_dt = str(year_before) +"-" + dt[5:]
+        print("&^&^")
         print("start_dt %s"%start_dt)
-
+        print("end_dt %s"%dt)
         #start_dt = date_parser(match_d[keys_list[ii - 1]]).strftime("%Y-%m-%d")
         end_dt  = dt#date_parser(match_d[keys_list[ii+2]]).strftime("%Y-%m-%d")
         D_tickers2 = {x: D_tickers[x].loc[start_dt:end_dt] for x in D_tickers.keys() if not x in forbidden}
         test_key = list(D_tickers2.keys())[0]
         print(start_dt,end_dt)
         print(test_key)
-        print("target_ret")
+        print("target_ret3")
+        print(target_ret.index.values[:5])
         print(target_ret.loc[start_dt:end_dt].head())
         print("D_tickers2 ",test_key)
         print(D_tickers2[test_key].head())
@@ -464,6 +479,7 @@ def wrapper_strategy(PriceVolume_dr,index_df,index_holdings_path,match_d,constra
     df_tar = create_universe_zero_df(PriceVolume_dr,index_df).loc[start_dt:end_dt]
     d2h = dates_2_holdings_dict(index_holdings_path)
     print(index_df.head(),index_df.tail())
+    
     print(start_dt,end_dt)
     #date_parser
     match_d = {x:match_d[x] for x in match_d.keys() if date_parser(x).strftime("%Y-%m-%d")>=start_dt and date_parser(x).strftime("%Y-%m-%d")<=end_dt}
