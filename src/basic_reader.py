@@ -93,6 +93,7 @@ def input_reader(input_file):
     D_input["start_dt"] = inputs["start_dt"]
     D_input["end_dt"] = inputs["end_dt"]
     D_input["Lag"] = int(inputs["Lag"])
+    D_input["num_of_tickers"] = int(inputs["num_of_tickers"])
     print(D_input.keys())
     return D_input
 
