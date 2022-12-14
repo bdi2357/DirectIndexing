@@ -55,8 +55,20 @@ if __name__ == "__main__":
     dts.sort(key = lambda x: date_parse(x))
     lag = D_input["Lag"]
     upper_bound = D_input["upper_bound"]
-    match_d = {dts[ii]: dts[ii - lag] for ii in range(lag, len(dts))}
+    if args.TrackerModule.lower().find("dummy") > -1:
+        match_d = {dts[ii]: dts[ii - lag] for ii in range(lag, len(dts))}
+    else:
+        print("HERE")
+        match_d = {dts[ii]: dts[ii] for ii in range(lag, len(dts))}
+    L_bef = list(match_d.items())
+    L_bef.sort(key = lambda x: x[1])
+    print(L_bef)
+    print("+"*40)
     match_d = {k: match_d[k] for k in match_d.keys() if date_parse(k) >= date_parse(D_input["start_dt"])}
+    L = list(match_d.items())
+    L.sort(key = lambda x: x[1])
+    print(L)
+    
     D_input["match_d"] = match_d
     print(match_d.keys())
 
@@ -69,6 +81,7 @@ if __name__ == "__main__":
     logger.info(type(list(match_d.keys())[0]))
     #print(D_input["index_df"].index.values[:10])
     aprox,df_tar = module.wrapper_strategy(**D_input)
+    
     logger.info("total times is %0.2f" % (time.time() - start))
     out_dir = args.OutDir
     if not os.path.isdir(out_dir):
