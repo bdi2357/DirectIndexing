@@ -204,9 +204,15 @@ def lsq_with_constraints(D_tickersN, tar_ret, lb,ub, start_dt, end_dt,Sector2Tic
     P = np.dot(R.transpose(), WR)
     q = -np.dot(s.transpose(), WR)
     G = np.identity(rets_mat.shape[1])
-    h = np.array([ub for ii in range(rets_mat.shape[1])])
+    if isinstance(ub,float):
+        h = np.array([ub for ii in range(rets_mat.shape[1])])
+    else:
+        h = np.array(ub)
     Glb = np.identity(rets_mat.shape[1]) * -1
-    hlb = np.array([-lb for ii in range(rets_mat.shape[1])])
+    if isinstance(lb,float) or isinstance(lb,int):
+        hlb = np.array([-lb for ii in range(rets_mat.shape[1])])
+    else:
+        hlb = np.array([-x for x in lb])
     Arr = []
     sector_bnd  = []
     if sectors_c:
@@ -221,7 +227,11 @@ def lsq_with_constraints(D_tickersN, tar_ret, lb,ub, start_dt, end_dt,Sector2Tic
             Arr.append(A)
             sector_bnd.append(sectors_c[k])
         G = np.concatenate((G,Glb,np.array(Arr)))
-        h = np.array([ub for ii in range(rets_mat.shape[1])]+[-lb for ii in range(rets_mat.shape[1])] + sector_bnd)
+        if isinstance(ub,float):
+            h = np.array([ub for ii in range(rets_mat.shape[1])]+[-lb for ii in range(rets_mat.shape[1])] + sector_bnd)
+        else:
+            h = np.array([ y for y in ub]+[-x for x in lb] + sector_bnd)
+            
 
 
     A = np.array([1.0 for ii in range(rets_mat.shape[1])])
@@ -414,17 +424,28 @@ def match_dates(D_tickers_orig,df_tar,target_ret, match_d, d2h,forbidden,sector_
         f_cand = os.path.join("..","data","holdings","IVV",'IVV_holdings_%s_f.csv'%k)
         if os.path.isfile(f_cand):
             etf_holdings_tickers = list(pd.read_csv(f_cand)["Ticker"])
+            tickers_weight_d = pd.read_csv(f_cand).set_index("Ticker")["Weight (%)"].to_dict()
+            tickers_weight_d = {x:0.01*tickers_weight_d[x] for x in tickers_weight_d.keys() if isinstance(tickers_weight_d[x],float)}
+            print(len(tickers_weight_d.keys()))
+            etf_holdings_tickers = [x for x in etf_holdings_tickers if x in tickers_weight_d.keys()]
+            
         else:
             f_cands = os.listdir(os.path.join("..","data","holdings","IVV"))
             f_cands = [x for x in f_cands if x.find("IVV_holdings")>-1]
             sol1 = min([x for x in f_cands if x> 'IVV_holdings_%s_f.csv'%k])
             etf_holdings_tickers = list(pd.read_csv(os.path.join("..","data","holdings","IVV",sol1))["Ticker"])
+            f_cand = os.path.join("..","data","holdings","IVV",sol1)
+            tickers_weight_d = pd.read_csv(f_cand).set_index("Ticker")["Weight (%)"].to_dict()
+            tickers_weight_d = {x:0.01*tickers_weight_d[x] for x in tickers_weight_d.keys() if isinstance(tickers_weight_d[x],float)}
+            print(len(tickers_weight_d.keys()))
+            etf_holdings_tickers = [x for x in etf_holdings_tickers if x in tickers_weight_d.keys()]
+            
         
         D_tickers = D_tickers_orig.copy()
         D_tickers = {x:D_tickers[x] for x in D_tickers.keys() if x in etf_holdings_tickers}
         dt = date_parser(k).strftime("%Y-%m-%d")
         #print(d2h[dt])
-        years_bef = 2
+        years_bef = 1
         year_before = str(int(dt.split("-")[0])-years_bef)
         start_dt = dt#year_before + "-"+dt.split("-")[1]+"-"+dt.split("-")[2]
         dt_year = int(dt.split("-")[0])
@@ -458,7 +479,8 @@ def match_dates(D_tickers_orig,df_tar,target_ret, match_d, d2h,forbidden,sector_
         #print("len remain",len(D_tickers2.keys()))
         D3 = {x:D3[x] for x in D3.keys() if D3[x].shape[0] == target_ret.loc[start_dt:end_dt].shape[0]}
         print("len remain", len(D3.keys()))
-
+        llb = [max(tickers_weight_d[x]*0.5,lb) for x in D3.keys()]
+        uub = [ min(tickers_weight_d[x]*20,ub) for x in D3.keys()]
         res_ds = lsq_with_constraints(D3, target_ret.loc[start_dt:end_dt]["return"], lb, ub, start_dt, end_dt,
                                       Sector2Tickers, sector_bounds)
         itms = list(res_ds.items())
@@ -468,7 +490,9 @@ def match_dates(D_tickers_orig,df_tar,target_ret, match_d, d2h,forbidden,sector_
         print(len(itms))
         
         D3 = {x:D3[x] for x in D3.keys() if x in itms }
-        res_ds = lsq_with_constraints(D3, target_ret.loc[start_dt:end_dt]["return"], lb, ub, start_dt, end_dt,
+        llb = [max(tickers_weight_d[x]*0.8,lb) for x in D3.keys()]
+        uub = [ min(tickers_weight_d[x]*10,ub) for x in D3.keys()]
+        res_ds = lsq_with_constraints(D3, target_ret.loc[start_dt:end_dt]["return"], llb, uub, start_dt, end_dt,
                                       Sector2Tickers, sector_bounds)
         print(len([x for x in D3.keys()]))
         
@@ -489,7 +513,8 @@ def match_dates(D_tickers_orig,df_tar,target_ret, match_d, d2h,forbidden,sector_
                 print(d1[jj])
                 print("@"*40)
                 print(df_tar[jj].head())
-                if ii == 1:
+                
+                if False: #ii == 1:
                     df_tar[jj].loc[:dts1] = d1[jj]
                 else:
                     df_tar[jj].loc[dt:dts1] = d1[jj]
@@ -499,7 +524,10 @@ def match_dates(D_tickers_orig,df_tar,target_ret, match_d, d2h,forbidden,sector_
                 print(df_tar[["AAPL","MSFT","XOM","BAC"]].head())
                 print(keys_list)
                 
-                
+        else:
+            for jj in d1.keys():
+                df_tar[jj].loc[dt:] = d1[jj]
+            
                 
     
     """

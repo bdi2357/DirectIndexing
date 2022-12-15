@@ -58,7 +58,12 @@ def match_dates(df_tar, match_d, d2h,forbidden,sector_bounds,num_of_tickers,uppe
             df_tar[jj].loc[dt:dts1] = d1[jj]
 
     k = match_d[keys_list[-1]]
-    dt = date_parser(k).strftime("%Y-%m-%d")
+    
+    f_cands = os.listdir(os.path.join("..","data","holdings","IVV"))
+    f_cands = [x for x in f_cands if x.find("IVV_holdings")>-1]
+    sol1 = max([x for x in f_cands if x< 'IVV_holdings_%s_f.csv'%k])
+    kd = re.findall('20[0-9]+',sol1)[0]
+    dt = date_parser(kd).strftime("%Y-%m-%d")
     weights = d2h[dt].set_index(ticker_col)[weight_col]
     eligible_tickers = list(df_tar.columns)
     eligible = [c for c in weights.index.values if c in eligible_tickers]
