@@ -6,7 +6,7 @@ Constraints : ..|Constraints|C1
 UpdatingDates : ..|dates|SP500|rebalancing_dates.txt
 RiskFunction : risk_L2.py
 start_dt : 2022-01-01
-end_dt : 2022-09-30
+end_dt : 2022-09-01
 Lag : 2
-upper_bound : 0.03
-num_of_tickers : 50
+upper_bound : 0.04
+num_of_tickers : 300

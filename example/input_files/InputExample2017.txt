@@ -8,5 +8,5 @@ RiskFunction : risk_L2.py
 start_dt : 2017-01-01
 end_dt : 2017-12-31
 Lag : 2
-upper_bound : 0.03
+upper_bound : 0.04
 num_of_tickers : 100
