@@ -414,7 +414,7 @@ def match_dates(D_tickers_orig,df_tar,target_ret, match_d, d2h,forbidden,sector_
         D_tickers = {x:D_tickers[x] for x in D_tickers.keys() if x in etf_holdings_tickers}
         dt = date_parser(match_d[k]).strftime("%Y-%m-%d")
         print(d2h[dt])
-        year_before = str(int(dt.split("-")[0])-2)
+        year_before = str(int(dt.split("-")[0])-4)
         start_dt = dt#year_before + "-"+dt.split("-")[1]+"-"+dt.split("-")[2]
         dt_year = int(dt.split("-")[0])
         start_dt = str(year_before) +"-" + dt[5:]
@@ -504,6 +504,7 @@ def match_dates(D_tickers_orig,df_tar,target_ret, match_d, d2h,forbidden,sector_
     print(dt)
     for k in d1.keys():
         df_tar[k].loc[dt:] = d1[k]
+    print("="*50)
     print(df_tar[["AAPL","JNJ","JPM"]].tail(),df_tar[["AAPL","JNJ","JPM"]].head())
     
     
@@ -539,10 +540,13 @@ def wrapper_strategy(PriceVolume_dr,index_df,index_holdings_path,match_d,constra
     ub = constraints["upper_bound"]
     print("tickers_pv num of elements %d"%(len(tickers_pv.keys())))
     #sdasdda
-    match_dates(tickers_pv, df_tar,index_df, match_d, d2h, forbidden, sector_bounds, num_of_tickers, ub, lb=0)
+    df_tar = match_dates(tickers_pv, df_tar,index_df, match_d, d2h, forbidden, sector_bounds, num_of_tickers, ub, lb=0)
 
     #match_dates(tickers_pv,df_tar, match_d, d2h, constraints["forbiden_tickers"],constraints["sectors"],constraints["num_of_tickers"],constraints["upper_bound"],sector_mapping)
     universe = list(df_tar.columns)
+    print("*"*20)
+    print(df_tar["AAPL"].tail())
+    
     close_col = [c for c in index_df.columns if c.lower().find("close") > -1]
     if len([c for c in close_col if c.lower().find("adj") > -1]) > 0:
         close_col = [c for c in close_col if c.lower().find("adj") > -1][0]
