@@ -33,10 +33,11 @@ def match_dates(df_tar, match_d, d2h,forbidden,sector_bounds,num_of_tickers,uppe
     wts_base = d2h[date_parser(keys_list[0]).strftime("%Y-%m-%d")]
     weight_col = [c for c in wts_base.columns if c.lower().find("weight") > -1][0]
     ticker_col = [c for c in wts_base.columns if c.lower().find("ticker") > -1][0]
-    for ii in range(len(keys_list) - 1):
+    for ii in range(len(keys_list) ):
         print("match dates ",ii,keys_list[ii])
         k = keys_list[ii]
         dt = date_parser(match_d[k]).strftime("%Y-%m-%d")
+        dt = max([ww for ww in d2h.keys() if ww < dt]) 
         weights = d2h[dt].set_index('Ticker')['Weight (%)']
         eligible_tickers = list(df_tar.columns)
         eligible = [c for c in weights.index.values if c in eligible_tickers]
@@ -47,16 +48,22 @@ def match_dates(df_tar, match_d, d2h,forbidden,sector_bounds,num_of_tickers,uppe
         d1 = filter_weights_dict(d1,forbidden)
         print(k,dt)
         d1 = limit_tickers(d1,num_of_tickers)
+        
         #print("AAPL before", weights["AAPL"])
         d1 = filter_weights_dict_sector_weights(d1, sector_bounds, sector_mapping)
         #print("AAPL after", weights["AAPL"])
         d1 = max_cap_ticker(d1,upper_bound)
-        ks1 = match_d[keys_list[ii + 1]]
-        dts1 = date_parser(ks1).strftime("%Y-%m-%d")
+        if ii < len(keys_list)-1:
+            ks1 = match_d[keys_list[ii + 1]]
+            dts1 = date_parser(ks1).strftime("%Y-%m-%d")
         for jj in d1.keys():
             #print(k)
-            df_tar[jj].loc[dt:dts1] = d1[jj]
-
+            if ii < len(keys_list) -1:
+                df_tar[jj].loc[dt:dts1] = d1[jj]
+            else:
+                df_tar[jj].loc[dt:] = d1[jj]
+        
+    """
     k = match_d[keys_list[-1]]
     
     f_cands = os.listdir(os.path.join("..","data","holdings","IVV"))
@@ -73,6 +80,7 @@ def match_dates(df_tar, match_d, d2h,forbidden,sector_bounds,num_of_tickers,uppe
     d1 = weights.to_dict()
     for k in d1.keys():
         df_tar[k].loc[dt:] = d1[k]
+    """
     return df_tar
 
 def create_ret_dict(PriceVolume_dr,universe,close_col):
@@ -253,7 +261,7 @@ def wrapper_strategy(PriceVolume_dr,index_df,index_holdings_path,match_d,constra
     df_tar = create_universe_zero_df(PriceVolume_dr,index_df)
     d2h = dates_2_holdings_dict(index_holdings_path)
     #print(d2h.keys())
-    match_dates(df_tar, match_d, d2h, constraints["forbiden_tickers"],constraints["sectors"],constraints["num_of_tickers"],constraints["upper_bound"],sector_mapping)
+    df_tar = match_dates(df_tar, match_d, d2h, constraints["forbiden_tickers"],constraints["sectors"],constraints["num_of_tickers"],constraints["upper_bound"],sector_mapping)
     universe = list(df_tar.columns)
     close_col = [c for c in index_df.columns if c.lower().find("close") > -1]
     if len([c for c in close_col if c.lower().find("adj") > -1]) > 0:

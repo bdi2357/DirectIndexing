@@ -489,9 +489,17 @@ def match_dates(D_tickers_orig,df_tar,target_ret, match_d, d2h,forbidden,sector_
         itms = [x[0] for x in itms]
         print(len(itms))
         
-        D3 = {x:D3[x] for x in D3.keys() if x in itms }
-        llb = [max(tickers_weight_d[x]*0.8,lb) for x in D3.keys()]
+        D3 = {x:D3[x] for x in D3.keys() if x in itms and x!="USD"}
+        llb = [max(tickers_weight_d[x]*0.5,lb) for x in D3.keys()]
         uub = [ min(tickers_weight_d[x]*10,ub) for x in D3.keys()]
+        kys = list(D3.keys())
+        for x in range(len(kys)):
+            print(kys[x],llb[x],uub[x])
+            if llb[x] > uub[x]:
+                print("?"*50)
+                llb[x] = max(0.0,uub[x] - 0.01)
+        #llb = [lb for x in D3.keys()]
+        #uub = [ub for x in D3.keys()]
         res_ds = lsq_with_constraints(D3, target_ret.loc[start_dt:end_dt]["return"], llb, uub, start_dt, end_dt,
                                       Sector2Tickers, sector_bounds)
         print(len([x for x in D3.keys()]))
