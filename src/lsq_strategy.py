@@ -432,7 +432,7 @@ def match_dates(D_tickers_orig,df_tar,target_ret, match_d, d2h,forbidden,sector_
         else:
             f_cands = os.listdir(os.path.join("..","data","holdings","IVV"))
             f_cands = [x for x in f_cands if x.find("IVV_holdings")>-1]
-            sol1 = min([x for x in f_cands if x> 'IVV_holdings_%s_f.csv'%k])
+            sol1 = max([x for x in f_cands if x < 'IVV_holdings_%s_f.csv'%k])
             etf_holdings_tickers = list(pd.read_csv(os.path.join("..","data","holdings","IVV",sol1))["Ticker"])
             f_cand = os.path.join("..","data","holdings","IVV",sol1)
             tickers_weight_d = pd.read_csv(f_cand).set_index("Ticker")["Weight (%)"].to_dict()

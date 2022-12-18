@@ -60,10 +60,12 @@ if __name__ == "__main__":
     else:
         print("HERE")
         match_d = {dts[ii]: dts[ii] for ii in range(lag, len(dts))}
+    
     L_bef = list(match_d.items())
-    L_bef.sort(key = lambda x: x[1])
+    L_bef.sort(key = lambda x: x[0])
     print(L_bef)
     print("+"*40)
+    match_d = dict(L_bef)
     match_d = {k: match_d[k] for k in match_d.keys() if date_parse(k) >= date_parse(D_input["start_dt"])}
     match_d[D_input["start_dt"].replace("-","")] = D_input["start_dt"].replace("-","")
     
