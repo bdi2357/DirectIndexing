@@ -9,4 +9,4 @@ start_dt : 2013-01-01
 end_dt : 2013-12-31
 Lag : 1
 upper_bound : 0.1
-num_of_tickers : 500
+num_of_tickers : 100

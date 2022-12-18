@@ -7,6 +7,6 @@ UpdatingDates : ..|dates|SP500|rebalancing_dates.txt
 RiskFunction : risk_L2.py
 start_dt : 2016-01-01
 end_dt : 2016-12-31
-Lag : 2
-upper_bound : 0.03
+Lag : 1
+upper_bound : 0.1
 num_of_tickers : 100
