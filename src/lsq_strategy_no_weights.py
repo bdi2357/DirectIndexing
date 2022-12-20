@@ -425,7 +425,7 @@ def match_dates(D_tickers_orig,df_tar,target_ret, match_d, d2h,forbidden,sector_
         if os.path.isfile(f_cand):
             etf_holdings_tickers = list(pd.read_csv(f_cand)["Ticker"])
             tickers_weight_d = pd.read_csv(f_cand).set_index("Ticker")["Weight (%)"].to_dict()
-            tickers_weight_d = {x:0.01*tickers_weight_d[x] for x in tickers_weight_d.keys() if isinstance(tickers_weight_d[x],float)}
+            #tickers_weight_d = {x:0.01*tickers_weight_d[x] for x in tickers_weight_d.keys() if isinstance(tickers_weight_d[x],float)}
             print(len(tickers_weight_d.keys()))
             etf_holdings_tickers = [x for x in etf_holdings_tickers if x in tickers_weight_d.keys()]
             
@@ -436,7 +436,7 @@ def match_dates(D_tickers_orig,df_tar,target_ret, match_d, d2h,forbidden,sector_
             etf_holdings_tickers = list(pd.read_csv(os.path.join("..","data","holdings","IVV",sol1))["Ticker"])
             f_cand = os.path.join("..","data","holdings","IVV",sol1)
             tickers_weight_d = pd.read_csv(f_cand).set_index("Ticker")["Weight (%)"].to_dict()
-            tickers_weight_d = {x:0.01*tickers_weight_d[x] for x in tickers_weight_d.keys() if isinstance(tickers_weight_d[x],float)}
+            #tickers_weight_d = {x:0.01*tickers_weight_d[x] for x in tickers_weight_d.keys() if isinstance(tickers_weight_d[x],float)}
             print(len(tickers_weight_d.keys()))
             etf_holdings_tickers = [x for x in etf_holdings_tickers if x in tickers_weight_d.keys()]
             
@@ -479,8 +479,8 @@ def match_dates(D_tickers_orig,df_tar,target_ret, match_d, d2h,forbidden,sector_
         #print("len remain",len(D_tickers2.keys()))
         D3 = {x:D3[x] for x in D3.keys() if D3[x].shape[0] == target_ret.loc[start_dt:end_dt].shape[0]}
         print("len remain", len(D3.keys()))
-        llb = [max(tickers_weight_d[x]*0.5,lb) for x in D3.keys()]
-        uub = [ min(tickers_weight_d[x]*20,ub) for x in D3.keys()]
+        llb = [lb for x in D3.keys()]
+        uub = [ ub for x in D3.keys()]
         res_ds = lsq_with_constraints(D3, target_ret.loc[start_dt:end_dt]["return"], lb, ub, start_dt, end_dt,
                                       Sector2Tickers, sector_bounds)
         itms = list(res_ds.items())
@@ -490,9 +490,9 @@ def match_dates(D_tickers_orig,df_tar,target_ret, match_d, d2h,forbidden,sector_
         print(len(itms))
         
         D3 = {x:D3[x] for x in D3.keys() if x in itms and x!="USD"}
-        llb = [max(tickers_weight_d[x]*0.5,lb) for x in D3.keys()]
-        uub = [ min(tickers_weight_d[x]*10,ub) for x in D3.keys()]
-        llb = [max(lb,lb) for x in D3.keys()]
+        llb = [lb for x in D3.keys()]
+        uub = [ ub for x in D3.keys()]
+        
         #uub = [ min(ub,ub) for x in D3.keys()]
         kys = list(D3.keys())
         for x in range(len(kys)):

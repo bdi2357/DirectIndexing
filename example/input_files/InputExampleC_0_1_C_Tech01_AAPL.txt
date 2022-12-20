@@ -2,11 +2,11 @@ Target_index_returns : ..|data|index_data|SPY.csv
 Target_index_holdings : ..|data|holdings|IVV
 Price_volume_data : ..|data|PriceVolume
 Universe : ..|data|SP500_constiutents_from_2010.csv
-Constraints : ..|Constraints|C1
+Constraints : ..|Constraints|C_Tech01
 UpdatingDates : ..|dates|SP500|rebalancing_dates.txt
 RiskFunction : risk_L2.py
 start_dt : 2013-01-01
-end_dt : 2013-12-31
+end_dt : 2022-09-30
 Lag : 0
-upper_bound : 0.1
-num_of_tickers : 100
+upper_bound : 0.05
+num_of_tickers : 500
