@@ -394,6 +394,7 @@ def compute_lsq_from_tickers():
     return
 
 def match_dates(D_tickers_orig,df_tar,target_ret, match_d, d2h,forbidden,sector_bounds,num_of_tickers,ub,lb=0):
+    print("forbidden",forbidden)
     keys_list = list(match_d.keys())
     keys_list.sort()
     print(df_tar.index.values[:10])

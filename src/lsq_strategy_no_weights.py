@@ -587,7 +587,7 @@ def wrapper_strategy(PriceVolume_dr,index_df,index_holdings_path,match_d,constra
     else:
         close_col = close_col[0]
     tickers_pv = create_ret_dict(PriceVolume_dr, universe, close_col)
-    #constraints["forbiden_tickers"],constraints["sectors"],constraints["num_of_tickers"],constraints["upper_bound"],sector_mapping)
+    
 
     forbidden = constraints["forbiden_tickers"]
     sector_bounds = constraints["sectors"]
