@@ -187,6 +187,8 @@ def lsq_with_constraints(D_tickersN, tar_ret, lb,ub, start_dt, end_dt,Sector2Tic
     rets_mat = pd.DataFrame(D_t_rets)
     rets_mat = rets_mat.loc[tar_ret.index.values]
     print("rets_mat shape ",rets_mat.shape)
+    print(rets_mat.index.values)
+    
     #rets_mat = rets_mat.dropna()
     #print("rets_mat shape after droping rows with nan", rets_mat.shape)
     rets_mat = rets_mat.dropna(axis=1)
@@ -403,6 +405,7 @@ def match_dates(D_tickers_orig,df_tar,target_ret, match_d, d2h,forbidden,sector_
     # df_tar.index = pd.to_datetime(df_tar.index)
 
     df_tar = df_tar.loc[date_parser(keys_list[0]).strftime("%Y-%m-%d"):]
+    df_tar2 = df_tar.copy()
     print("*" * 50)
     print(keys_list[0], date_parser(keys_list[0]).strftime("%Y-%m-%d"))
     
@@ -414,7 +417,7 @@ def match_dates(D_tickers_orig,df_tar,target_ret, match_d, d2h,forbidden,sector_
     #ticker_col = [c for c in wts_base.columns if c.lower().find("ticker") > -1][0]
     
     print("keys_list",keys_list)
-    
+    D_fin = {}
     for ii in range(len(keys_list)):
         print("match dates ", ii, keys_list[ii])
         #univ_cof = pd.read_csv(os.path.join(".
@@ -446,7 +449,7 @@ def match_dates(D_tickers_orig,df_tar,target_ret, match_d, d2h,forbidden,sector_
         D_tickers = {x:D_tickers[x] for x in D_tickers.keys() if x in etf_holdings_tickers}
         dt = date_parser(k).strftime("%Y-%m-%d")
         #print(d2h[dt])
-        years_bef = 2
+        years_bef = 3
         year_before = str(int(dt.split("-")[0])-years_bef)
         start_dt = dt#year_before + "-"+dt.split("-")[1]+"-"+dt.split("-")[2]
         dt_year = int(dt.split("-")[0])
@@ -491,9 +494,10 @@ def match_dates(D_tickers_orig,df_tar,target_ret, match_d, d2h,forbidden,sector_
         print(len(itms))
         
         D3 = {x:D3[x] for x in D3.keys() if x in itms and x!="USD"}
-        llb = [max(tickers_weight_d[x]*0.5,lb) for x in D3.keys()]
-        uub = [ min(tickers_weight_d[x]*10,ub) for x in D3.keys()]
-        llb = [max(lb,lb) for x in D3.keys()]
+        D3_cp = D3.copy()
+        llb = [max(tickers_weight_d[x]*0.9,lb) for x in D3.keys()]
+        uub = [ min(tickers_weight_d[x]*4,ub) for x in D3.keys()]
+        #llb = [max(lb,lb) for x in D3.keys()]
         #uub = [ min(ub,ub) for x in D3.keys()]
         kys = list(D3.keys())
         for x in range(len(kys)):
@@ -521,18 +525,28 @@ def match_dates(D_tickers_orig,df_tar,target_ret, match_d, d2h,forbidden,sector_
         if ii < len(keys_list)-1:
             ks1 = match_d[keys_list[ii + 1]]
             dts1 = date_parser(ks1).strftime("%Y-%m-%d")
+            D_t_rets = {k: D_tickers_orig[k]["return"] for k in d1.keys()}
+            print(D_t_rets.keys())
+            test_key = list(D_t_rets.keys())[0]
+            print(D_t_rets[test_key].shape)
+            df_tar1 = target_ret.loc[dt:dts1]
+            print("tar_ret shape", df_tar1.shape)
+            rets_mat = pd.DataFrame(D_t_rets)
+            rets_mat = rets_mat.loc[df_tar1.index.values]
+            print("rets_mat shape ",rets_mat.shape)
+            rets_mat_cp = rets_mat.copy()
             for jj in d1.keys():
                 # print(k)
+                tmp1 = (1. + rets_mat[jj]).cumprod()
                 print(jj)
-                print("-$"*20)
-                print(d1[jj])
-                print("@"*40)
-                print(df_tar[jj].head())
+                print(tmp1.tail())
                 
                 if False: #ii == 1:
                     df_tar[jj].loc[:dts1] = d1[jj]
                 else:
+                    rets_mat_cp[jj] =  d1[jj]*tmp1
                     df_tar[jj].loc[dt:dts1] = d1[jj]
+            D_fin[(dt,dts1)] = rets_mat_cp
             if ii == len(keys_list)-2:
                 print(dt,dts1)
                 print(df_tar["MSFT"].loc[dt:dts1])
@@ -540,9 +554,24 @@ def match_dates(D_tickers_orig,df_tar,target_ret, match_d, d2h,forbidden,sector_
                 print(keys_list)
                 
         else:
+            D_t_rets = {k: D_tickers_orig[k]["return"] for k in d1.keys()}
+            print(D_t_rets.keys())
+            test_key = list(D_t_rets.keys())[0]
+            print(D_t_rets[test_key].shape)
+            df_tar1 = target_ret.loc[dt:dts1]
+            print("tar_ret shape", df_tar1.shape)
+            rets_mat = pd.DataFrame(D_t_rets)
+            rets_mat = rets_mat.loc[df_tar1.index.values]
+            print("rets_mat shape ",rets_mat.shape)
+            rets_mat_cp = rets_mat.copy()
             for jj in d1.keys():
-                df_tar[jj].loc[dt:] = d1[jj]
-            
+                tmp1 = (1. + rets_mat[jj]).cumprod()
+                
+                print(tmp1.tail())
+                
+                df_tar[jj].loc[dt:dts1] = d1[jj]
+                rets_mat_cp[jj] =  d1[jj]*tmp1
+            D_fin[(dt,"end")] = rets_mat_cp
                 
     
     """
@@ -564,7 +593,7 @@ def match_dates(D_tickers_orig,df_tar,target_ret, match_d, d2h,forbidden,sector_
     print(df_tar[["AAPL","JNJ","JPM"]].tail(),df_tar[["AAPL","JNJ","JPM"]].head())
     
     
-    return df_tar
+    return df_tar,D_fin
 
 def wrapper_strategy(PriceVolume_dr,index_df,index_holdings_path,match_d,constraints,start_dt,end_dt,sector_mapping):
     df_tar = create_universe_zero_df(PriceVolume_dr,index_df).loc[start_dt:end_dt]
@@ -596,7 +625,10 @@ def wrapper_strategy(PriceVolume_dr,index_df,index_holdings_path,match_d,constra
     ub = constraints["upper_bound"]
     print("tickers_pv num of elements %d"%(len(tickers_pv.keys())))
     #sdasdda
-    df_tar = match_dates(tickers_pv, df_tar,index_df, match_d, d2h, forbidden, sector_bounds, num_of_tickers, ub, lb=0)
+    df_tar,D_fin = match_dates(tickers_pv, df_tar,index_df, match_d, d2h, forbidden, sector_bounds, num_of_tickers, ub, lb=0)
+    
+    print(D_fin.keys())
+    xxxx
 
     #match_dates(tickers_pv,df_tar, match_d, d2h, constraints["forbiden_tickers"],constraints["sectors"],constraints["num_of_tickers"],constraints["upper_bound"],sector_mapping)
     universe = list(df_tar.columns)

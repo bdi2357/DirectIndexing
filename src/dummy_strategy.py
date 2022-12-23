@@ -99,6 +99,9 @@ def create_ret_dict(PriceVolume_dr,universe,close_col):
     return tickers_pv
 
 
+def update_weights():
+    return
+
 def compute_return(df_tar,tickers_pv,start_dt,dates):
     print(dates)
     print(start_dt)
@@ -106,6 +109,20 @@ def compute_return(df_tar,tickers_pv,start_dt,dates):
     ret_aprox = {}
     """
     FIX ###
+    D_t_rets = {k: D_tickers_orig[k]["return"] for k in d1.keys()}
+    print(D_t_rets.keys())
+    test_key = list(D_t_rets.keys())[0]
+    print(D_t_rets[test_key].shape)
+    df_tar1 = target_ret.loc[dt:dts1]
+    print("tar_ret shape", df_tar1.shape)
+    rets_mat = pd.DataFrame(D_t_rets)
+    rets_mat = rets_mat.loc[df_tar1.index.values]
+    print("rets_mat shape ",rets_mat.shape)
+    print(rets_mat.index.values)
+    tmp1 = (1. + rets_mat[jj]).cumprod()
+                print(jj)
+                print(tmp1.tail())
+              df_tar[jj].loc[dt:dts1] = d1[jj]*tmp1
     """
     df_tar = df_tar[date_parser(dates[0]).strftime("%Y-%m-%d"):]
     vals = list(df_tar.index.values)
