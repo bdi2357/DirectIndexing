@@ -518,9 +518,10 @@ def match_dates(D_tickers_orig,df_tar,target_ret, match_d, d2h,forbidden,sector_
         # aprx_ns = create_aprx1(res_ds, D_tickers)
         #aprx_ns, D_w_after = wrap_rebalancing(res_ds, Ticker2Sector, d_weights_sector, D_tickers,bnd=4)
         print(len([x for x in res_ds.keys() if res_ds[x]>0]))
-        
+        print("total weights before",sum(res_ds.values()))
         aprx_ns, D_w_after = wrap_rebalancing(res_ds, Ticker2Sector, D_tickers,bnd=4)
-
+        print("total weights after",sum(res_ds.values()))
+        
         d1 = res_ds#D_w_after
         if ii < len(keys_list)-1:
             ks1 = match_d[keys_list[ii + 1]]
@@ -537,7 +538,10 @@ def match_dates(D_tickers_orig,df_tar,target_ret, match_d, d2h,forbidden,sector_
             rets_mat_cp = rets_mat.copy()
             for jj in d1.keys():
                 # print(k)
-                tmp1 = (1. + rets_mat[jj]).cumprod()
+                tmp_t_ret = rets_mat[jj].copy()
+                tmp_t_ret.iloc[0] = 0.0
+                tmp1 = (1. + tmp_t_ret).cumprod()
+                #tmp1 = (1. + rets_mat[jj]).cumprod()
                 print(jj)
                 print(tmp1.tail())
                 
@@ -565,7 +569,9 @@ def match_dates(D_tickers_orig,df_tar,target_ret, match_d, d2h,forbidden,sector_
             print("rets_mat shape ",rets_mat.shape)
             rets_mat_cp = rets_mat.copy()
             for jj in d1.keys():
-                tmp1 = (1. + rets_mat[jj]).cumprod()
+                tmp_t_ret = rets_mat[jj].copy()
+                tmp_t_ret.iloc[0] = 0.0
+                tmp1 = (1. + tmp_t_ret).cumprod()
                 
                 print(tmp1.tail())
                 
@@ -595,6 +601,16 @@ def match_dates(D_tickers_orig,df_tar,target_ret, match_d, d2h,forbidden,sector_
     
     return df_tar,D_fin
 
+def compute_mat_ret(mat):
+    total = mat.sum(axis=1)
+    total = total.pct_change().fillna(0.0)
+    return total
+def compute_return_intr(D_fin):
+    #aprox = compute_return(cpn,tickers_pv, start_dt,list(match_d.keys()))
+    s1 =  pd.concat([compute_mat_ret(x) for x in D_fin.values()]).drop_duplicates(keep ="first")
+    return pd.DataFrame(s1,columns=["return"])
+    
+    
 def wrapper_strategy(PriceVolume_dr,index_df,index_holdings_path,match_d,constraints,start_dt,end_dt,sector_mapping):
     df_tar = create_universe_zero_df(PriceVolume_dr,index_df).loc[start_dt:end_dt]
     d2h = dates_2_holdings_dict(index_holdings_path)
@@ -628,8 +644,16 @@ def wrapper_strategy(PriceVolume_dr,index_df,index_holdings_path,match_d,constra
     df_tar,D_fin = match_dates(tickers_pv, df_tar,index_df, match_d, d2h, forbidden, sector_bounds, num_of_tickers, ub, lb=0)
     
     print(D_fin.keys())
-    xxxx
-
+    print("=*=")
+    #xxxx
+    d_aprox2 = compute_return_intr(D_fin)
+    print(d_aprox2.head())
+    print("="*50)
+    print(d_aprox2.tail())
+    print("="*50)
+    print(d_aprox2[50:70])
+    print(d_aprox2[-70:-50])
+    
     #match_dates(tickers_pv,df_tar, match_d, d2h, constraints["forbiden_tickers"],constraints["sectors"],constraints["num_of_tickers"],constraints["upper_bound"],sector_mapping)
     universe = list(df_tar.columns)
     print("*"*20)
@@ -644,11 +668,17 @@ def wrapper_strategy(PriceVolume_dr,index_df,index_holdings_path,match_d,constra
     #filter
     #df_tar = filter_out_forbiden_tickers(df_tar, constraints["forbiden_tickers"])
     cpn = df_tar.copy()
-    aprox = compute_return(cpn,tickers_pv, start_dt,list(match_d.keys()))
+    #L = list(D_fin.values())
+    #L = [L[0]] + [x[1:] for x in L[1:]]
+    #cpn = pd.concat(L,axis=0).drop_duplicates(keep="first").fillna(0.0)
+    #aprox = compute_return(cpn,tickers_pv, start_dt,list(match_d.keys()))
+    aprox = d_aprox2.loc[start_dt:end_dt]
+    #aprox = compute_return(cpn,tickers_pv, start_dt,list(match_d.keys()))
     print("start_dt %s"%(start_dt))
-    aprox["benchmark_index_return"] = index_df["return"][start_dt:end_dt]
-    aprox["Comulative_ret"] = (1. + aprox["return"][start_dt:end_dt]).cumprod()
-    aprox["benchmark_index_comulative_ret"] = (1 + aprox["benchmark_index_return"]).cumprod()
+    aprox["benchmark_index_return"] = index_df.loc[start_dt:end_dt]["return"]
+    aprox["Comulative_ret"] = (1. + aprox["return"]).cumprod()
+    aprox["benchmark_index_comulative_ret"] = (1. + aprox["benchmark_index_return"]).cumprod()
+    
     return aprox,df_tar
 
 GICS = pd.read_csv(os.path.join("..","data","GICS","GICS_sector_SP500.csv"))
