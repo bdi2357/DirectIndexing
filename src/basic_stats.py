@@ -8,6 +8,8 @@ def generate_basic_stats(df,output_dir,name):
     stats = {}
     if not os.path.isdir(output_dir):
         os.mkdir(output_dir)
+    df["Comulative_ret"] = (1. + df["return"]).cumprod()
+    df["benchmark_index_comulative_ret"] = (1. + df["benchmark_index_return"]).cumprod()
     df[[c for c in df.columns if c.lower().find("comulative")>-1]].plot()
     plt.savefig(os.path.join(output_dir,'benchmarkVstracker.png'))
     stats["maximum_abs_difference"] = max(abs(df["benchmark_index_comulative_ret"] - df["Comulative_ret"]))
