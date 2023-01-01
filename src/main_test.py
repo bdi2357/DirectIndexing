@@ -74,8 +74,10 @@ if __name__ == "__main__":
     print(L)
     
     D_input["match_d"] = match_d
-    print(match_d.keys())
-
+    print(list(match_d.keys()))
+    print("======")
+    print(match_d.items())
+   
     D_input["sector_mapping"] =  SectorMapping
     D_input["constraints"]["num_of_tickers"] = D_input["num_of_tickers"]
     D_input["constraints"]["upper_bound"] = upper_bound

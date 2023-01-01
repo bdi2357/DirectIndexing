@@ -171,6 +171,10 @@ def soft_lstsq(D_tickers, tar_ret, lb, ub, start_dt, end_dt):
     lsq_sol = compute_soft_lsq(rets_mat,tar_ret,lb,ub)
     sol_d = {rets_mat.columns[ii]: lsq_sol[ii] for ii in range(len(rets_mat.columns))}
     return sol_d
+def cum_prd(srs):
+    return (srs+1.).cumprod()
+def cum_prd_mn(srs):
+    return (srs+1.).cumprod() - 1.
 def lsq_with_constraints(D_tickersN, tar_ret, lb,ub, start_dt, end_dt,Sector2Tickers,sectors_c={}):
     D_tickers = D_tickersN.copy()
     test_key = list(D_tickers.keys())[0]
@@ -180,13 +184,21 @@ def lsq_with_constraints(D_tickersN, tar_ret, lb,ub, start_dt, end_dt,Sector2Tic
     print([k for k in  D_tickers.keys() if "return" not in D_tickers[k].columns])
     relevant_tickers = [k for k in  D_tickers.keys() if "return"  in D_tickers[k].columns]
     #D_t_rets = {k: D_tickers[k]["return"].loc[start_dt:end_dt] for k in relevant_tickers}
-    D_t_rets = {k: D_tickers[k]["return"] for k in relevant_tickers}
+    D_t_rets2 = {k: cum_prd(D_tickers[k]["return"]) for k in relevant_tickers}
+    D_t_rets = {k: cum_prd(D_tickers[k]["return"]) for k in relevant_tickers}
     print(D_t_rets[test_key].shape)
-    tar_ret = tar_ret.loc[start_dt:end_dt]
+    tar_ret2 = cum_prd(tar_ret.loc[start_dt:end_dt].copy())
+    tar_ret = cum_prd(tar_ret.loc[start_dt:end_dt])
     print("tar_ret shape", tar_ret.shape)
     rets_mat = pd.DataFrame(D_t_rets)
     rets_mat = rets_mat.loc[tar_ret.index.values]
+    rets_mat2 = pd.DataFrame(D_t_rets)
+    rets_mat2 = rets_mat2.loc[tar_ret.index.values]
+    tar_ret = pd.concat([tar_ret,tar_ret2])
+    rets_mat = pd.concat([rets_mat,rets_mat2])
     print("rets_mat shape ",rets_mat.shape)
+    print(rets_mat.index.values)
+    
     #rets_mat = rets_mat.dropna()
     #print("rets_mat shape after droping rows with nan", rets_mat.shape)
     rets_mat = rets_mat.dropna(axis=1)
@@ -394,6 +406,7 @@ def compute_lsq_from_tickers():
     return
 
 def match_dates(D_tickers_orig,df_tar,target_ret, match_d, d2h,forbidden,sector_bounds,num_of_tickers,ub,lb=0):
+    print("forbidden",forbidden)
     keys_list = list(match_d.keys())
     keys_list.sort()
     print(df_tar.index.values[:10])
@@ -402,6 +415,7 @@ def match_dates(D_tickers_orig,df_tar,target_ret, match_d, d2h,forbidden,sector_
     # df_tar.index = pd.to_datetime(df_tar.index)
 
     df_tar = df_tar.loc[date_parser(keys_list[0]).strftime("%Y-%m-%d"):]
+    df_tar2 = df_tar.copy()
     print("*" * 50)
     print(keys_list[0], date_parser(keys_list[0]).strftime("%Y-%m-%d"))
     
@@ -413,7 +427,7 @@ def match_dates(D_tickers_orig,df_tar,target_ret, match_d, d2h,forbidden,sector_
     #ticker_col = [c for c in wts_base.columns if c.lower().find("ticker") > -1][0]
     
     print("keys_list",keys_list)
-    
+    D_fin = {}
     for ii in range(len(keys_list)):
         print("match dates ", ii, keys_list[ii])
         #univ_cof = pd.read_csv(os.path.join(".
@@ -425,7 +439,7 @@ def match_dates(D_tickers_orig,df_tar,target_ret, match_d, d2h,forbidden,sector_
         if os.path.isfile(f_cand):
             etf_holdings_tickers = list(pd.read_csv(f_cand)["Ticker"])
             tickers_weight_d = pd.read_csv(f_cand).set_index("Ticker")["Weight (%)"].to_dict()
-            #tickers_weight_d = {x:0.01*tickers_weight_d[x] for x in tickers_weight_d.keys() if isinstance(tickers_weight_d[x],float)}
+            tickers_weight_d = {x:0.01*tickers_weight_d[x] for x in tickers_weight_d.keys() if isinstance(tickers_weight_d[x],float)}
             print(len(tickers_weight_d.keys()))
             etf_holdings_tickers = [x for x in etf_holdings_tickers if x in tickers_weight_d.keys()]
             
@@ -436,7 +450,7 @@ def match_dates(D_tickers_orig,df_tar,target_ret, match_d, d2h,forbidden,sector_
             etf_holdings_tickers = list(pd.read_csv(os.path.join("..","data","holdings","IVV",sol1))["Ticker"])
             f_cand = os.path.join("..","data","holdings","IVV",sol1)
             tickers_weight_d = pd.read_csv(f_cand).set_index("Ticker")["Weight (%)"].to_dict()
-            #tickers_weight_d = {x:0.01*tickers_weight_d[x] for x in tickers_weight_d.keys() if isinstance(tickers_weight_d[x],float)}
+            tickers_weight_d = {x:0.01*tickers_weight_d[x] for x in tickers_weight_d.keys() if isinstance(tickers_weight_d[x],float)}
             print(len(tickers_weight_d.keys()))
             etf_holdings_tickers = [x for x in etf_holdings_tickers if x in tickers_weight_d.keys()]
             
@@ -445,7 +459,7 @@ def match_dates(D_tickers_orig,df_tar,target_ret, match_d, d2h,forbidden,sector_
         D_tickers = {x:D_tickers[x] for x in D_tickers.keys() if x in etf_holdings_tickers}
         dt = date_parser(k).strftime("%Y-%m-%d")
         #print(d2h[dt])
-        years_bef = 4
+        years_bef = 3
         year_before = str(int(dt.split("-")[0])-years_bef)
         start_dt = dt#year_before + "-"+dt.split("-")[1]+"-"+dt.split("-")[2]
         dt_year = int(dt.split("-")[0])
@@ -479,8 +493,8 @@ def match_dates(D_tickers_orig,df_tar,target_ret, match_d, d2h,forbidden,sector_
         #print("len remain",len(D_tickers2.keys()))
         D3 = {x:D3[x] for x in D3.keys() if D3[x].shape[0] == target_ret.loc[start_dt:end_dt].shape[0]}
         print("len remain", len(D3.keys()))
-        llb = [lb for x in D3.keys()]
-        uub = [ ub for x in D3.keys()]
+        llb = [max(tickers_weight_d[x]*0.5,lb) for x in D3.keys()]
+        uub = [ min(tickers_weight_d[x]*20,ub) for x in D3.keys()]
         res_ds = lsq_with_constraints(D3, target_ret.loc[start_dt:end_dt]["return"], lb, ub, start_dt, end_dt,
                                       Sector2Tickers, sector_bounds)
         itms = list(res_ds.items())
@@ -490,9 +504,10 @@ def match_dates(D_tickers_orig,df_tar,target_ret, match_d, d2h,forbidden,sector_
         print(len(itms))
         
         D3 = {x:D3[x] for x in D3.keys() if x in itms and x!="USD"}
-        llb = [lb for x in D3.keys()]
-        uub = [ ub for x in D3.keys()]
-        
+        D3_cp = D3.copy()
+        llb = [max(tickers_weight_d[x]*0.99,lb) for x in D3.keys()]
+        uub = [ min(tickers_weight_d[x]*2.5,ub) for x in D3.keys()]
+        #llb = [max(lb,lb) for x in D3.keys()]
         #uub = [ min(ub,ub) for x in D3.keys()]
         kys = list(D3.keys())
         for x in range(len(kys)):
@@ -513,25 +528,39 @@ def match_dates(D_tickers_orig,df_tar,target_ret, match_d, d2h,forbidden,sector_
         # aprx_ns = create_aprx1(res_ds, D_tickers)
         #aprx_ns, D_w_after = wrap_rebalancing(res_ds, Ticker2Sector, d_weights_sector, D_tickers,bnd=4)
         print(len([x for x in res_ds.keys() if res_ds[x]>0]))
-        
+        print("total weights before",sum(res_ds.values()))
         aprx_ns, D_w_after = wrap_rebalancing(res_ds, Ticker2Sector, D_tickers,bnd=4)
-
+        print("total weights after",sum(res_ds.values()))
+        
         d1 = res_ds#D_w_after
         if ii < len(keys_list)-1:
             ks1 = match_d[keys_list[ii + 1]]
             dts1 = date_parser(ks1).strftime("%Y-%m-%d")
+            D_t_rets = {k: D_tickers_orig[k]["return"] for k in d1.keys()}
+            print(D_t_rets.keys())
+            test_key = list(D_t_rets.keys())[0]
+            print(D_t_rets[test_key].shape)
+            df_tar1 = target_ret.loc[dt:dts1]
+            print("tar_ret shape", df_tar1.shape)
+            rets_mat = pd.DataFrame(D_t_rets)
+            rets_mat = rets_mat.loc[df_tar1.index.values]
+            print("rets_mat shape ",rets_mat.shape)
+            rets_mat_cp = rets_mat.copy()
             for jj in d1.keys():
                 # print(k)
+                tmp_t_ret = rets_mat[jj].copy()
+                tmp_t_ret.iloc[0] = 0.0
+                tmp1 = (1. + tmp_t_ret).cumprod()
+                #tmp1 = (1. + rets_mat[jj]).cumprod()
                 print(jj)
-                print("-$"*20)
-                print(d1[jj])
-                print("@"*40)
-                print(df_tar[jj].head())
+                print(tmp1.tail())
                 
                 if False: #ii == 1:
                     df_tar[jj].loc[:dts1] = d1[jj]
                 else:
+                    rets_mat_cp[jj] =  d1[jj]*tmp1
                     df_tar[jj].loc[dt:dts1] = d1[jj]
+            D_fin[(dt,dts1)] = rets_mat_cp
             if ii == len(keys_list)-2:
                 print(dt,dts1)
                 print(df_tar["MSFT"].loc[dt:dts1])
@@ -539,9 +568,26 @@ def match_dates(D_tickers_orig,df_tar,target_ret, match_d, d2h,forbidden,sector_
                 print(keys_list)
                 
         else:
+            D_t_rets = {k: D_tickers_orig[k]["return"] for k in d1.keys()}
+            print(D_t_rets.keys())
+            test_key = list(D_t_rets.keys())[0]
+            print(D_t_rets[test_key].shape)
+            df_tar1 = target_ret.loc[dt:]
+            print("tar_ret shape", df_tar1.shape)
+            rets_mat = pd.DataFrame(D_t_rets)
+            rets_mat = rets_mat.loc[df_tar1.index.values]
+            print("rets_mat shape ",rets_mat.shape)
+            rets_mat_cp = rets_mat.copy()
             for jj in d1.keys():
+                tmp_t_ret = rets_mat[jj].copy()
+                tmp_t_ret.iloc[0] = 0.0
+                tmp1 = (1. + tmp_t_ret).cumprod()
+                
+                print(tmp1.tail())
+                
                 df_tar[jj].loc[dt:] = d1[jj]
-            
+                rets_mat_cp[jj] =  d1[jj]*tmp1
+            D_fin[(dt,"end")] = rets_mat_cp
                 
     
     """
@@ -563,8 +609,19 @@ def match_dates(D_tickers_orig,df_tar,target_ret, match_d, d2h,forbidden,sector_
     print(df_tar[["AAPL","JNJ","JPM"]].tail(),df_tar[["AAPL","JNJ","JPM"]].head())
     
     
-    return df_tar
+    return df_tar,D_fin
 
+def compute_mat_ret(mat):
+    total = mat.sum(axis=1)
+    total = total.pct_change().fillna(0.0)
+    return total
+def compute_return_intr(D_fin):
+    #aprox = compute_return(cpn,tickers_pv, start_dt,list(match_d.keys()))
+    s1 =  pd.concat([compute_mat_ret(x) for x in D_fin.values()])#.drop_duplicates(keep ="first")
+    s1 = s1[~s1.index.duplicated(keep='first')]
+    return pd.DataFrame(s1,columns=["return"])
+    
+    
 def wrapper_strategy(PriceVolume_dr,index_df,index_holdings_path,match_d,constraints,start_dt,end_dt,sector_mapping):
     df_tar = create_universe_zero_df(PriceVolume_dr,index_df).loc[start_dt:end_dt]
     d2h = dates_2_holdings_dict(index_holdings_path)
@@ -587,7 +644,7 @@ def wrapper_strategy(PriceVolume_dr,index_df,index_holdings_path,match_d,constra
     else:
         close_col = close_col[0]
     tickers_pv = create_ret_dict(PriceVolume_dr, universe, close_col)
-    
+    #constraints["forbiden_tickers"],constraints["sectors"],constraints["num_of_tickers"],constraints["upper_bound"],sector_mapping)
 
     forbidden = constraints["forbiden_tickers"]
     sector_bounds = constraints["sectors"]
@@ -595,8 +652,19 @@ def wrapper_strategy(PriceVolume_dr,index_df,index_holdings_path,match_d,constra
     ub = constraints["upper_bound"]
     print("tickers_pv num of elements %d"%(len(tickers_pv.keys())))
     #sdasdda
-    df_tar = match_dates(tickers_pv, df_tar,index_df, match_d, d2h, forbidden, sector_bounds, num_of_tickers, ub, lb=0)
-
+    df_tar,D_fin = match_dates(tickers_pv, df_tar,index_df, match_d, d2h, forbidden, sector_bounds, num_of_tickers, ub, lb=0)
+    
+    print(D_fin.keys())
+    print("=*=")
+    #xxxx
+    d_aprox2 = compute_return_intr(D_fin)
+    print(d_aprox2.head())
+    print("="*50)
+    print(d_aprox2.tail())
+    print("="*50)
+    print(d_aprox2[50:70])
+    print(d_aprox2[-70:-50])
+    
     #match_dates(tickers_pv,df_tar, match_d, d2h, constraints["forbiden_tickers"],constraints["sectors"],constraints["num_of_tickers"],constraints["upper_bound"],sector_mapping)
     universe = list(df_tar.columns)
     print("*"*20)
@@ -611,12 +679,26 @@ def wrapper_strategy(PriceVolume_dr,index_df,index_holdings_path,match_d,constra
     #filter
     #df_tar = filter_out_forbiden_tickers(df_tar, constraints["forbiden_tickers"])
     cpn = df_tar.copy()
-    aprox = compute_return(cpn,tickers_pv, start_dt,list(match_d.keys()))
+    #L = list(D_fin.values())
+    #L = [L[0]] + [x[1:] for x in L[1:]]
+    #cpn = pd.concat(L,axis=0).drop_duplicates(keep="first").fillna(0.0)
+    #aprox = compute_return(cpn,tickers_pv, start_dt,list(match_d.keys()))
+    aprox = d_aprox2.loc[start_dt:end_dt]
+    #aprox = compute_return(cpn,tickers_pv, start_dt,list(match_d.keys()))
     print("start_dt %s"%(start_dt))
-    aprox["benchmark_index_return"] = index_df["return"][start_dt:end_dt]
-    aprox["Comulative_ret"] = (1. + aprox["return"][start_dt:end_dt]).cumprod()
-    aprox["benchmark_index_comulative_ret"] = (1 + aprox["benchmark_index_return"]).cumprod()
-    return aprox,df_tar
+    aprox["benchmark_index_return"] = index_df.loc[start_dt:end_dt]["return"]
+    aprox["Comulative_ret"] = (1. + aprox["return"]).cumprod()
+    aprox["benchmark_index_comulative_ret"] = (1. + aprox["benchmark_index_return"]).cumprod()
+    print(">"*30)
+    print(aprox["return"][:10])
+    print(">"*30)
+    print(aprox["benchmark_index_return"][:10])
+    ####
+    print(">"*30)
+    print(aprox["return"][60:70])
+    print(">"*30)
+    print(aprox["benchmark_index_return"][60:70])
+    return aprox[150:],df_tar
 
 GICS = pd.read_csv(os.path.join("..","data","GICS","GICS_sector_SP500.csv"))
 Ticker2Sector = GICS.set_index("Ticker")["Sector GICS"].to_dict()
