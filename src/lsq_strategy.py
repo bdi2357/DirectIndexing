@@ -519,8 +519,10 @@ def match_dates(D_tickers_orig,df_tar,target_ret, match_d, d2h,forbidden,sector_
         
         D3 = {x:D3[x] for x in D3.keys() if x in itms and x!="USD"}
         D3_cp = D3.copy()
-        llb = [max(tickers_weight_d[x]*0.95*const_w_c,lb) for x in D3.keys()]
-        uub = [ min(tickers_weight_d[x]*1.3*const_w_c,ub) for x in D3.keys()]
+        print("const_w_c",const_w_c)
+        #zzz
+        llb = [max(tickers_weight_d[x]*1.*const_w_c,lb) for x in D3.keys()]
+        uub = [ min(tickers_weight_d[x]*1.2*const_w_c,ub) for x in D3.keys()]
         #llb = [max(tickers_weight_d[x]*0.99,lb) for x in D3.keys()]
         #uub = [ min(tickers_weight_d[x]*1.1,ub) for x in D3.keys()]
         #llb = [max(lb,lb) for x in D3.keys()]

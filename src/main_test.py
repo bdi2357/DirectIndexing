@@ -6,7 +6,7 @@ import pandas as pd
 #from dummy_strategy import dummy_wrapper
 import time
 import glob
-from basic_stats import generate_basic_stats
+from basic_stats import generate_basic_stats,get_sector_weights
 from dateutil.parser import parse as date_parse
 import argparse
 import importlib
@@ -94,6 +94,10 @@ if __name__ == "__main__":
         os.mkdir(out_dir)
     if not os.path.isdir(os.path.join(out_dir,"raw")):
         os.mkdir(os.path.join(out_dir,"raw"))
+        
     df_tar[D_input["start_dt"]:D_input["end_dt"]].to_csv(os.path.join(out_dir,"raw","dummy_weights_file.csv"))
+           
+          
+    get_sector_weights(df_tar[D_input["start_dt"]:D_input["end_dt"]]).to_csv(os.path.join(out_dir,"raw","sector_weights.csv"))
     generate_basic_stats(aprox, out_dir, "temp")
     aprox.to_csv(os.path.join(out_dir, "aprox.csv"))

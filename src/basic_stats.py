@@ -4,6 +4,20 @@ import pandas as pd
 import matplotlib.pyplot as plt
 from basic_reader import max_dd
 from risk_L2 import Risk
+
+def get_sector_weights(df_all):
+    GICS = pd.read_csv(os.path.join("..","data","GICS","GICS_sector_SP500.csv"))
+    Ticker2Sector = GICS.set_index("Ticker")["Sector GICS"].to_dict()
+    SectorMapping = {}
+    for k in Ticker2Sector.keys():
+        SectorMapping[Ticker2Sector[k]] = SectorMapping.get(Ticker2Sector[k],[])+[k]
+    add_h = SectorMapping.pop("Health")
+    SectorMapping["Health Care"] += add_h
+    Dx = []
+    for k in SectorMapping.keys():
+        Dx.append(pd.DataFrame(df_all[[x for x in df_all.columns if x in SectorMapping[k]]].sum(axis=1),columns = [k]))
+    return pd.concat(Dx,axis=1)
+
 def generate_basic_stats(df,output_dir,name):
     stats = {}
     if not os.path.isdir(output_dir):
