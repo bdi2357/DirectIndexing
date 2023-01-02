@@ -540,7 +540,7 @@ def match_dates(D_tickers_orig,df_tar,target_ret, match_d, d2h,forbidden,sector_
         res_ds = lsq_with_constraints(D3, target_ret.loc[start_dt:end_dt]["return"], llb, uub, start_dt, end_dt,
                                       Sector2Tickers, sector_bounds)
         print(len([x for x in D3.keys()]))
-        """
+        
         tickers_weight_x = pd.read_csv(f_cand).set_index("Ticker")["Weight (%)"].to_dict()
         tickers_weight_x = {x:0.01*tickers_weight_x[x] for x in tickers_weight_x.keys() if isinstance(tickers_weight_x[x],float) and x in D_tickers_orig.keys() and 'return' in D_tickers_orig[x].columns}
         tickers_weight_x = {x:tickers_weight_x[x] for x in tickers_weight_x.keys() if x!="USD"}
@@ -548,7 +548,7 @@ def match_dates(D_tickers_orig,df_tar,target_ret, match_d, d2h,forbidden,sector_
         sm11 =  sum(tickers_weight_x.values())
         tickers_weight_x = {x: tickers_weight_x[x]/sm11 for x in tickers_weight_x.keys()}
         res_ds = tickers_weight_x
-        """
+        
         # aprx_ns = create_aprx1(res_ds, D_tickers)
         #aprx_ns, D_w_after = wrap_rebalancing(res_ds, Ticker2Sector, d_weights_sector, D_tickers,bnd=4)
         print(len([x for x in res_ds.keys() if res_ds[x]>0]))
