@@ -600,7 +600,7 @@ def match_dates(D_tickers_orig,df_tar,target_ret, match_d, d2h,forbidden,sector_
             print(D_t_rets.keys())
             test_key = list(D_t_rets.keys())[0]
             print(D_t_rets[test_key].shape)
-            df_tar1 = target_ret.loc[dt:rets_mat.index.values[-1]]
+            df_tar1 = target_ret.loc[dt:]
             print("tar_ret shape", df_tar1.shape)
             rets_mat = pd.DataFrame(D_t_rets)
             rets_mat = rets_mat.loc[df_tar1.index.values]
@@ -695,6 +695,7 @@ def wrapper_strategy(PriceVolume_dr,index_df,index_holdings_path,match_d,constra
     ub = constraints["upper_bound"]
     print("tickers_pv num of elements %d"%(len(tickers_pv.keys())))
     #sdasdda
+    index_df = index_df[:end_dt]
     df_tar,D_fin = match_dates(tickers_pv, df_tar,index_df, match_d, d2h, forbidden, sector_bounds, num_of_tickers, ub, lb=0)
     
     print(D_fin.keys())
@@ -741,7 +742,10 @@ def wrapper_strategy(PriceVolume_dr,index_df,index_holdings_path,match_d,constra
     print(aprox["return"][60:70])
     print(">"*30)
     print(aprox["benchmark_index_return"][60:70])
+    
     return aprox[:],df_tar
+
+
 
 GICS = pd.read_csv(os.path.join("..","data","GICS","GICS_sector_SP500.csv"))
 Ticker2Sector = GICS.set_index("Ticker")["Sector GICS"].to_dict()

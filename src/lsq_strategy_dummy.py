@@ -408,6 +408,8 @@ def compute_lsq_from_tickers():
     return
 
 def match_dates(D_tickers_orig,df_tar,target_ret, match_d, d2h,forbidden,sector_bounds,num_of_tickers,ub,lb=0):
+    #print(target_ret.index.values[-10:])
+    
     print("forbidden",forbidden)
     keys_list = list(match_d.keys())
     keys_list.sort()
@@ -594,19 +596,27 @@ def match_dates(D_tickers_orig,df_tar,target_ret, match_d, d2h,forbidden,sector_
                 print(keys_list)
                 
         else:
+            df_tar1 = target_ret.loc[dt:]
             D_t_rets = {k: D_tickers_orig[k]["return"] for k in d1.keys()}
             print(D_t_rets.keys())
             test_key = list(D_t_rets.keys())[0]
             print(D_t_rets[test_key].shape)
-            df_tar1 = target_ret.loc[dt:rets_mat.index.values[-1]]
+            print(df_tar1.index.values[-10:])
+            
+            df_tar1 = target_ret.loc[dt:]
             print("tar_ret shape", df_tar1.shape)
+            print(df_tar1.index.values[-10:])
             rets_mat = pd.DataFrame(D_t_rets)
+            print("dt ",dt," rets_mat.index.values[-1]",rets_mat.index.values[-1])
+            
             rets_mat = rets_mat.loc[df_tar1.index.values]
             print("rets_mat shape ",rets_mat.shape)
+            
             rets_mat_cp = rets_mat.copy()
             for jj in d1.keys():
                 tmp_t_ret = rets_mat[jj].copy()
                 print(jj)
+                print("df_tar1.index.values[-10:]",df_tar1.index.values[-10:])
                 print(tmp_t_ret.shape)
                 print(">"*30)
                 tmp_t_ret.iloc[0] = 0.0
@@ -693,6 +703,7 @@ def wrapper_strategy(PriceVolume_dr,index_df,index_holdings_path,match_d,constra
     ub = constraints["upper_bound"]
     print("tickers_pv num of elements %d"%(len(tickers_pv.keys())))
     #sdasdda
+    index_df = index_df[:end_dt]
     df_tar,D_fin = match_dates(tickers_pv, df_tar,index_df, match_d, d2h, forbidden, sector_bounds, num_of_tickers, ub, lb=0)
     
     print(D_fin.keys())
