@@ -19,6 +19,9 @@ def get_sector_weights(df_all):
     sector_weights = pd.concat(Dx,axis=1)
     sector_weights = sector_weights.drop_duplicates(subset= ['Health Care', 'Financials', 'Information Technology'],keep="first")
     return sector_weights
+def weights_qtr(df_all):
+    sbst = ["XOM","MSFT","JNJ","BSX","INTC"]
+    return df_all.drop_duplicates(subset=sbst,keep="first")
 
 def generate_basic_stats(df,output_dir,name):
     stats = {}

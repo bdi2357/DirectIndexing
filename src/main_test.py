@@ -99,5 +99,6 @@ if __name__ == "__main__":
            
           
     get_sector_weights(df_tar[D_input["start_dt"]:D_input["end_dt"]]).to_csv(os.path.join(out_dir,"raw","sector_weights.csv"))
+    weights_qtr(df_tar[D_input["start_dt"]:D_input["end_dt"]]).to_csv(os.path.join(out_dir,"raw","qtr_weights.csv"))
     generate_basic_stats(aprox, out_dir, "temp")
     aprox.to_csv(os.path.join(out_dir, "aprox.csv"))
