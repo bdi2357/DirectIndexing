@@ -86,7 +86,7 @@ if __name__ == "__main__":
     D_input.pop("num_of_tickers")
     logger.info(type(list(match_d.keys())[0]))
     #print(D_input["index_df"].index.values[:10])
-    aprox,df_tar = module.wrapper_strategy(**D_input)
+    aprox,df_tar,res_solver = module.wrapper_strategy(**D_input)
     
     logger.info("total times is %0.2f" % (time.time() - start))
     out_dir = args.OutDir
@@ -98,6 +98,7 @@ if __name__ == "__main__":
     df_tar[D_input["start_dt"]:D_input["end_dt"]].to_csv(os.path.join(out_dir,"raw","dummy_weights_file.csv"))
            
           
+    get_sector_weights(res_solver).to_csv(os.path.join(out_dir,"raw","sector_weights_res.csv"))
     get_sector_weights(df_tar[D_input["start_dt"]:D_input["end_dt"]]).to_csv(os.path.join(out_dir,"raw","sector_weights.csv"))
     weights_qtr(df_tar[D_input["start_dt"]:D_input["end_dt"]]).to_csv(os.path.join(out_dir,"raw","qtr_weights.csv"))
     generate_basic_stats(aprox, out_dir, "temp")

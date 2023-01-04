@@ -408,7 +408,9 @@ def compute_lsq_from_tickers():
     return
 
 def match_dates(D_tickers_orig,df_tar,target_ret, match_d, d2h,forbidden,sector_bounds,num_of_tickers,ub,lb=0):
+    solver_res = {}
     print("forbidden",forbidden)
+    #sector_bounds = {x:max(0.0,sector_bounds[x] -0.01) for x in sector_bounds.keys()}
     keys_list = list(match_d.keys())
     keys_list.sort()
     print(keys_list)
@@ -559,6 +561,8 @@ def match_dates(D_tickers_orig,df_tar,target_ret, match_d, d2h,forbidden,sector_
         print("total weights after",sum(res_ds.values()))
         
         d1 = res_ds#D_w_after
+        #date_parser(x).strftime("%Y-%m-%d")
+        solver_res[date_parser(keys_list[ii]).strftime("%Y-%m-%d")] = res_ds
         if ii < len(keys_list)-1:
             ks1 = match_d[keys_list[ii + 1]]
             dts1 = date_parser(ks1).strftime("%Y-%m-%d")
@@ -640,7 +644,7 @@ def match_dates(D_tickers_orig,df_tar,target_ret, match_d, d2h,forbidden,sector_
     print(df_tar[["AAPL","JNJ","JPM"]].tail(),df_tar[["AAPL","JNJ","JPM"]].head())
     
     
-    return df_tar,D_fin
+    return df_tar,D_fin,pd.DataFrame(solver_res).T.fillna(0.0)
 
 def compute_mat_ret(mat):
     total = mat.sum(axis=1)
@@ -696,7 +700,7 @@ def wrapper_strategy(PriceVolume_dr,index_df,index_holdings_path,match_d,constra
     print("tickers_pv num of elements %d"%(len(tickers_pv.keys())))
     #sdasdda
     index_df = index_df[:end_dt]
-    df_tar,D_fin = match_dates(tickers_pv, df_tar,index_df, match_d, d2h, forbidden, sector_bounds, num_of_tickers, ub, lb=0)
+    df_tar,D_fin,solver_res = match_dates(tickers_pv, df_tar,index_df, match_d, d2h, forbidden, sector_bounds, num_of_tickers, ub, lb=0)
     
     print(D_fin.keys())
     print("=*=")
@@ -742,8 +746,9 @@ def wrapper_strategy(PriceVolume_dr,index_df,index_holdings_path,match_d,constra
     print(aprox["return"][60:70])
     print(">"*30)
     print(aprox["benchmark_index_return"][60:70])
+    print(solver_res.tail())
     
-    return aprox[:],df_tar
+    return aprox[:],df_tar,solver_res
 
 
 def sectors_weights2(df_all): 
