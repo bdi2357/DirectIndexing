@@ -6,7 +6,7 @@ import pandas as pd
 #from dummy_strategy import dummy_wrapper
 import time
 import glob
-from basic_stats import generate_basic_stats,get_sector_weights
+from basic_stats import generate_basic_stats,get_sector_weights,weights_qtr
 from dateutil.parser import parse as date_parse
 import argparse
 import importlib
