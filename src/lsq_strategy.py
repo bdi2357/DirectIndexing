@@ -521,8 +521,8 @@ def match_dates(D_tickers_orig,df_tar,target_ret, match_d, d2h,forbidden,sector_
         D3_cp = D3.copy()
         print("const_w_c",const_w_c)
         #zzz
-        llb = [max(tickers_weight_d[x]*0.3*const_w_c,lb) for x in D3.keys()]
-        uub = [ min(tickers_weight_d[x]*2.1*const_w_c,ub) for x in D3.keys()]
+        llb = [max(tickers_weight_d[x]*0.5*const_w_c,lb) for x in D3.keys()]
+        uub = [ min(tickers_weight_d[x]*1.8*const_w_c,ub) for x in D3.keys()]
         #llb = [max(tickers_weight_d[x]*0.99,lb) for x in D3.keys()]
         #uub = [ min(tickers_weight_d[x]*1.1,ub) for x in D3.keys()]
         #llb = [max(lb,lb) for x in D3.keys()]
@@ -746,15 +746,19 @@ def wrapper_strategy(PriceVolume_dr,index_df,index_holdings_path,match_d,constra
     return aprox[:],df_tar
 
 
-
-GICS = pd.read_csv(os.path.join("..","data","GICS","GICS_sector_SP500.csv"))
-Ticker2Sector = GICS.set_index("Ticker")["Sector GICS"].to_dict()
-SectorMapping = {}
-for k in Ticker2Sector.keys():
-    SectorMapping[Ticker2Sector[k]] = SectorMapping.get(Ticker2Sector[k],[])+[k]
-add_h = SectorMapping.pop("Health")
-SectorMapping["Health Care"] += add_h
-
+def sectors_weights2(df_all): 
+    #there is identical function should be depracted 
+    GICS = pd.read_csv(os.path.join("..","data","GICS","GICS_sector_SP500.csv"))
+    Ticker2Sector = GICS.set_index("Ticker")["Sector GICS"].to_dict()
+    SectorMapping = {}
+    for k in Ticker2Sector.keys():
+        SectorMapping[Ticker2Sector[k]] = SectorMapping.get(Ticker2Sector[k],[])+[k]
+    add_h = SectorMapping.pop("Health")
+    SectorMapping["Health Care"] += add_h
+    Dx = []
+    for k in SectorMapping.keys():
+        Dx.append(pd.DataFrame(df_all[[x for x in df_all.columns if x in SectorMapping[k]]].sum(axis=1),columns = [k]))
+    return pd.concat(Dx,axis=1)
 if __name__ == "__main__":
     start = time.time()
     """

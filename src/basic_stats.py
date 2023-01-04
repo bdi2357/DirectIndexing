@@ -16,7 +16,9 @@ def get_sector_weights(df_all):
     Dx = []
     for k in SectorMapping.keys():
         Dx.append(pd.DataFrame(df_all[[x for x in df_all.columns if x in SectorMapping[k]]].sum(axis=1),columns = [k]))
-    return pd.concat(Dx,axis=1)
+    sector_weights = pd.concat(Dx,axis=1)
+    sector_weights = sector_weights.drop_duplicates(subset= ['Health Care', 'Financials', 'Information Technology'],keep="first")
+    return sector_weights
 
 def generate_basic_stats(df,output_dir,name):
     stats = {}
