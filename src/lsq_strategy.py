@@ -521,8 +521,8 @@ def match_dates(D_tickers_orig,df_tar,target_ret, match_d, d2h,forbidden,sector_
         D3_cp = D3.copy()
         print("const_w_c",const_w_c)
         #zzz
-        llb = [max(tickers_weight_d[x]*1.*const_w_c,lb) for x in D3.keys()]
-        uub = [ min(tickers_weight_d[x]*1.2*const_w_c,ub) for x in D3.keys()]
+        llb = [max(tickers_weight_d[x]*0.3*const_w_c,lb) for x in D3.keys()]
+        uub = [ min(tickers_weight_d[x]*2.1*const_w_c,ub) for x in D3.keys()]
         #llb = [max(tickers_weight_d[x]*0.99,lb) for x in D3.keys()]
         #uub = [ min(tickers_weight_d[x]*1.1,ub) for x in D3.keys()]
         #llb = [max(lb,lb) for x in D3.keys()]
@@ -578,7 +578,7 @@ def match_dates(D_tickers_orig,df_tar,target_ret, match_d, d2h,forbidden,sector_
                 # print(k)
                 tmp_t_ret = rets_mat[jj].copy()
                 #tmp_t_ret.iloc[0] = 0.0
-                tmp1 = (1. + tmp_t_ret).cumprod()
+                tmp1 = (1. + tmp_t_ret.fillna(0.0)).cumprod()
                 #tmp1 = (1. + rets_mat[jj]).cumprod()
                 print(jj)
                 print(tmp1.tail())
