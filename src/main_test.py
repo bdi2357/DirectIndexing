@@ -97,7 +97,7 @@ if __name__ == "__main__":
         
     df_tar[D_input["start_dt"]:D_input["end_dt"]].to_csv(os.path.join(out_dir,"raw","dummy_weights_file.csv"))
            
-          
+    res_solver.to_csv(os.path.join(out_dir,"raw","weights_res.csv"))
     get_sector_weights(res_solver).to_csv(os.path.join(out_dir,"raw","sector_weights_res.csv"))
     get_sector_weights(df_tar[D_input["start_dt"]:D_input["end_dt"]]).to_csv(os.path.join(out_dir,"raw","sector_weights.csv"))
     weights_qtr(df_tar[D_input["start_dt"]:D_input["end_dt"]]).to_csv(os.path.join(out_dir,"raw","qtr_weights.csv"))
