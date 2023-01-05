@@ -523,26 +523,36 @@ def match_dates(D_tickers_orig,df_tar,target_ret, match_d, d2h,forbidden,sector_
         D3_cp = D3.copy()
         print("const_w_c",const_w_c)
         #zzz
-        llb = [max(tickers_weight_d[x]*0.5*const_w_c,lb) for x in D3.keys()]
-        uub = [ min(tickers_weight_d[x]*1.8*const_w_c,ub) for x in D3.keys()]
-        #llb = [max(tickers_weight_d[x]*0.99,lb) for x in D3.keys()]
-        #uub = [ min(tickers_weight_d[x]*1.1,ub) for x in D3.keys()]
-        #llb = [max(lb,lb) for x in D3.keys()]
-        #uub = [ min(ub,ub) for x in D3.keys()]
-        kys = list(D3.keys())
-        for x in range(len(kys)):
-            print(kys[x],llb[x],uub[x])
-            if llb[x] > uub[x]:
-                print("?"*50)
-                llb[x] = max(0.0,uub[x] - 0.01)
-                uub[x] = max(0.0,uub[x])
-            else :
-                llb[x] = max(0,llb[x])
-                uub[x] = max(0,uub[x])
-        #llb = [lb for x in D3.keys()]
-        #uub = [ub for x in D3.keys()]
-        res_ds = lsq_with_constraints(D3, target_ret.loc[start_dt:end_dt]["return"], llb, uub, start_dt, end_dt,
-                                      Sector2Tickers, sector_bounds)
+        wub = 1.6
+        wlb = 0.7
+        while True:
+            wub += 0.1
+            wlb -=0.1
+            wlb = max(wlb,0.0)
+            try:
+                llb = [max(tickers_weight_d[x]*wlb*const_w_c,lb) for x in D3.keys()]
+                uub = [ min(tickers_weight_d[x]*wub*const_w_c,ub) for x in D3.keys()]
+                #llb = [max(tickers_weight_d[x]*0.99,lb) for x in D3.keys()]
+                #uub = [ min(tickers_weight_d[x]*1.1,ub) for x in D3.keys()]
+                #llb = [max(lb,lb) for x in D3.keys()]
+                #uub = [ min(ub,ub) for x in D3.keys()]
+                kys = list(D3.keys())
+                for x in range(len(kys)):
+                    print(kys[x],llb[x],uub[x])
+                    if llb[x] > uub[x]:
+                        print("?"*50)
+                        llb[x] = max(0.0,uub[x] - 0.01)
+                        uub[x] = max(0.0,uub[x])
+                    else :
+                        llb[x] = max(0,llb[x])
+                        uub[x] = max(0,uub[x])
+                #llb = [lb for x in D3.keys()]
+                #uub = [ub for x in D3.keys()]
+                res_ds = lsq_with_constraints(D3, target_ret.loc[start_dt:end_dt]["return"], llb, uub, start_dt, end_dt,
+                                              Sector2Tickers, sector_bounds)
+                break;
+            except:
+                print("error ub %0.2f lb %0.2f"%(wub,wlb))
         print(len([x for x in D3.keys()]))
         """
         tickers_weight_x = pd.read_csv(f_cand).set_index("Ticker")["Weight (%)"].to_dict()
