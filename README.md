@@ -1,4 +1,4 @@
-# DirectIndexingBondIt
+# DirectIndexing
 Direct Indexing project repo
 ** Objective: Demonstrate direct indexing capabilities. Goals:
 1. Develop an optimizer that can follow an index with known constituents, demonstrated on the S&P 500.
